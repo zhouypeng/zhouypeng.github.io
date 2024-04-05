@@ -6,18 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://zhouypeng.github.io">
-  <title>分类 | zhou</title>
+  <title>文件上传 | zhou</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="https://zhouypeng.github.io/categories/index.html">
+  <meta name="description" content="客户端检查—文件后缀检查  Burpsuite抓包改包：上传规定的后缀版本，利用Brupsuite抓包修改后缀 禁用JS脚本（删除） 使用开发者工具，找到onsubmit删除。但是一般无法实现，因为浏览器已经加载JS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文件上传">
+<meta property="og:url" content="https://zhouypeng.github.io/2024/04/01/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/index.html">
 <meta property="og:site_name" content="zhou">
+<meta property="og:description" content="客户端检查—文件后缀检查  Burpsuite抓包改包：上传规定的后缀版本，利用Brupsuite抓包修改后缀 禁用JS脚本（删除） 使用开发者工具，找到onsubmit删除。但是一般无法实现，因为浏览器已经加载JS">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-04-05T05:40:36.000Z">
-<meta property="article:modified_time" content="2024-04-05T05:55:42.849Z">
+<meta property="article:published_time" content="2024-04-01T02:33:36.000Z">
+<meta property="article:modified_time" content="2024-04-05T12:16:50.301Z">
 <meta property="article:author" content="zhoupeng">
+<meta property="article:tag" content="文件上传">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="zhou" type="application/atom+xml">
@@ -220,14 +223,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-文件上传" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      分类
+      文件上传
     </h1>
   
 
@@ -239,8 +242,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/categories/index.html" class="archive-article-date">
-        <time datetime="2024-04-05T05:40:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-05</time>
+<a href="/2024/04/01/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" class="archive-article-date">
+        <time datetime="2024-04-01T02:33:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-01</time>
 </a>
 
   
@@ -253,7 +256,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">0字</span>
+      <span class="post-count">180字</span>
     </span>
   </span>
 
@@ -274,17 +277,40 @@
   <div class="article-entry" itemprop="articleBody">
  
 
-<div class="category-all-page">
-	<div class="category-all-title">
-	counter.categories
-	</div>
 	
-	<div class="category-all">
-	<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CTFwp/">CTFwp</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E6%BC%8F%E6%B4%9E/">web漏洞</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BB%A3%E7%A0%81%E9%A2%98/">代码题</a><span class="category-list-count">1</span></li></ul>
-	</div>
-	
-</div>
+		<p><strong>客户端检查—文件后缀检查</strong></p>
+<ul>
+<li>Burpsuite抓包改包：上传规定的后缀版本，利用Brupsuite抓包修改后缀</li>
+<li>禁用JS脚本（删除）<ul>
+<li>使用开发者工具，找到onsubmit删除。但是一般无法实现，因为浏览器已经加载JS</li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
 
+<p><strong>MIME类型检查—文件类型检查</strong></p>
+<ul>
+<li>Burpsuite抓包修改content-tyoe</li>
+</ul>
+<p><strong>黑名单检查</strong></p>
+<ul>
+<li>Burpsuite使用以下后缀名进行模糊测试上传</li>
+<li>php3、php4、php5、php7、pht、phtml</li>
+</ul>
+<p><strong>白名单检查</strong></p>
+<p>存在文件包含include、include_once、require、require_once</p>
+<p><strong>Magic Header检查</strong></p>
+<ul>
+<li>修改文件头信息<ul>
+<li>在PHP文件开始部分添加GIF89a</li>
+<li>GIF89a–&gt;47494638</li>
+</ul>
+</li>
+</ul>
+<p><strong>竞争上传</strong></p>
+<p><em><code>&lt;?php fputs(fopen(&quot;shell.php&quot;,&quot;w&quot;),&#39;&lt;?php eval($_POST[&quot;data&quot;]); ?&gt;&#39;) ?&gt;</code></em></p>
+
+	
 
 
 
@@ -321,7 +347,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://zhouypeng.github.io/categories/index.html" title="分类" target="_blank">https://zhouypeng.github.io/categories/index.html</a>
+          <a href="https://zhouypeng.github.io/2024/04/01/文件上传/" title="文件上传" target="_blank">https://zhouypeng.github.io/2024/04/01/文件上传/</a>
         </li>
         
         <li>
@@ -338,7 +364,29 @@
   <div class="article-info article-info-index">
     
     
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">文件上传</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
     
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/web漏洞//" class="article-tag-list-link color1">web漏洞</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
     
 
@@ -388,7 +436,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://zhouypeng.github.io/categories/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://zhouypeng.github.io/2024/04/01/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -400,6 +448,25 @@
   </div>
 </article>
 
+
+<nav id="article-nav">
+  
+    <a href="/2024/04/01/sql%E6%B3%A8%E5%85%A5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          SQL注入
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/03/31/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">文件包含</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 <aside class="wrap-side-operation">
@@ -468,7 +535,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

