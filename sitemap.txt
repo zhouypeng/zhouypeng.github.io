@@ -27,7 +27,7 @@ https://zhouypeng.github.io/tags/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%C2%B7/
 https://zhouypeng.github.io/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/
 https://zhouypeng.github.io/categories/kali/
 https://zhouypeng.github.io/categories/%E4%BB%A3%E7%A0%81%E9%A2%98/
-https://zhouypeng.github.io/categories/CTFwp/
 https://zhouypeng.github.io/categories/Tabby/
+https://zhouypeng.github.io/categories/CTFwp/
 https://zhouypeng.github.io/categories/hexo/
 https://zhouypeng.github.io/categories/webbug/
