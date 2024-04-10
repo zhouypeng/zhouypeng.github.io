@@ -6,21 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://zhouypeng.github.io">
-  <title>hexo上传文件无法显示 | zhou</title>
+  <title>文件包含 | zhou</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="在搭建完hexo博客后，把图片引用到文章后，由于图片是在本地的导致上传完图片无法显示">
+  <meta name="description" content="include 表达式:包含并运行指定文件。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo上传文件无法显示">
-<meta property="og:url" content="https://zhouypeng.github.io/article/c21c4bad.html">
+<meta property="og:title" content="文件包含">
+<meta property="og:url" content="https://zhouypeng.github.io/2024/03/31/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/index.html">
 <meta property="og:site_name" content="zhou">
-<meta property="og:description" content="在搭建完hexo博客后，把图片引用到文章后，由于图片是在本地的导致上传完图片无法显示">
+<meta property="og:description" content="include 表达式:包含并运行指定文件。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-04-06T08:17:18.000Z">
-<meta property="article:modified_time" content="2024-04-06T08:39:15.437Z">
+<meta property="article:published_time" content="2024-03-31T15:21:58.000Z">
+<meta property="article:modified_time" content="2024-04-10T03:22:35.219Z">
 <meta property="article:author" content="zhoupeng">
-<meta property="article:tag" content="hexo">
+<meta property="article:tag" content="文件包含">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="zhou" type="application/atom+xml">
@@ -237,14 +237,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-hexo上传文件无法显示" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-文件包含" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      hexo上传文件无法显示
+      文件包含
     </h1>
   
 
@@ -256,8 +256,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/article/c21c4bad.html" class="archive-article-date">
-        <time datetime="2024-04-06T08:17:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-06</time>
+<a href="/2024/03/31/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" class="archive-article-date">
+        <time datetime="2024-03-31T15:21:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-31</time>
 </a>
 
   
@@ -270,7 +270,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">265字</span>
+      <span class="post-count">153字</span>
     </span>
   </span>
 
@@ -292,24 +292,37 @@
  
 
 	
-		<p>在搭建完hexo博客后，把图片引用到文章后，由于图片是在本地的导致上传完图片无法显示</p>
+		<ul>
+<li><p><strong>include 表达式:包含并运行指定文件。</strong></p>
 <span id="more"></span>
-
-<p>让图片显示：</p>
-<ol>
-<li><p>要添加图片，需要先安装hexo-asset-image依赖，在hexo根目录右键点击git bash，执行以下命令安装hexo-asset-image</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>hexo根目录，打开配置文件_config.yml，找到post_asset_folder，将false修改为true。这样便能在通过hexo new “文章名”创建文章的同时在__post中创建一个“文章名”文件夹，用来存放文章需要用到的图片</p>
+<li><p><strong>php:&#x2F;&#x2F;查看源代码</strong></p>
+<ul>
+<li><em>php:&#x2F;&#x2F;filter&#x2F;read&#x3D;convert.base64-encode&#x2F;resource&#x3D;index.php</em></li>
+<li>可以加一些不相关的路径：</li>
+<li><em>php:&#x2F;&#x2F;filter&#x2F;read&#x3D;convert.base64-encode&#x2F;balabala334&#x2F;resource&#x3D;index.php</em></li>
+<li>index.php可以改成要查看源代码的文件</li>
+</ul>
 </li>
-<li><p>把图片放到“文章名”文件夹后，就可以在.md文件中引用该图片了，格式如下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![图片描述](./文章名/图片名（包括后缀）)</span><br></pre></td></tr></table></figure>
-
-<p><strong>特别强调：</strong>文件夹要与文章的title名一致，否则无法显示</p>
+<li><p><strong>php:&#x2F;&#x2F;input</strong></p>
+<ul>
+<li>可以将php代码post发送执行</li>
+<li>条件：allow_url_include为on</li>
+</ul>
 </li>
-<li><p>保存文件的修改之后，在命令行输入hexo clean,接着输入hexo g –d。在浏览器输入域名后查看相关文章，显示图片成功！！！</p>
+<li><p>将php代码使用data:&#x2F;&#x2F;协议发送执行</p>
+<ul>
+<li>data:&#x2F;&#x2F;text&#x2F;plain,加内容</li>
+<li><em>data:&#x2F;&#x2F;text&#x2F;plain;base64,PD9waHAgc3lzdGVtKCJkaXIiKTs&#x2F;Pg&#x3D;&#x3D;</em></li>
+</ul>
 </li>
-</ol>
+<li><p>file:&#x2F;&#x2F;</p>
+<ul>
+<li>文件系统中读取文件内容</li>
+<li>file:&#x2F;&#x2F;文件路径</li>
+</ul>
+</li>
+</ul>
 
 	
 
@@ -348,7 +361,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://zhouypeng.github.io/article/c21c4bad.html" title="hexo上传文件无法显示" target="_blank">https://zhouypeng.github.io/article/c21c4bad.html</a>
+          <a href="https://zhouypeng.github.io/2024/03/31/文件包含/" title="文件包含" target="_blank">https://zhouypeng.github.io/2024/03/31/文件包含/</a>
         </li>
         
         <li>
@@ -370,7 +383,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">文件包含</a>
         		</li>
       		
 		</ul>
@@ -382,7 +395,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/hexo//" class="article-tag-list-link color5">hexo</a>
+        			<a href="/categories/webbug//" class="article-tag-list-link color2">webbug</a>
         		</li>
       		
 		</ul>
@@ -437,7 +450,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://zhouypeng.github.io/article/c21c4bad.html" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://zhouypeng.github.io/2024/03/31/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -452,18 +465,18 @@
 
 <nav id="article-nav">
   
-    <a href="/article/9229cc64.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2024/04/01/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Tabby-终端控制神器
+          文件上传
         
       </div>
     </a>
   
   
-    <a href="/article/2a46382a.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Kali-静态IP</div>
+    <a href="/2024/03/31/%5BZJCTF%202019%5DNiZhuanSiWei/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">[ZJCTF 2019]NiZhuanSiWei</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -504,9 +517,9 @@
     <script src="/lib/gitment.js"></script>
   
   <script>
-    <!-- id: "hexo上传文件无法显示" -->
+    <!-- id: "文件包含" -->
     var gitment = new Gitment({
-      id: "20240406161718",
+      id: "20240331232158",
       owner: 'zhouypeng',
       repo: 'zhouypeng.github.io',
       oauth: {
@@ -651,23 +664,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">py</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">伪协议</a>
+                <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">反序列化</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">文件包含</a>
+                <a href="javascript:void(0)" class="js-tag color1">SQL注入</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -675,7 +680,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">SQL注入</a>
+                <a href="javascript:void(0)" class="js-tag color5">反序列化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">伪协议</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">文件包含</a>
               </li>
              
               <li class="article-tag-list-item">

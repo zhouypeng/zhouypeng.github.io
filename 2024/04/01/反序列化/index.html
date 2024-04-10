@@ -6,22 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://zhouypeng.github.io">
-  <title>Python 斐波那契数列 | zhou</title>
+  <title>反序列化 | zhou</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="题目 斐波那契数列指的是这样一个数列 1, 1, 2, 3, 5, 8, 13,特别指出：第0项是0，第1项是第一个1。从第三项开始，每一项都等于前两项之和。">
+  <meta name="description" content="序列化、反序列化 简单讲，序列化其实就是将数据转化成一种可逆的数据结构，自然，逆向的过程就叫做反序列化。 序列化 序列化的目的就是为了方便数据的传输和存储。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python 斐波那契数列">
-<meta property="og:url" content="https://zhouypeng.github.io/article/57b7c3ff.html">
+<meta property="og:title" content="反序列化">
+<meta property="og:url" content="https://zhouypeng.github.io/2024/04/01/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/index.html">
 <meta property="og:site_name" content="zhou">
-<meta property="og:description" content="题目 斐波那契数列指的是这样一个数列 1, 1, 2, 3, 5, 8, 13,特别指出：第0项是0，第1项是第一个1。从第三项开始，每一项都等于前两项之和。">
+<meta property="og:description" content="序列化、反序列化 简单讲，序列化其实就是将数据转化成一种可逆的数据结构，自然，逆向的过程就叫做反序列化。 序列化 序列化的目的就是为了方便数据的传输和存储。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-04-03T07:36:10.000Z">
-<meta property="article:modified_time" content="2024-04-05T13:03:17.219Z">
+<meta property="og:image" content="https://zhouypeng.github.io/2024/04/01/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/1.jpg">
+<meta property="article:published_time" content="2024-04-01T04:50:13.000Z">
+<meta property="article:modified_time" content="2024-04-10T03:22:35.214Z">
 <meta property="article:author" content="zhoupeng">
-<meta property="article:tag" content="py">
+<meta property="article:tag" content="反序列化">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhouypeng.github.io/2024/04/01/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="zhou" type="application/atom+xml">
   
@@ -237,14 +239,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-python-斐波那契数列" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-反序列化" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      Python 斐波那契数列
+      反序列化
     </h1>
   
 
@@ -256,8 +258,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/article/57b7c3ff.html" class="archive-article-date">
-        <time datetime="2024-04-03T07:36:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-03</time>
+<a href="/2024/04/01/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" class="archive-article-date">
+        <time datetime="2024-04-01T04:50:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-01</time>
 </a>
 
   
@@ -270,7 +272,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">151字</span>
+      <span class="post-count">937字</span>
     </span>
   </span>
 
@@ -279,7 +281,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">4分</span>
     </span>
   </span>
 </div>
@@ -292,12 +294,46 @@
  
 
 	
-		<p>题目</p>
-<p>斐波那契数列指的是这样一个数列 1, 1, 2, 3, 5, 8, 13,特别指出：第0项是0，第1项是第一个1。从第三项开始，每一项都等于前两项之和。</p>
+		<p><strong>序列化、反序列化</strong></p>
+<p>简单讲，序列化其实就是将数据转化成一种可逆的数据结构，自然，逆向的过程就叫做反序列化。</p>
+<p><strong>序列化</strong></p>
+<p>序列化的目的就是为了方便数据的传输和存储。</p>
 <span id="more"></span>
 
-<p>代码实现</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">num = int(input(&quot;需要输出几个斐波那契数列数：&quot;))</span><br><span class="line"></span><br><span class="line">n1 = 1</span><br><span class="line">n2 = 1</span><br><span class="line">count = 2</span><br><span class="line"></span><br><span class="line">if num &lt; 0:</span><br><span class="line">    print(&quot;输入不合法，你应该输入一个正整数！！&quot;)</span><br><span class="line">elif num == 1:</span><br><span class="line">    print(&quot;斐波那契数列：&quot;)</span><br><span class="line">    print(n1)</span><br><span class="line">else:</span><br><span class="line">    print(&quot;斐波那契数列：&quot;)</span><br><span class="line">    print(n1, n2, end=&quot; &quot;)</span><br><span class="line">    while count &lt; num:</span><br><span class="line">        n3 = n2</span><br><span class="line">        n2 = n1 + n2</span><br><span class="line">        n1 = n3</span><br><span class="line">        print(n2, end=&quot; &quot;)</span><br><span class="line">        count += 1</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">//代码</span><br><span class="line">&lt;?php</span><br><span class="line">// 序列化</span><br><span class="line">$sites = array(&quot;baidu&quot; =&gt; &quot;www.baidu.com&quot;, &quot;count&quot; =&gt;10);</span><br><span class="line">$str = serialize($sites);</span><br><span class="line">echo $str;</span><br><span class="line"></span><br><span class="line">// 反序列化</span><br><span class="line">$sites2 = unserialize($str);</span><br><span class="line">echo var_dump($sites2);</span><br><span class="line"></span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line">// 运行结果</span><br><span class="line">a:2:&#123;s:5:&quot;baidu&quot;;s:13:&quot;www.baidu.com&quot;;s:5:&quot;count&quot;;i:10;&#125;</span><br><span class="line">array(2) &#123;</span><br><span class="line">  [&quot;baidu&quot;]=&gt;</span><br><span class="line">  string(13) &quot;www.baidu.com&quot;</span><br><span class="line">  [&quot;count&quot;]=&gt;</span><br><span class="line">  int(10)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>序列化格式</strong></p>
+<p>a表示array（数组），2表示数组有2个元素<br>s:5:”baidu”表示第一个元素的下标，长度为5的字符串<br>s:13表示第一个元素的值，长度为13的字符串<br>i:10表示值为10的整数</p>
+<p><strong>序列化对象</strong></p>
+<p>序列化时，只保存成员变量，不保存方法</p>
+<p>存在class的序列化</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">class a&#123;</span><br><span class="line">    public $var1;</span><br><span class="line">    protected $var2;</span><br><span class="line">    private $var3;</span><br><span class="line"></span><br><span class="line">    function __construct($var1, $var2, $var3)&#123;</span><br><span class="line">        $this-&gt;var1 = $var1</span><br><span class="line">        $this-&gt;var2 = $var2</span><br><span class="line">        $this-&gt;var3 = $var3</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 序列化</span><br><span class="line">$a = new A(&quot;hello&quot;, &quot;tom&quot;, 5);</span><br><span class="line">$str = serialize($a);</span><br><span class="line">echo $str;</span><br><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 反序列化</span><br><span class="line">$a2 = unserialize($str);</span><br><span class="line">echo var_dump($a2);</span><br><span class="line"></span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line">// 运行结果</span><br><span class="line">O:1:&quot;a&quot;:3:&#123;s:4:&quot;var1&quot;;s:5:&quot;hello&quot;;s:7:&quot; * var2&quot;;s:3:&quot;tom&quot;;s:7:&quot; a var3&quot;;i:5;&#125;</span><br><span class="line">(3) &#123;</span><br><span class="line">  [&quot;var1&quot;]=&gt;</span><br><span class="line">  string(5) &quot;hello&quot;</span><br><span class="line">  [&quot;var2&quot;:protected]=&gt;</span><br><span class="line">  string(3) &quot;tom&quot;</span><br><span class="line">  [&quot;var3&quot;:&quot;a&quot;:private]=&gt;</span><br><span class="line">  int(5)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">格式说明</span><br><span class="line">O:1:“A”:3O表示对象，类名长度为1，类名为A，有3个成员变量</span><br><span class="line"></span><br><span class="line">大括号里面是3个成员变量的信息</span><br><span class="line">public成员变量的名字直接写就行</span><br><span class="line">protected成员变量的名字前需要加%00*%00</span><br><span class="line">private成员变量的名字前需要加%00类名%00</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>类中的魔术方法</strong></p>
+<p><img src="/2024/04/01/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/1.jpg"></p>
+<p><strong>绕过方法 绕过__wakeup()</strong></p>
+<p>__wakeup()魔术方法在执行unserialize()时，会优先调用这个函数，而不会执行__construct函数<br>绕过方法：序列化字符串中表示对象属性个数的值大于真实的属性个数时会跳过__wakeup()<br>例如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$a</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;a = <span class="string">&quot;abc&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    pubilc <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span> -&gt;a = <span class="string">&quot;def&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    pubilc <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="variable language_">$this</span> -&gt;a;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>上述test类序列化后为</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">O:<span class="number">4</span>:<span class="string">&quot;test&quot;</span>:<span class="number">1</span>:&#123;s:<span class="number">1</span>:<span class="string">&quot;a&quot;</span>;s:<span class="number">3</span>:<span class="string">&quot;abc&quot;</span>;&#125;abc</span><br><span class="line">__destruct中的输出结果为abc</span><br></pre></td></tr></table></figure>
+
+<p>在执行反序列化后的结果为：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O:<span class="number">4</span>:<span class="string">&quot;test&quot;</span>:<span class="number">1</span>:&#123;s:<span class="number">1</span>:<span class="string">&quot;a&quot;</span>;s:<span class="number">3</span>:<span class="string">&quot;def&quot;</span>;&#125;def</span><br></pre></td></tr></table></figure>
+<p>可见在执行反序列化后__destruct()输出内容为def(被__wakeup()函数修改了)</p>
+<p>可以发现优先执行了__wakeup()，并没有执行__coustruct()</p>
+<p>当我们把对象的属性个数改大时，改成 O:4:”test”:2:{s:1:”a”;s:3:”abc”;} ,由原来的1个属性改为2个，但test 类真实的属性只有一个，这样就能绕过 __wakeup() 按没有这个魔术方法一样去执行其他相应的魔术方法。</p>
+<p>执行反序列化后的结果为：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O:<span class="number">4</span>:<span class="string">&quot;test&quot;</span>:<span class="number">1</span>:&#123;s:<span class="number">1</span>:<span class="string">&quot;a&quot;</span>;s:<span class="number">3</span>:<span class="string">&quot;abc&quot;</span>;&#125;abc</span><br></pre></td></tr></table></figure>
+<p>发现优先执行了__construct()，并没有执行__wakeup()</p>
+<p>正则绕过</p>
+<p>正则表达式是一种字符串匹配模式，用来检查一个字符串是否会含有某个子串、将匹配的子串做替换或者从某个字符串中取出符合条件的子串等。</p>
+<p>如preg_match(‘&#x2F;^O:\d+&#x2F;‘)匹配序列化字符串是否是对象字符串开头。</p>
+<p>绕过方法</p>
+<ul>
+<li>利用加号绕过（注意url中传参时+要编码为%2B）。</li>
+<li>利用数组对象绕过</li>
+</ul>
+
 	
 
 
@@ -335,7 +371,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://zhouypeng.github.io/article/57b7c3ff.html" title="Python 斐波那契数列" target="_blank">https://zhouypeng.github.io/article/57b7c3ff.html</a>
+          <a href="https://zhouypeng.github.io/2024/04/01/反序列化/" title="反序列化" target="_blank">https://zhouypeng.github.io/2024/04/01/反序列化/</a>
         </li>
         
         <li>
@@ -357,7 +393,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">py</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">反序列化</a>
         		</li>
       		
 		</ul>
@@ -369,7 +405,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/代码题//" class="article-tag-list-link color4">代码题</a>
+        			<a href="/categories/webbug//" class="article-tag-list-link color2">webbug</a>
         		</li>
       		
 		</ul>
@@ -424,7 +460,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://zhouypeng.github.io/article/57b7c3ff.html" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://zhouypeng.github.io/2024/04/01/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -439,18 +475,18 @@
 
 <nav id="article-nav">
   
-    <a href="/article/6cd8a516.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2024/04/02/qsnctf%E6%96%87%E7%AB%A0%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Python 字典小练习
+          [qsnctf]文章管理系统
         
       </div>
     </a>
   
   
-    <a href="/article/cf64b99a.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">命令执行</div>
+    <a href="/2024/04/01/sql%E6%B3%A8%E5%85%A5/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">SQL注入</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -491,9 +527,9 @@
     <script src="/lib/gitment.js"></script>
   
   <script>
-    <!-- id: "Python 斐波那契数列" -->
+    <!-- id: "反序列化" -->
     var gitment = new Gitment({
-      id: "20240403153610",
+      id: "20240401125013",
       owner: 'zhouypeng',
       repo: 'zhouypeng.github.io',
       oauth: {
@@ -638,23 +674,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">py</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">伪协议</a>
+                <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">反序列化</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">文件包含</a>
+                <a href="javascript:void(0)" class="js-tag color1">SQL注入</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -662,7 +690,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">SQL注入</a>
+                <a href="javascript:void(0)" class="js-tag color5">反序列化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">伪协议</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">文件包含</a>
               </li>
              
               <li class="article-tag-list-item">
