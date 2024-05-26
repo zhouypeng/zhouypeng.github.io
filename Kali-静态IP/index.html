@@ -300,11 +300,11 @@
 <p>依次打开VMware菜单中的虚拟机—&gt;设置–&gt;网络适配器，如下图将网络设置为桥接模式</p>
 <span id="more"></span>
 
-<p><img src="/Kali-%E9%9D%99%E6%80%81IP/%E7%BD%91%E7%BB%9C%E9%80%82%E9%85%8D%E5%99%A8.png"></p>
+<p><img src="/./Kali-%E9%9D%99%E6%80%81IP/%E7%BD%91%E7%BB%9C%E9%80%82%E9%85%8D%E5%99%A8.png"></p>
 <p>进入kali终端，输入以下命令进入文件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/network/interfaces</span><br></pre></td></tr></table></figure>
 
-<p><img src="/Kali-%E9%9D%99%E6%80%81IP/ip%E8%AE%BE%E7%BD%AE.png" alt="ip设置"></p>
+<p><img src="/./Kali-%E9%9D%99%E6%80%81IP/ip%E8%AE%BE%E7%BD%AE.png" alt="ip设置"></p>
 <p>按i执行插入修改相应命令并添加以下信息：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 原内容</span><br><span class="line">auto eth0</span><br><span class="line">iface eth0 inet dhcp</span><br><span class="line"># 修改为</span><br><span class="line">auto eth0</span><br><span class="line">iface eth0 inet static</span><br><span class="line">address 0.0.0.0  # 静态IP</span><br><span class="line">netmask 0.0.0.0  # 子网掩码</span><br><span class="line">gateway 0.0.0.0  # 网关</span><br></pre></td></tr></table></figure>
 
@@ -316,7 +316,7 @@
 
 
 <p>再输入ifconfig，显示如下图，其中eth0与你刚配置的静态IP一致就配置完成了</p>
-<p><img src="/Kali-%E9%9D%99%E6%80%81IP/ipconfig.png"></p>
+<p><img src="/./Kali-%E9%9D%99%E6%80%81IP/ipconfig.png"></p>
 
 	
 
