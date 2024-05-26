@@ -6,16 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://zhouypeng.github.io">
-  <title>Tag: py | zhou</title>
+  <title>XSS漏洞的挖掘与分析 | zhou</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="zhou">
-<meta property="og:url" content="https://zhouypeng.github.io/tags/py/index.html">
+  <meta name="description" content="什么是XSS漏洞？ 全称跨站脚本攻击，是web应用中的计算机安全漏洞，它允许恶意web用户将代码植入web网站里，给其它用户访问，当用户访问到有恶意代码的网站就会产生XSS攻击。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XSS漏洞的挖掘与分析">
+<meta property="og:url" content="https://zhouypeng.github.io/XSS%E6%BC%8F%E6%B4%9E%E7%9A%84%E6%8C%96%E6%8E%98%E4%B8%8E%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="zhou">
+<meta property="og:description" content="什么是XSS漏洞？ 全称跨站脚本攻击，是web应用中的计算机安全漏洞，它允许恶意web用户将代码植入web网站里，给其它用户访问，当用户访问到有恶意代码的网站就会产生XSS攻击。">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-05-21T06:57:44.000Z">
+<meta property="article:modified_time" content="2024-05-21T07:29:18.348Z">
 <meta property="article:author" content="zhoupeng">
+<meta property="article:tag" content="-XSS">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="zhou" type="application/atom+xml">
@@ -232,238 +237,293 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-XSS漏洞的挖掘与分析" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2024" class="archive-year">2024</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%A7%A3%E5%86%B3%E8%93%9D%E6%A1%A5%E6%9D%AF%E6%98%9F%E6%9C%9F%E5%87%A0/" class="archive-article-date">
-        <time datetime="2024-04-14T11:11:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-14</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%A7%A3%E5%86%B3%E8%93%9D%E6%A1%A5%E6%9D%AF%E6%98%9F%E6%9C%9F%E5%87%A0/" target="_blank">一行代码解决蓝桥杯星期几</a>
   
+    <h1 class="article-title" itemprop="name">
+      XSS漏洞的挖掘与分析
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/XSS%E6%BC%8F%E6%B4%9E%E7%9A%84%E6%8C%96%E6%8E%98%E4%B8%8E%E5%88%86%E6%9E%90/" class="archive-article-date">
+        <time datetime="2024-05-21T06:57:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-05-21</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">525字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">1分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+ 
+
+	
+		<p><strong>什么是XSS漏洞？</strong></p>
+<p>全称跨站脚本攻击，是web应用中的计算机安全漏洞，它允许恶意web用户将代码植入web网站里，给其它用户访问，当用户访问到有恶意代码的网站就会产生XSS攻击。</p>
+<span id="more"></span>
+
+<p><strong>XSS攻击的危害</strong></p>
+<ol>
+<li>盗取各类用户账号</li>
+<li>控制企业数据，包括读取、篡改、增加、删除企业数据的能力</li>
+<li>盗取企业商业价值资料</li>
+<li>非法转账</li>
+<li>强制发送电子邮件</li>
+<li>网页挂马</li>
+<li>控制受害者机器并对其他网站发起攻击</li>
+</ol>
+<p><strong>XSS漏洞的类型</strong></p>
+<p>1.反射型</p>
+<p>反射型XSS，非持久性，需要欺骗用户自己去点击链接才能触发XSS代码</p>
+<p>2.存储型</p>
+<p>存储型XSS，持久化，代码是存储在服务器中的，如在个人信息或发表文章等地方，加入代码，如果没有过滤或过滤不严，那么这些代码将储存到服务器中，用户访问该页面的时候触发代码执行。</p>
+<p>3.dom型</p>
+<p>DOM，全称Document Object Model，是一个平台和语言都中立的接口，可以使程序和脚本能够动态访问和更新文档的内容、结构以及样式。</p>
+<p>DOM型XSS其实是一种特殊类型的反射型XSS，它是基于DOM文档对象模型的一种漏洞。</p>
+<p>在网站页面中有许多页面的元素，当页面到达浏览器时浏览器会为页面创建一个顶级的Document object文档对象，接着生成各个子文档对象，每个页面元素对应一个文档对象，每个文档对象包含属性、方法和事件。可以通过JS脚本对文档对象进行编辑从而修改页面的元素。也就是说，客户端的脚本程序可以通过DOM来动态修改页面内容，从客户端获取DOM中的数据并在本地执行。基于这个特性，就可以利用JS脚本来实现XSS漏洞的利用。</p>
+
+	
+
+
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          zhoupeng
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://zhouypeng.github.io/XSS漏洞的挖掘与分析/" title="XSS漏洞的挖掘与分析" target="_blank">https://zhouypeng.github.io/XSS漏洞的挖掘与分析/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">py</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">-XSS</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+    
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/蓝桥杯//" class="article-tag-list-link color4">蓝桥杯</a>
+        			<a href="/categories/webbug//" class="article-tag-list-link color2">webbug</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://zhouypeng.github.io/XSS%E6%BC%8F%E6%B4%9E%E7%9A%84%E6%8C%96%E6%8E%98%E4%B8%8E%E5%88%86%E6%9E%90/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E5%9B%9E%E6%96%87%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%88%A4%E6%96%AD/" class="archive-article-date">
-        <time datetime="2024-04-14T06:57:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-14</time>
-</a>
 
+
+<nav id="article-nav">
+  
+    <a href="/Os-hackNos-1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Os-hackNos-1
+        
+      </div>
+    </a>
+  
+  
+    <a href="/%E7%AC%AC%E4%B8%80%E9%81%93reverse/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">第一道reverse</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
+
+
+
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E5%9B%9E%E6%96%87%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%88%A4%E6%96%AD/" target="_blank">一行代码实现回文字符串的判断</a>
+  <div id="gitment-ctn"></div>
   
-    </h1>
+    <!-- 中文 -->
+    <link rel="stylesheet" href="/lib/gitment.css">
+    <script src="/lib/gitment.js"></script>
   
+  <script>
+    <!-- id: "XSS漏洞的挖掘与分析" -->
+    var gitment = new Gitment({
+      id: "20240521145744",
+      owner: 'zhouypeng',
+      repo: 'zhouypeng.github.io',
+      oauth: {
+        client_id: 'd3e8ed4ef63a952d0e7e',
+        client_secret: '219186323680e3b43d7d83f04f13d92793c37e34',
+      },
+    })
+    gitment.render('gitment-ctn')
+  </script>
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">py</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/代码题//" class="article-tag-list-link color4">代码题</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Python-%E5%AD%97%E5%85%B8%E5%B0%8F%E7%BB%83%E4%B9%A0/" class="archive-article-date">
-        <time datetime="2024-04-05T03:53:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-05</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Python-%E5%AD%97%E5%85%B8%E5%B0%8F%E7%BB%83%E4%B9%A0/" target="_blank">Python 字典小练习</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">py</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/代码题//" class="article-tag-list-link color4">代码题</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/python-%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/" class="archive-article-date">
-        <time datetime="2024-04-03T07:36:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-03</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/python-%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/" target="_blank">Python 斐波那契数列</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">py</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/代码题//" class="article-tag-list-link color4">代码题</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -504,9 +564,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
