@@ -257,21 +257,7 @@
   </url>
   
   <url>
-    <loc>https://zhouypeng.github.io/tags/hexo/</loc>
-    <lastmod>2024-06-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://zhouypeng.github.io/tags/XSS/</loc>
-    <lastmod>2024-06-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://zhouypeng.github.io/tags/SQL%E6%B3%A8%E5%85%A5/</loc>
     <lastmod>2024-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -299,7 +285,14 @@
   </url>
   
   <url>
-    <loc>https://zhouypeng.github.io/tags/reverse/</loc>
+    <loc>https://zhouypeng.github.io/tags/hexo/</loc>
+    <lastmod>2024-06-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhouypeng.github.io/tags/SQL%E6%B3%A8%E5%85%A5/</loc>
     <lastmod>2024-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -307,6 +300,13 @@
   
   <url>
     <loc>https://zhouypeng.github.io/tags/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%C2%B7/</loc>
+    <lastmod>2024-06-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhouypeng.github.io/tags/reverse/</loc>
     <lastmod>2024-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -343,7 +343,7 @@
   </url>
   
   <url>
-    <loc>https://zhouypeng.github.io/categories/hexo/</loc>
+    <loc>https://zhouypeng.github.io/categories/Tabby/</loc>
     <lastmod>2024-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -357,7 +357,7 @@
   </url>
   
   <url>
-    <loc>https://zhouypeng.github.io/categories/Tabby/</loc>
+    <loc>https://zhouypeng.github.io/categories/hexo/</loc>
     <lastmod>2024-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
