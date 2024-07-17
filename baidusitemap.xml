@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://zhouypeng.github.io/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2libc/</loc>
+    <lastmod>2024-07-17</lastmod>
+  </url>
+  <url>
+    <loc>https://zhouypeng.github.io/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/</loc>
+    <lastmod>2024-07-17</lastmod>
+  </url>
+  <url>
     <loc>https://zhouypeng.github.io/Hackathon2/</loc>
     <lastmod>2024-06-16</lastmod>
   </url>
