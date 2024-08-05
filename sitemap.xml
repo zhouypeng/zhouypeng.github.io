@@ -279,13 +279,6 @@
   </url>
   
   <url>
-    <loc>https://zhouypeng.github.io/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</loc>
-    <lastmod>2024-08-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://zhouypeng.github.io/tags/kali/</loc>
     <lastmod>2024-08-05</lastmod>
     <changefreq>weekly</changefreq>
@@ -293,7 +286,7 @@
   </url>
   
   <url>
-    <loc>https://zhouypeng.github.io/tags/XSS/</loc>
+    <loc>https://zhouypeng.github.io/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</loc>
     <lastmod>2024-08-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -315,6 +308,13 @@
   
   <url>
     <loc>https://zhouypeng.github.io/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/</loc>
+    <lastmod>2024-08-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhouypeng.github.io/tags/XSS/</loc>
     <lastmod>2024-08-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -372,14 +372,14 @@
 
   
   <url>
-    <loc>https://zhouypeng.github.io/categories/CTFwp/</loc>
+    <loc>https://zhouypeng.github.io/categories/kali/</loc>
     <lastmod>2024-08-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://zhouypeng.github.io/categories/kali/</loc>
+    <loc>https://zhouypeng.github.io/categories/CTFwp/</loc>
     <lastmod>2024-08-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
