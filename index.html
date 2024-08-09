@@ -100,7 +100,7 @@
 			</ul>
 		</nav>
                                 <nav>
-    			总文章数 24
+    			总文章数 25
 		</nav>
 		<nav class="header-smart-menu">
 			
@@ -136,19 +136,113 @@
 					
 				
 			</div>
-		
-			
-			
-			
-			
-			<div>
-				<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=260 height=52 src="//music.163.com/outchain/player?type=2&id=2110023759&auto=1&height=32"></iframe>
-			</div>
-			
-				
-				<p style="font-size: 12px;">博主超喜欢的歌手<p>
-			
-		
+
+    
+    
+    
+    
+
+    <div id="music-player-container">
+        <!-- 当前播放的音乐 -->
+        <div id="current-music-player" class="music-player">
+            <iframe id="music-player" frameborder="no" border="0" marginwidth="0" marginheight="0" width="260" height="86" src="//music.163.com/outchain/player?type=2&id=2110023759&auto=1&height=66"></iframe>
+        </div>
+
+        <!-- 音乐播放列表 -->
+        <div id="music-playlist">
+            <div class="playlist-header" onclick="togglePlaylist()">音乐列表</div>
+            <ul id="music-list" class="collapsed">
+                <li onclick="playMusic('2110023759', this)">普通朋友</li>
+                <li onclick="playMusic('2053389247', this)">Flowers</li>
+                <li onclick="playMusic('2149497888', this)">Freak</li>
+            </ul>
+        </div>
+    </div>
+
+    
+        
+        <p style="font-size: 12px;">博主超喜欢的歌手</p>
+    
+
+    <style>
+        #music-player-container {
+            width: 260px;
+        }
+        #current-music-player {
+            margin-bottom: 10px;
+        }
+        #music-playlist {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .playlist-header {
+            background-color: #f7f7f7;
+            padding: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            border-bottom: 1px solid #ddd;
+            user-select: none; /* 禁止文本选择 */
+        }
+        #music-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            max-height: 0; /* 默认收缩 */
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        #music-list.expanded {
+            max-height: 200px; /* 展开后的最大高度，根据需要调整 */
+        }
+        #music-list li {
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #ddd;
+            transition: background-color 0.3s ease;
+        }
+        #music-list li:hover {
+            background-color: #f0f0f0;
+        }
+        .music-player {
+            margin-top: 1px;
+        }
+    </style>
+
+    <script>
+        function playMusic(musicId, listItem) {
+            // 更新 iframe 的 src 属性以切换音乐
+            var iframe = document.getElementById('music-player');
+            iframe.src = "//music.163.com/outchain/player?type=2&id=" + musicId + "&auto=1&height=32";
+
+            // 高亮当前播放的列表项
+            var listItems = document.getElementById('music-list').getElementsByTagName('li');
+            for (var i = 0; i < listItems.length; i++) {
+                listItems[i].style.fontWeight = 'normal';
+            }
+            listItem.style.fontWeight = 'bold';
+
+            // 收缩音乐列表
+            document.getElementById('music-list').classList.remove('expanded');
+            document.getElementById('music-list').classList.add('collapsed');
+        }
+
+        function togglePlaylist() {
+            var playlist = document.getElementById('music-list');
+            if (playlist.classList.contains('collapsed')) {
+                playlist.classList.remove('collapsed');
+                playlist.classList.add('expanded');
+            } else {
+                playlist.classList.remove('expanded');
+                playlist.classList.add('collapsed');
+            }
+        }
+
+        // 默认显示第一个播放器
+        playMusic('2110023759', document.getElementById('music-list').getElementsByTagName('li')[0]);
+    </script>
+
 
 
 		</nav>
@@ -237,6 +331,105 @@
           </div>
           <div id="js-content" class="content-ll">
             
+
+  
+    <article id="post-服务器请求伪造-SSRF" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/" target="_blank">服务器请求伪造-SSRF</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/" class="archive-article-date">
+        <time datetime="2024-08-07T02:29:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-08-07</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+ 
+
+			<h3 id="SSRF前置知识NAT"><a href="#SSRF前置知识NAT" class="headerlink" title="SSRF前置知识NAT"></a>SSRF前置知识NAT</h3><p>SSRF服务器请求伪造，是一种由攻击者形成服务器端发起安全漏洞</p>
+<p>NAT网络地址转换，通过将外部IP地址和端口映射到更大的内部IP地址集来转换IP地址</p>
+	
+
+
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">SSRF</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/webbug//" class="article-tag-list-link color2">webbug</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
 
   
     <article id="post-模块注入-SSTI" class="article article-type-post  article-index" itemscope itemprop="blogPost">
@@ -1079,82 +1272,6 @@
 
 
   
-    <article id="post-trollcave-v1-2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/trollcave-v1-2/" target="_blank">trollcave-v1-2</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/trollcave-v1-2/" class="archive-article-date">
-        <time datetime="2024-05-27T15:31:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-05-27</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
- 
-
-			<h4 id="靶场：Trollcave-1-2"><a href="#靶场：Trollcave-1-2" class="headerlink" title="靶场：Trollcave:1.2"></a>靶场：Trollcave:1.2</h4><h4 id="1、收集信息"><a href="#1、收集信息" class="headerlink" title="1、收集信息"></a>1、收集信息</h4>
-	
-
-
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/trollcave-v1-2/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1332,11 +1449,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SSTI</a>
+                <a href="javascript:void(0)" class="js-tag color5">SSRF</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">reverse</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SSTI</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -107,7 +107,7 @@
 			</ul>
 		</nav>
                                 <nav>
-    			总文章数 24
+    			总文章数 25
 		</nav>
 		<nav class="header-smart-menu">
 			
@@ -143,19 +143,113 @@
 					
 				
 			</div>
-		
-			
-			
-			
-			
-			<div>
-				<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=260 height=52 src="//music.163.com/outchain/player?type=2&id=2110023759&auto=1&height=32"></iframe>
-			</div>
-			
-				
-				<p style="font-size: 12px;">博主超喜欢的歌手<p>
-			
-		
+
+    
+    
+    
+    
+
+    <div id="music-player-container">
+        <!-- 当前播放的音乐 -->
+        <div id="current-music-player" class="music-player">
+            <iframe id="music-player" frameborder="no" border="0" marginwidth="0" marginheight="0" width="260" height="86" src="//music.163.com/outchain/player?type=2&id=2110023759&auto=1&height=66"></iframe>
+        </div>
+
+        <!-- 音乐播放列表 -->
+        <div id="music-playlist">
+            <div class="playlist-header" onclick="togglePlaylist()">音乐列表</div>
+            <ul id="music-list" class="collapsed">
+                <li onclick="playMusic('2110023759', this)">普通朋友</li>
+                <li onclick="playMusic('2053389247', this)">Flowers</li>
+                <li onclick="playMusic('2149497888', this)">Freak</li>
+            </ul>
+        </div>
+    </div>
+
+    
+        
+        <p style="font-size: 12px;">博主超喜欢的歌手</p>
+    
+
+    <style>
+        #music-player-container {
+            width: 260px;
+        }
+        #current-music-player {
+            margin-bottom: 10px;
+        }
+        #music-playlist {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .playlist-header {
+            background-color: #f7f7f7;
+            padding: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            border-bottom: 1px solid #ddd;
+            user-select: none; /* 禁止文本选择 */
+        }
+        #music-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            max-height: 0; /* 默认收缩 */
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        #music-list.expanded {
+            max-height: 200px; /* 展开后的最大高度，根据需要调整 */
+        }
+        #music-list li {
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #ddd;
+            transition: background-color 0.3s ease;
+        }
+        #music-list li:hover {
+            background-color: #f0f0f0;
+        }
+        .music-player {
+            margin-top: 1px;
+        }
+    </style>
+
+    <script>
+        function playMusic(musicId, listItem) {
+            // 更新 iframe 的 src 属性以切换音乐
+            var iframe = document.getElementById('music-player');
+            iframe.src = "//music.163.com/outchain/player?type=2&id=" + musicId + "&auto=1&height=32";
+
+            // 高亮当前播放的列表项
+            var listItems = document.getElementById('music-list').getElementsByTagName('li');
+            for (var i = 0; i < listItems.length; i++) {
+                listItems[i].style.fontWeight = 'normal';
+            }
+            listItem.style.fontWeight = 'bold';
+
+            // 收缩音乐列表
+            document.getElementById('music-list').classList.remove('expanded');
+            document.getElementById('music-list').classList.add('collapsed');
+        }
+
+        function togglePlaylist() {
+            var playlist = document.getElementById('music-list');
+            if (playlist.classList.contains('collapsed')) {
+                playlist.classList.remove('collapsed');
+                playlist.classList.add('expanded');
+            } else {
+                playlist.classList.remove('expanded');
+                playlist.classList.add('collapsed');
+            }
+        }
+
+        // 默认显示第一个播放器
+        playMusic('2110023759', document.getElementById('music-list').getElementsByTagName('li')[0]);
+    </script>
+
 
 
 		</nav>
@@ -738,11 +832,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SSTI</a>
+                <a href="javascript:void(0)" class="js-tag color5">SSRF</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">reverse</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SSTI</a>
               </li>
              
               <li class="article-tag-list-item">
