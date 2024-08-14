@@ -5,7 +5,7 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="https://zhouypeng.github.io">
+  <link rel="dns-prefetch" href="https://hexo.zyp0422.mom">
   <title>服务器请求伪造-SSRF | zhou</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -13,19 +13,19 @@
   <meta name="description" content="SSRF前置知识NATSSRF服务器请求伪造，是一种由攻击者形成服务器端发起安全漏洞 NAT网络地址转换，通过将外部IP地址和端口映射到更大的内部IP地址集来转换IP地址">
 <meta property="og:type" content="article">
 <meta property="og:title" content="服务器请求伪造-SSRF">
-<meta property="og:url" content="https://zhouypeng.github.io/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/index.html">
+<meta property="og:url" content="https://hexo.zyp0422.mom/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/index.html">
 <meta property="og:site_name" content="zhou">
 <meta property="og:description" content="SSRF前置知识NATSSRF服务器请求伪造，是一种由攻击者形成服务器端发起安全漏洞 NAT网络地址转换，通过将外部IP地址和端口映射到更大的内部IP地址集来转换IP地址">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://zhouypeng.github.io/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/NAT%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84.png">
-<meta property="og:image" content="https://zhouypeng.github.io/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/%E9%9D%99%E6%80%81NAT%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2.png">
-<meta property="og:image" content="https://zhouypeng.github.io/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/%E6%94%BB%E5%87%BB%E7%A4%BA%E6%84%8F%E5%9B%BE.png">
+<meta property="og:image" content="https://hexo.zyp0422.mom/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/NAT%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84.png">
+<meta property="og:image" content="https://hexo.zyp0422.mom/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/%E9%9D%99%E6%80%81NAT%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2.png">
+<meta property="og:image" content="https://hexo.zyp0422.mom/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/%E6%94%BB%E5%87%BB%E7%A4%BA%E6%84%8F%E5%9B%BE.png">
 <meta property="article:published_time" content="2024-08-07T02:29:39.000Z">
-<meta property="article:modified_time" content="2024-08-09T11:52:34.550Z">
+<meta property="article:modified_time" content="2024-08-14T03:49:41.500Z">
 <meta property="article:author" content="zhoupeng">
 <meta property="article:tag" content="SSRF">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://zhouypeng.github.io/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/NAT%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84.png">
+<meta name="twitter:image" content="https://hexo.zyp0422.mom/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/NAT%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84.png">
   
     <link rel="alternative" href="/atom.xml" title="zhou" type="application/atom+xml">
   
@@ -368,7 +368,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">1k字</span>
+      <span class="post-count">1.1k字</span>
     </span>
   </span>
 
@@ -377,7 +377,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">3分</span>
+      <span class="post-count">4分</span>
     </span>
   </span>
 </div>
@@ -419,7 +419,15 @@
 <p>gopher不转发第一个字符，需要在前面加一个下划线填充首位</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">GET</span>提交</span><br><span class="line"><span class="selector-tag">GET</span> /<span class="selector-tag">name</span><span class="selector-class">.php</span>?<span class="selector-tag">name</span>=<span class="selector-tag">dazhaung</span> <span class="selector-tag">HTTP</span>/<span class="number">1.1</span> # 路径</span><br><span class="line"><span class="selector-tag">Host</span>: <span class="number">172.250</span><span class="selector-class">.250</span><span class="selector-class">.4</span>  # 目标<span class="selector-tag">IP</span>地址</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">GET</span>%<span class="number">20</span>/<span class="selector-tag">name</span><span class="selector-class">.php</span>%<span class="number">3</span><span class="selector-tag">fname</span>=<span class="selector-tag">dazhaung</span>%<span class="number">20</span><span class="selector-tag">HTTP</span>/<span class="number">1.1%</span><span class="number">0</span><span class="selector-tag">d</span>%<span class="number">0</span><span class="selector-tag">AHost</span>:%<span class="number">20172.250</span><span class="selector-class">.250</span><span class="selector-class">.4</span>%<span class="number">0</span><span class="selector-tag">d</span>%<span class="number">0</span><span class="selector-tag">A</span></span><br><span class="line">注意换行符，%<span class="number">0</span><span class="selector-tag">d</span>%<span class="number">0</span><span class="selector-tag">A</span>，空格<span class="selector-tag">--</span>%<span class="number">20</span>，问号<span class="selector-tag">--</span>%<span class="number">3</span><span class="selector-tag">f</span>符号需要<span class="selector-tag">url</span>编码</span><br><span class="line"><span class="selector-tag">---------------------------------------------------------------</span></span><br><span class="line"><span class="selector-tag">POST</span>提交</span><br><span class="line"><span class="selector-tag">POST</span> /<span class="selector-tag">name</span><span class="selector-class">.php</span>?<span class="selector-tag">name</span>=<span class="selector-tag">dazhaung</span> <span class="selector-tag">HTTP</span>/<span class="number">1.1</span></span><br><span class="line"><span class="selector-tag">Host</span>: <span class="number">172.250</span><span class="selector-class">.250</span><span class="selector-class">.4</span></span><br><span class="line"><span class="selector-tag">Content-Type</span>: <span class="selector-tag">application</span>/<span class="selector-tag">x-www-form-urlencoded</span></span><br><span class="line"><span class="selector-tag">Content-Length</span>: <span class="number">13</span>   # 实际长度与传入字符长度一致，例如<span class="selector-tag">name</span>=<span class="selector-tag">jianjian</span>为<span class="number">13</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">name</span>=<span class="selector-tag">jianjian</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">POST</span>%<span class="number">20</span>/<span class="selector-tag">name</span><span class="selector-class">.php</span>?<span class="selector-tag">name</span>=<span class="selector-tag">dazhaung</span>%<span class="number">20</span><span class="selector-tag">HTTP</span>/<span class="number">1.1%</span><span class="number">0</span><span class="selector-tag">d</span>%<span class="number">0</span><span class="selector-tag">AHost</span>:%<span class="number">20172.250</span><span class="selector-class">.250</span><span class="selector-class">.4</span>%<span class="number">0</span><span class="selector-tag">d</span>%<span class="number">0</span><span class="selector-tag">AContent-Type</span>: <span class="selector-tag">application</span>/<span class="selector-tag">x-www-form-urlencoded</span>%<span class="number">0</span><span class="selector-tag">d</span>%<span class="number">0</span><span class="selector-tag">AContent-Length</span>: <span class="number">13%</span><span class="number">0</span><span class="selector-tag">d</span>%<span class="number">0</span><span class="selector-tag">A</span>%<span class="number">0</span><span class="selector-tag">d</span>%<span class="number">0</span><span class="selector-tag">Aname</span>=<span class="selector-tag">jianjian</span>%<span class="number">0</span><span class="selector-tag">d</span>%<span class="number">0</span><span class="selector-tag">A</span></span><br></pre></td></tr></table></figure>
 
+<h3 id="各种绕过"><a href="#各种绕过" class="headerlink" title="各种绕过"></a>各种绕过</h3><h4 id="环回地址绕过"><a href="#环回地址绕过" class="headerlink" title="环回地址绕过"></a>环回地址绕过</h4><p>127.0.0.1被限制</p>
+<p>八进制：017700000001</p>
+<p>十六进制：0x7F000001</p>
+<p>十进制：2130706433</p>
+<h4 id="302重定向绕过"><a href="#302重定向绕过" class="headerlink" title="302重定向绕过"></a>302重定向绕过</h4><p>公网服务器上在opt&#x2F;302上创建一个index.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">header</span>(<span class="string">&#x27;Location: http://127.0.0.1/flag.php&#x27;</span>)</span><br></pre></td></tr></table></figure>
 
+<p>php - S 0.0.0.0:7777</p>
+<h4 id="DNS重绑定绕过"><a href="#DNS重绑定绕过" class="headerlink" title="DNS重绑定绕过"></a>DNS重绑定绕过</h4>
 	
 
 
@@ -457,7 +465,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://zhouypeng.github.io/服务器请求伪造-SSRF/" title="服务器请求伪造-SSRF" target="_blank">https://zhouypeng.github.io/服务器请求伪造-SSRF/</a>
+          <a href="https://hexo.zyp0422.mom/服务器请求伪造-SSRF/" title="服务器请求伪造-SSRF" target="_blank">https://hexo.zyp0422.mom/服务器请求伪造-SSRF/</a>
         </li>
         
         <li>
@@ -546,7 +554,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://zhouypeng.github.io/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://hexo.zyp0422.mom/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -590,7 +598,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#SSRF%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86NAT"><span class="toc-number">1.</span> <span class="toc-text">SSRF前置知识NAT</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#NAT%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84"><span class="toc-number">1.1.</span> <span class="toc-text">NAT端口映射</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%99%E6%80%81NAT%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.2.</span> <span class="toc-text">静态NAT地址转换</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SSRF%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">SSRF漏洞原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SSRF%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">3.</span> <span class="toc-text">SSRF信息收集</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#file%E4%BC%AA%E5%8D%8F%E8%AE%AE%E2%80%93%EF%BC%88%E6%89%AB%E6%8F%8F%E5%AD%98%E6%B4%BB%E4%B8%BB%E6%9C%BA%EF%BC%89"><span class="toc-number">3.1.</span> <span class="toc-text">file伪协议–（扫描存活主机）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Dict%E4%BC%AA%E5%8D%8F%E8%AE%AE%E2%80%93%EF%BC%88%E6%89%AB%E6%8F%8F%E7%AB%AF%E5%8F%A3%E5%BC%80%E6%94%BE%EF%BC%89"><span class="toc-number">3.2.</span> <span class="toc-text">Dict伪协议–（扫描端口开放）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP%E4%BC%AA%E5%8D%8F%E8%AE%AE%E2%80%93%EF%BC%88%E7%9B%AE%E5%BD%95%E6%89%AB%E6%8F%8F%EF%BC%89"><span class="toc-number">3.3.</span> <span class="toc-text">HTTP伪协议–（目录扫描）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gopher%E4%BC%AA%E5%8D%8F%E8%AE%AE"><span class="toc-number">3.4.</span> <span class="toc-text">gopher伪协议</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#SSRF%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86NAT"><span class="toc-number">1.</span> <span class="toc-text">SSRF前置知识NAT</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#NAT%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84"><span class="toc-number">1.1.</span> <span class="toc-text">NAT端口映射</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%99%E6%80%81NAT%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.2.</span> <span class="toc-text">静态NAT地址转换</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SSRF%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">SSRF漏洞原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SSRF%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">3.</span> <span class="toc-text">SSRF信息收集</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#file%E4%BC%AA%E5%8D%8F%E8%AE%AE%E2%80%93%EF%BC%88%E6%89%AB%E6%8F%8F%E5%AD%98%E6%B4%BB%E4%B8%BB%E6%9C%BA%EF%BC%89"><span class="toc-number">3.1.</span> <span class="toc-text">file伪协议–（扫描存活主机）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Dict%E4%BC%AA%E5%8D%8F%E8%AE%AE%E2%80%93%EF%BC%88%E6%89%AB%E6%8F%8F%E7%AB%AF%E5%8F%A3%E5%BC%80%E6%94%BE%EF%BC%89"><span class="toc-number">3.2.</span> <span class="toc-text">Dict伪协议–（扫描端口开放）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP%E4%BC%AA%E5%8D%8F%E8%AE%AE%E2%80%93%EF%BC%88%E7%9B%AE%E5%BD%95%E6%89%AB%E6%8F%8F%EF%BC%89"><span class="toc-number">3.3.</span> <span class="toc-text">HTTP伪协议–（目录扫描）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gopher%E4%BC%AA%E5%8D%8F%E8%AE%AE"><span class="toc-number">3.4.</span> <span class="toc-text">gopher伪协议</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%84%E7%A7%8D%E7%BB%95%E8%BF%87"><span class="toc-number">4.</span> <span class="toc-text">各种绕过</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%8E%AF%E5%9B%9E%E5%9C%B0%E5%9D%80%E7%BB%95%E8%BF%87"><span class="toc-number">4.1.</span> <span class="toc-text">环回地址绕过</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#302%E9%87%8D%E5%AE%9A%E5%90%91%E7%BB%95%E8%BF%87"><span class="toc-number">4.2.</span> <span class="toc-text">302重定向绕过</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DNS%E9%87%8D%E7%BB%91%E5%AE%9A%E7%BB%95%E8%BF%87"><span class="toc-number">4.3.</span> <span class="toc-text">DNS重绑定绕过</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -628,7 +636,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018-2024 <a href="https://zhouypeng.github.io/" target="_blank">zhoupeng</a>
+    		&copy; 2018-2024 <a href="https://hexo.zyp0422.mom/" target="_blank">zhoupeng</a>
     	</div>
       	<div class="footer-right">
 			
@@ -795,15 +803,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">reverse</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">SSTI</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">--红日靶场</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">reverse</a>
               </li>
             
             <div class="clearfix"></div>
