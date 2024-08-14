@@ -5,7 +5,7 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="https://hexo.zyp0422.mom">
+  <link rel="dns-prefetch" href="https://blog.zyp0422.mom">
   <title>模块注入-SSTI | zhou</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -13,17 +13,17 @@
   <meta name="description" content="SSTI漏洞原理模块引擎模板引擎是一种工具，用于将数据与预定义的模板结合，生成最终的文档，通常是HTML页面或其他文本格式。它们在Web开发中特别常见，用于动态生成页面内容，允许开发者将业务逻辑与界面展示分离，提高代码的可维护性和重用性。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="模块注入-SSTI">
-<meta property="og:url" content="https://hexo.zyp0422.mom/%E6%A8%A1%E5%9D%97%E6%B3%A8%E5%85%A5-SSTI/index.html">
+<meta property="og:url" content="https://blog.zyp0422.mom/%E6%A8%A1%E5%9D%97%E6%B3%A8%E5%85%A5-SSTI/index.html">
 <meta property="og:site_name" content="zhou">
 <meta property="og:description" content="SSTI漏洞原理模块引擎模板引擎是一种工具，用于将数据与预定义的模板结合，生成最终的文档，通常是HTML页面或其他文本格式。它们在Web开发中特别常见，用于动态生成页面内容，允许开发者将业务逻辑与界面展示分离，提高代码的可维护性和重用性。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://hexo.zyp0422.mom/%E6%A8%A1%E5%9D%97%E6%B3%A8%E5%85%A5-SSTI/SSTI.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/%E6%A8%A1%E5%9D%97%E6%B3%A8%E5%85%A5-SSTI/SSTI.png">
 <meta property="article:published_time" content="2024-07-27T08:02:18.000Z">
 <meta property="article:modified_time" content="2024-08-06T08:10:51.718Z">
 <meta property="article:author" content="zhoupeng">
 <meta property="article:tag" content="SSTI">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://hexo.zyp0422.mom/%E6%A8%A1%E5%9D%97%E6%B3%A8%E5%85%A5-SSTI/SSTI.png">
+<meta name="twitter:image" content="https://blog.zyp0422.mom/%E6%A8%A1%E5%9D%97%E6%B3%A8%E5%85%A5-SSTI/SSTI.png">
   
     <link rel="alternative" href="/atom.xml" title="zhou" type="application/atom+xml">
   
@@ -495,7 +495,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://hexo.zyp0422.mom/模块注入-SSTI/" title="模块注入-SSTI" target="_blank">https://hexo.zyp0422.mom/模块注入-SSTI/</a>
+          <a href="https://blog.zyp0422.mom/模块注入-SSTI/" title="模块注入-SSTI" target="_blank">https://blog.zyp0422.mom/模块注入-SSTI/</a>
         </li>
         
         <li>
@@ -584,7 +584,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://hexo.zyp0422.mom/%E6%A8%A1%E5%9D%97%E6%B3%A8%E5%85%A5-SSTI/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://blog.zyp0422.mom/%E6%A8%A1%E5%9D%97%E6%B3%A8%E5%85%A5-SSTI/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -675,7 +675,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018-2024 <a href="https://hexo.zyp0422.mom/" target="_blank">zhoupeng</a>
+    		&copy; 2018-2024 <a href="https://blog.zyp0422.mom/" target="_blank">zhoupeng</a>
     	</div>
       	<div class="footer-right">
 			
@@ -806,10 +806,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-XSS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">伪协议</a>
               </li>
              
@@ -819,6 +815,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">文件包含</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">-XSS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -846,11 +846,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">--红日靶场</a>
+                <a href="javascript:void(0)" class="js-tag color3">reverse</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">reverse</a>
+                <a href="javascript:void(0)" class="js-tag color2">--红日靶场</a>
               </li>
             
             <div class="clearfix"></div>

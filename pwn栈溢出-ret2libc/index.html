@@ -5,7 +5,7 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="https://hexo.zyp0422.mom">
+  <link rel="dns-prefetch" href="https://blog.zyp0422.mom">
   <title>pwn栈溢出---ret2libc | zhou</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -13,18 +13,18 @@
   <meta name="description" content="一、libc相关讲解1、为什么要libc泄露 题目没有给出system()和&#x2F;bin&#x2F;sh给我们利用，需要我们在libc库中寻找">
 <meta property="og:type" content="article">
 <meta property="og:title" content="pwn栈溢出---ret2libc">
-<meta property="og:url" content="https://hexo.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2libc/index.html">
+<meta property="og:url" content="https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2libc/index.html">
 <meta property="og:site_name" content="zhou">
 <meta property="og:description" content="一、libc相关讲解1、为什么要libc泄露 题目没有给出system()和&#x2F;bin&#x2F;sh给我们利用，需要我们在libc库中寻找">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://hexo.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2libc/PLT%E5%92%8CGOT%E8%B0%83%E7%94%A81.png">
-<meta property="og:image" content="https://hexo.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2libc/PLT%E5%92%8CGOT%E8%B0%83%E7%94%A82.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2libc/PLT%E5%92%8CGOT%E8%B0%83%E7%94%A81.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2libc/PLT%E5%92%8CGOT%E8%B0%83%E7%94%A82.png">
 <meta property="article:published_time" content="2024-07-17T03:52:13.000Z">
 <meta property="article:modified_time" content="2024-07-17T06:49:43.744Z">
 <meta property="article:author" content="zhoupeng">
 <meta property="article:tag" content="pwn">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://hexo.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2libc/PLT%E5%92%8CGOT%E8%B0%83%E7%94%A81.png">
+<meta name="twitter:image" content="https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2libc/PLT%E5%92%8CGOT%E8%B0%83%E7%94%A81.png">
   
     <link rel="alternative" href="/atom.xml" title="zhou" type="application/atom+xml">
   
@@ -493,7 +493,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://hexo.zyp0422.mom/pwn栈溢出-ret2libc/" title="pwn栈溢出---ret2libc" target="_blank">https://hexo.zyp0422.mom/pwn栈溢出-ret2libc/</a>
+          <a href="https://blog.zyp0422.mom/pwn栈溢出-ret2libc/" title="pwn栈溢出---ret2libc" target="_blank">https://blog.zyp0422.mom/pwn栈溢出-ret2libc/</a>
         </li>
         
         <li>
@@ -582,7 +582,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://hexo.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2libc/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2libc/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -673,7 +673,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018-2024 <a href="https://hexo.zyp0422.mom/" target="_blank">zhoupeng</a>
+    		&copy; 2018-2024 <a href="https://blog.zyp0422.mom/" target="_blank">zhoupeng</a>
     	</div>
       	<div class="footer-right">
 			
@@ -804,10 +804,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-XSS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">伪协议</a>
               </li>
              
@@ -817,6 +813,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">文件包含</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">-XSS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -844,11 +844,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">--红日靶场</a>
+                <a href="javascript:void(0)" class="js-tag color3">reverse</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">reverse</a>
+                <a href="javascript:void(0)" class="js-tag color2">--红日靶场</a>
               </li>
             
             <div class="clearfix"></div>
