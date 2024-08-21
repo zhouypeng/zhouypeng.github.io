@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2shellcode/</loc>
+    <lastmod>2024-08-21</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2libc/</loc>
+    <lastmod>2024-08-21</lastmod>
+  </url>
+  <url>
     <loc>https://blog.zyp0422.mom/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/</loc>
     <lastmod>2024-08-14</lastmod>
   </url>
@@ -9,16 +17,8 @@
     <lastmod>2024-08-06</lastmod>
   </url>
   <url>
-    <loc>https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2shellcode/</loc>
-    <lastmod>2024-08-06</lastmod>
-  </url>
-  <url>
     <loc>https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2syscall/</loc>
     <lastmod>2024-07-19</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2libc/</loc>
-    <lastmod>2024-07-17</lastmod>
   </url>
   <url>
     <loc>https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/</loc>
