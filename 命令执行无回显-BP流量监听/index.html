@@ -10,19 +10,19 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="题目1234&lt;?phphighlight_file(__FILE__);shell_exec($_POST[&#x27;cmd&#x27;]);?&gt;  题目往往就这么简单，但是当你输入cmd&#x3D;ls或者其他命令市无法回显，其中有多种方法可以查看回显，例如结合sleep一个一个爆破、使用服务器反弹一个shell，而这里用到的是BP自带的一个插件 Burp Collaborator">
+  <meta name="description" content="题目1234&lt;?phphighlight_file(__FILE__);shell_exec($_POST[&#x27;cmd&#x27;]);?&gt;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="命令执行无回显-BP流量监听">
 <meta property="og:url" content="https://blog.zyp0422.mom/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%97%A0%E5%9B%9E%E6%98%BE-BP%E6%B5%81%E9%87%8F%E7%9B%91%E5%90%AC/index.html">
 <meta property="og:site_name" content="zhou">
-<meta property="og:description" content="题目1234&lt;?phphighlight_file(__FILE__);shell_exec($_POST[&#x27;cmd&#x27;]);?&gt;  题目往往就这么简单，但是当你输入cmd&#x3D;ls或者其他命令市无法回显，其中有多种方法可以查看回显，例如结合sleep一个一个爆破、使用服务器反弹一个shell，而这里用到的是BP自带的一个插件 Burp Collaborator">
+<meta property="og:description" content="题目1234&lt;?phphighlight_file(__FILE__);shell_exec($_POST[&#x27;cmd&#x27;]);?&gt;">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog.zyp0422.mom/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%97%A0%E5%9B%9E%E6%98%BE-BP%E6%B5%81%E9%87%8F%E7%9B%91%E5%90%AC/1.png">
 <meta property="og:image" content="https://blog.zyp0422.mom/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%97%A0%E5%9B%9E%E6%98%BE-BP%E6%B5%81%E9%87%8F%E7%9B%91%E5%90%AC/2.png">
 <meta property="og:image" content="https://blog.zyp0422.mom/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%97%A0%E5%9B%9E%E6%98%BE-BP%E6%B5%81%E9%87%8F%E7%9B%91%E5%90%AC/3.png">
 <meta property="og:image" content="https://blog.zyp0422.mom/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%97%A0%E5%9B%9E%E6%98%BE-BP%E6%B5%81%E9%87%8F%E7%9B%91%E5%90%AC/4.png">
 <meta property="article:published_time" content="2024-08-22T08:30:28.000Z">
-<meta property="article:modified_time" content="2024-08-22T08:58:35.795Z">
+<meta property="article:modified_time" content="2024-08-22T09:03:06.164Z">
 <meta property="article:author" content="zhoupeng">
 <meta property="article:tag" content="命令执行·">
 <meta name="twitter:card" content="summary">
@@ -392,6 +392,8 @@
 
 	
 		<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="title function_ invoke__">shell_exec</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;cmd&#x27;</span>]);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
 
 <p>题目往往就这么简单，但是当你输入cmd&#x3D;ls或者其他命令市无法回显，其中有多种方法可以查看回显，例如结合sleep一个一个爆破、使用服务器反弹一个shell，而这里用到的是BP自带的一个插件 Burp Collaborator </p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">打开<span class="selector-tag">Burp</span>主界面 <span class="selector-tag">--</span>&gt;菜单（<span class="selector-tag">Burp</span>）<span class="selector-tag">--</span>&gt;<span class="selector-tag">Burp</span> <span class="selector-tag">Collaboraor</span> <span class="selector-tag">Client</span> <span class="selector-tag">--</span> &gt; 点击 <span class="selector-tag">Copy</span> <span class="selector-tag">to</span> <span class="selector-tag">Clipboard</span></span><br></pre></td></tr></table></figure>
