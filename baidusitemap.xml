@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://blog.zyp0422.mom/pwn-ret2csu/</loc>
+    <lastmod>2024-08-28</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.zyp0422.mom/BaseCTF-week2web/</loc>
+    <lastmod>2024-08-24</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.zyp0422.mom/%E6%A8%A1%E5%9D%97%E6%B3%A8%E5%85%A5-SSTI/</loc>
+    <lastmod>2024-08-24</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2libc/</loc>
+    <lastmod>2024-08-23</lastmod>
+  </url>
+  <url>
     <loc>https://blog.zyp0422.mom/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%97%A0%E5%9B%9E%E6%98%BE-BP%E6%B5%81%E9%87%8F%E7%9B%91%E5%90%AC/</loc>
     <lastmod>2024-08-22</lastmod>
   </url>
@@ -9,16 +25,8 @@
     <lastmod>2024-08-21</lastmod>
   </url>
   <url>
-    <loc>https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2libc/</loc>
-    <lastmod>2024-08-21</lastmod>
-  </url>
-  <url>
     <loc>https://blog.zyp0422.mom/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/</loc>
     <lastmod>2024-08-14</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.zyp0422.mom/%E6%A8%A1%E5%9D%97%E6%B3%A8%E5%85%A5-SSTI/</loc>
-    <lastmod>2024-08-06</lastmod>
   </url>
   <url>
     <loc>https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2syscall/</loc>
