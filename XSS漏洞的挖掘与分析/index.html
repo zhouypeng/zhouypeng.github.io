@@ -10,12 +10,12 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="什么是XSS漏洞？全称跨站脚本攻击，是web应用中的计算机安全漏洞，它允许恶意web用户将代码植入web网站里，给其它用户访问，当用户访问到有恶意代码的网站就会产生XSS攻击。">
+  <meta name="description" content="参考文章：XSS&#x2F;CSRF 什么是XSS漏洞？全称跨站脚本攻击，是web应用中的计算机安全漏洞，它允许恶意web用户将代码植入web网站里，给其它用户访问，当用户访问到有恶意代码的网站就会产生XSS攻击。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="XSS漏洞的挖掘与分析">
 <meta property="og:url" content="https://blog.zyp0422.mom/XSS%E6%BC%8F%E6%B4%9E%E7%9A%84%E6%8C%96%E6%8E%98%E4%B8%8E%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="zhou">
-<meta property="og:description" content="什么是XSS漏洞？全称跨站脚本攻击，是web应用中的计算机安全漏洞，它允许恶意web用户将代码植入web网站里，给其它用户访问，当用户访问到有恶意代码的网站就会产生XSS攻击。">
+<meta property="og:description" content="参考文章：XSS&#x2F;CSRF 什么是XSS漏洞？全称跨站脚本攻击，是web应用中的计算机安全漏洞，它允许恶意web用户将代码植入web网站里，给其它用户访问，当用户访问到有恶意代码的网站就会产生XSS攻击。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog.zyp0422.mom/XSS%E6%BC%8F%E6%B4%9E%E7%9A%84%E6%8C%96%E6%8E%98%E4%B8%8E%E5%88%86%E6%9E%90/1.png">
 <meta property="og:image" content="https://blog.zyp0422.mom/XSS%E6%BC%8F%E6%B4%9E%E7%9A%84%E6%8C%96%E6%8E%98%E4%B8%8E%E5%88%86%E6%9E%90/2.png">
@@ -27,7 +27,7 @@
 <meta property="og:image" content="https://blog.zyp0422.mom/XSS%E6%BC%8F%E6%B4%9E%E7%9A%84%E6%8C%96%E6%8E%98%E4%B8%8E%E5%88%86%E6%9E%90/8.png">
 <meta property="og:image" content="https://blog.zyp0422.mom/XSS%E6%BC%8F%E6%B4%9E%E7%9A%84%E6%8C%96%E6%8E%98%E4%B8%8E%E5%88%86%E6%9E%90/9.png">
 <meta property="article:published_time" content="2024-05-21T06:57:44.000Z">
-<meta property="article:modified_time" content="2024-09-01T07:41:57.929Z">
+<meta property="article:modified_time" content="2024-09-01T11:35:51.927Z">
 <meta property="article:author" content="zhoupeng">
 <meta property="article:tag" content="web">
 <meta property="article:tag" content="XSS">
@@ -397,7 +397,8 @@
  
 
 	
-		<h3 id="什么是XSS漏洞？"><a href="#什么是XSS漏洞？" class="headerlink" title="什么是XSS漏洞？"></a>什么是XSS漏洞？</h3><p>全称跨站脚本攻击，是web应用中的计算机安全漏洞，它允许恶意web用户将代码植入web网站里，给其它用户访问，当用户访问到有恶意代码的网站就会产生XSS攻击。</p>
+		<p>参考文章：<a target="_blank" rel="noopener" href="https://www.yuque.com/hxfqg9/web/wq95oo">XSS&#x2F;CSRF</a></p>
+<h3 id="什么是XSS漏洞？"><a href="#什么是XSS漏洞？" class="headerlink" title="什么是XSS漏洞？"></a>什么是XSS漏洞？</h3><p>全称跨站脚本攻击，是web应用中的计算机安全漏洞，它允许恶意web用户将代码植入web网站里，给其它用户访问，当用户访问到有恶意代码的网站就会产生XSS攻击。</p>
 <span id="more"></span>
 
 <h3 id="XSS攻击的危害"><a href="#XSS攻击的危害" class="headerlink" title="XSS攻击的危害"></a>XSS攻击的危害</h3><ol>
@@ -441,14 +442,22 @@
 
 <p><img src="/XSS%E6%BC%8F%E6%B4%9E%E7%9A%84%E6%8C%96%E6%8E%98%E4%B8%8E%E5%88%86%E6%9E%90/9.png"></p>
 <h3 id="XSS挑战"><a href="#XSS挑战" class="headerlink" title="XSS挑战"></a>XSS挑战</h3><p>地址：<a target="_blank" rel="noopener" href="http://test.ctf8.com/">XSS</a></p>
-<h4 id="第一关"><a href="#第一关" class="headerlink" title="第一关"></a>第一关</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;<span class="title function_">alert</span>(<span class="number">1</span>)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="第一关"><a href="#第一关" class="headerlink" title="第一关"></a>第一关</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">script</span>&gt;<span class="selector-tag">alert</span>(<span class="number">1</span>)&lt;/<span class="selector-tag">script</span>&gt;</span><br></pre></td></tr></table></figure>
 
 <h4 id="第二关"><a href="#第二关" class="headerlink" title="第二关"></a>第二关</h4><p>由于htmlspecialchars()函数影响，需要逃逸&lt;””&gt;</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&gt;&lt;script&gt;alert(1)&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;&gt;&lt;<span class="selector-tag">script</span>&gt;<span class="selector-tag">alert</span>(<span class="number">1</span>)&lt;/<span class="selector-tag">script</span>&gt;</span><br></pre></td></tr></table></figure>
 
 <h4 id="第三关"><a href="#第三关" class="headerlink" title="第三关"></a>第三关</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x27; <span class="selector-tag">onmouseover</span>=&#x27;<span class="selector-tag">alert</span>(<span class="number">1</span>) </span><br></pre></td></tr></table></figure>
 
-<p>未完待续</p>
+<h4 id="第四关"><a href="#第四关" class="headerlink" title="第四关"></a>第四关</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;<span class="selector-tag">onmouseover</span>=&#x27;<span class="selector-tag">alert</span>(<span class="number">1</span>)&#x27;</span><br></pre></td></tr></table></figure>
+
+<h4 id="第五关"><a href="#第五关" class="headerlink" title="第五关"></a>第五关</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;&gt; &lt;<span class="selector-tag">a</span> <span class="selector-tag">href</span>=&#x27;<span class="selector-tag">javascript</span>:<span class="selector-tag">alert</span>(<span class="number">1</span>)&#x27;&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="第六关"><a href="#第六关" class="headerlink" title="第六关"></a>第六关</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;<span class="selector-tag">OncLick</span>=&#x27;<span class="selector-tag">alert</span>(<span class="number">1</span>)&#x27;</span><br></pre></td></tr></table></figure>
+
+<h4 id="第七关"><a href="#第七关" class="headerlink" title="第七关"></a>第七关</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">javascrip</span><span class="selector-tag">&amp;</span><span class="selector-id">#116</span>;:<span class="selector-tag">alert</span>(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>后面环境有点问题，详细见参考文章</p>
 
 	
 
@@ -633,7 +642,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFXSS%E6%BC%8F%E6%B4%9E%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">什么是XSS漏洞？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#XSS%E6%94%BB%E5%87%BB%E7%9A%84%E5%8D%B1%E5%AE%B3"><span class="toc-number">2.</span> <span class="toc-text">XSS攻击的危害</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#XSS%E6%BC%8F%E6%B4%9E%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.</span> <span class="toc-text">XSS漏洞的类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84%E5%9E%8B"><span class="toc-number">3.1.</span> <span class="toc-text">反射型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%9E%8B"><span class="toc-number">3.2.</span> <span class="toc-text">存储型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Dom%E5%9E%8B"><span class="toc-number">3.3.</span> <span class="toc-text">Dom型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#XSS%E6%8C%91%E6%88%98"><span class="toc-number">4.</span> <span class="toc-text">XSS挑战</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E5%85%B3"><span class="toc-number">4.1.</span> <span class="toc-text">第一关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E5%85%B3"><span class="toc-number">4.2.</span> <span class="toc-text">第二关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E5%85%B3"><span class="toc-number">4.3.</span> <span class="toc-text">第三关</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFXSS%E6%BC%8F%E6%B4%9E%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">什么是XSS漏洞？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#XSS%E6%94%BB%E5%87%BB%E7%9A%84%E5%8D%B1%E5%AE%B3"><span class="toc-number">2.</span> <span class="toc-text">XSS攻击的危害</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#XSS%E6%BC%8F%E6%B4%9E%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.</span> <span class="toc-text">XSS漏洞的类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84%E5%9E%8B"><span class="toc-number">3.1.</span> <span class="toc-text">反射型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%9E%8B"><span class="toc-number">3.2.</span> <span class="toc-text">存储型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Dom%E5%9E%8B"><span class="toc-number">3.3.</span> <span class="toc-text">Dom型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#XSS%E6%8C%91%E6%88%98"><span class="toc-number">4.</span> <span class="toc-text">XSS挑战</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E5%85%B3"><span class="toc-number">4.1.</span> <span class="toc-text">第一关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E5%85%B3"><span class="toc-number">4.2.</span> <span class="toc-text">第二关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E5%85%B3"><span class="toc-number">4.3.</span> <span class="toc-text">第三关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E5%85%B3"><span class="toc-number">4.4.</span> <span class="toc-text">第四关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E5%85%B3"><span class="toc-number">4.5.</span> <span class="toc-text">第五关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E5%85%B3"><span class="toc-number">4.6.</span> <span class="toc-text">第六关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E5%85%B3"><span class="toc-number">4.7.</span> <span class="toc-text">第七关</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
