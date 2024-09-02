@@ -317,13 +317,6 @@
 
   
   <url>
-    <loc>https://blog.zyp0422.mom/tags/kali/</loc>
-    <lastmod>2024-09-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.zyp0422.mom/tags/VulnHub%E9%9D%B6%E5%9C%BA/</loc>
     <lastmod>2024-09-02</lastmod>
     <changefreq>weekly</changefreq>
@@ -331,7 +324,7 @@
   </url>
   
   <url>
-    <loc>https://blog.zyp0422.mom/tags/web/</loc>
+    <loc>https://blog.zyp0422.mom/tags/kali/</loc>
     <lastmod>2024-09-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -339,6 +332,13 @@
   
   <url>
     <loc>https://blog.zyp0422.mom/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</loc>
+    <lastmod>2024-09-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.zyp0422.mom/tags/web/</loc>
     <lastmod>2024-09-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -373,14 +373,14 @@
   </url>
   
   <url>
-    <loc>https://blog.zyp0422.mom/tags/pwn/</loc>
+    <loc>https://blog.zyp0422.mom/tags/hexo/</loc>
     <lastmod>2024-09-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.zyp0422.mom/tags/hexo/</loc>
+    <loc>https://blog.zyp0422.mom/tags/pwn/</loc>
     <lastmod>2024-09-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -401,13 +401,6 @@
   </url>
   
   <url>
-    <loc>https://blog.zyp0422.mom/tags/SSTI/</loc>
-    <lastmod>2024-09-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.zyp0422.mom/tags/SSRF/</loc>
     <lastmod>2024-09-02</lastmod>
     <changefreq>weekly</changefreq>
@@ -415,7 +408,7 @@
   </url>
   
   <url>
-    <loc>https://blog.zyp0422.mom/tags/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/</loc>
+    <loc>https://blog.zyp0422.mom/tags/SSTI/</loc>
     <lastmod>2024-09-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -428,17 +421,24 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>https://blog.zyp0422.mom/tags/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/</loc>
+    <lastmod>2024-09-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
   
   <url>
-    <loc>https://blog.zyp0422.mom/categories/kali/</loc>
+    <loc>https://blog.zyp0422.mom/categories/CTFwp/</loc>
     <lastmod>2024-09-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.zyp0422.mom/categories/CTFwp/</loc>
+    <loc>https://blog.zyp0422.mom/categories/kali/</loc>
     <lastmod>2024-09-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -459,14 +459,14 @@
   </url>
   
   <url>
-    <loc>https://blog.zyp0422.mom/categories/pwn/</loc>
+    <loc>https://blog.zyp0422.mom/categories/hexo/</loc>
     <lastmod>2024-09-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.zyp0422.mom/categories/hexo/</loc>
+    <loc>https://blog.zyp0422.mom/categories/pwn/</loc>
     <lastmod>2024-09-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
