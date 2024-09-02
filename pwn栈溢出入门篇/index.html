@@ -10,24 +10,26 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="一、工具介绍IDA">
+  <meta name="description" content="一、前言介绍IDA">
 <meta property="og:type" content="article">
 <meta property="og:title" content="pwn栈溢出入门篇">
 <meta property="og:url" content="https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/index.html">
 <meta property="og:site_name" content="zhou">
-<meta property="og:description" content="一、工具介绍IDA">
+<meta property="og:description" content="一、前言介绍IDA">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/6.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/7.png">
 <meta property="og:image" content="https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/1.png">
 <meta property="og:image" content="https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/2.png">
 <meta property="og:image" content="https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/3.png">
 <meta property="og:image" content="https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/4.png">
 <meta property="og:image" content="https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/5.png">
 <meta property="article:published_time" content="2024-07-16T03:49:20.000Z">
-<meta property="article:modified_time" content="2024-07-17T05:53:57.636Z">
+<meta property="article:modified_time" content="2024-09-01T12:00:56.831Z">
 <meta property="article:author" content="zhoupeng">
 <meta property="article:tag" content="pwn">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/1.png">
+<meta name="twitter:image" content="https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/6.png">
   
     <link rel="alternative" href="/atom.xml" title="zhou" type="application/atom+xml">
   
@@ -370,7 +372,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">1.5k字</span>
+      <span class="post-count">2k字</span>
     </span>
   </span>
 
@@ -379,7 +381,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">6分</span>
+      <span class="post-count">7分</span>
     </span>
   </span>
 </div>
@@ -392,13 +394,19 @@
  
 
 	
-		<h3 id="一、工具介绍"><a href="#一、工具介绍" class="headerlink" title="一、工具介绍"></a>一、工具介绍</h3><h4 id="IDA"><a href="#IDA" class="headerlink" title="IDA"></a>IDA</h4><span id="more"></span>
+		<h3 id="一、前言介绍"><a href="#一、前言介绍" class="headerlink" title="一、前言介绍"></a>一、前言介绍</h3><h4 id="IDA"><a href="#IDA" class="headerlink" title="IDA"></a>IDA</h4><span id="more"></span>
 
 <p>反编译工具</p>
 <h4 id="checksec"><a href="#checksec" class="headerlink" title="checksec"></a>checksec</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">执行<span class="selector-tag">checksec</span> <span class="selector-tag">pwn</span>查看文件保护机制</span><br><span class="line"><span class="selector-attr">[*]</span> &#x27;/<span class="selector-tag">root</span>/桌面/<span class="selector-tag">tm</span>/<span class="selector-tag">pwn</span>&#x27;</span><br><span class="line">    <span class="selector-tag">Arch</span>:     <span class="selector-tag">amd64-64-little</span>		#版本信息，<span class="number">64</span>位还是<span class="number">32</span>位使用<span class="selector-tag">IDA</span>反编译</span><br><span class="line">    <span class="selector-tag">RELRO</span>:    <span class="selector-tag">Partial</span> <span class="selector-tag">RELRO</span>			#重定向只读，但为<span class="selector-tag">Partial</span> <span class="selector-tag">RELRO</span>表示我们对于<span class="selector-tag">GOT</span>表有写权限</span><br><span class="line">    <span class="selector-tag">Stack</span>:    <span class="selector-tag">No</span> <span class="selector-tag">canary</span> <span class="selector-tag">found</span>		#是否开启保护机制，是确定能否进行栈溢出的关键</span><br><span class="line">    <span class="selector-tag">NX</span>:       <span class="selector-tag">NX</span> <span class="selector-tag">enabled</span>			#判断溢出是是否执行恶意代码的标志</span><br><span class="line">    <span class="selector-tag">PIE</span>:      <span class="selector-tag">No</span> <span class="selector-tag">PIE</span> (<span class="number">0</span>x400000)		#是否存在地址空间随机化</span><br></pre></td></tr></table></figure>
 
+<p><strong>栈保护机制</strong></p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">CANARY</span>(栈保护)</span><br><span class="line"></span><br><span class="line">栈溢出保护是一种缓冲区溢出攻击缓解手段，当启用栈保护后，函数开始执行的时候会先往栈里插入<span class="selector-tag">canary</span>信息，当函数真正返回的时候会验证<span class="selector-tag">canary</span>信息是否合法，如果不合法就停止程序运行。攻击者在覆盖返回地址的时候往往也会将<span class="selector-tag">canary</span>信息给覆盖掉，导致栈保护检查失败而阻止<span class="selector-tag">shellcode</span>的执行。</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">NX</span>（<span class="selector-tag">DEP</span>）(数据执行保护 Data Execution Prevention)</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">NX</span>即<span class="selector-tag">No-eXecute</span>（不可执行）的意思，<span class="selector-tag">NX</span>（<span class="selector-tag">DEP</span>）的基本原理是将数据所在内存页标识为不可执行，当程序溢出成功转入<span class="selector-tag">shellcode</span>时，程序会尝试在数据页面上执行指令，此时<span class="selector-tag">CPU</span>就会抛出异常，而不是去执行恶意指令。</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">PIE</span>（<span class="selector-tag">ASLR</span>）</span><br><span class="line"></span><br><span class="line">内存地址随机化机制（<span class="selector-tag">address</span> <span class="selector-tag">space</span> <span class="selector-tag">layout</span> <span class="selector-tag">randomization</span>)，有以下三种情况：</span><br><span class="line"><span class="number">0</span> <span class="selector-tag">-</span> 表示关闭进程地址空间随机化</span><br><span class="line"><span class="number">1</span> <span class="selector-tag">-</span> 表示将<span class="selector-tag">mmap</span>的基址，<span class="selector-tag">stack</span>和<span class="selector-tag">vdso</span>页面随机化</span><br><span class="line"><span class="number">2</span> <span class="selector-tag">-</span> 表示在<span class="number">1</span>的基础上增加堆（<span class="selector-tag">heap</span>）的随机化</span><br></pre></td></tr></table></figure>
 
+<h4 id="栈寄存器介绍"><a href="#栈寄存器介绍" class="headerlink" title="栈寄存器介绍"></a>栈寄存器介绍</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">EIP</span>：主要用于存放当前代码段即将被执行的下一条指令的偏移，但其本质上并不能直接被指令直接访问。</span><br><span class="line">最典型的栈溢出利用是覆盖程序的返回地址为攻击者所控制的地址，也就是覆盖<span class="selector-tag">EIP</span></span><br><span class="line"><span class="selector-tag">ESP</span>：栈顶指针，始终指向栈顶</span><br><span class="line"><span class="selector-tag">EBP</span>：栈底指针，通常叫栈基址</span><br></pre></td></tr></table></figure>
 
+<p><img src="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/6.png"></p>
+<p>可以从图片中看出但我们往栈中填充大量数据导致数据发生溢出，将原本存在于缓冲区中的数据抛出栈，而此时栈中存放的就是我们填充的数据，但我们此时输入的数据不是垃圾数据的时候，而是一个shell的时候，我们就可以获取shell，例如下图</p>
+<p><img src="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/7.png"></p>
 <h4 id="python之pwntools"><a href="#python之pwntools" class="headerlink" title="python之pwntools"></a>python之pwntools</h4><p>python的一个模块，使用python3版本安装</p>
 <h5 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h5><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#x27;&#x27;&#x27;</span><br><span class="line">应用题目的程序或对应的<span class="selector-tag">nc</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">p</span> = <span class="selector-tag">peocess</span>(<span class="string">&quot;题目附件给的ELF文件&quot;</span>)</span><br><span class="line"><span class="selector-tag">p</span> = <span class="selector-tag">remote</span>(<span class="string">&quot;题目URL&quot;</span>, 端口)</span><br><span class="line"></span><br><span class="line">&#x27;&#x27;&#x27;</span><br><span class="line"><span class="selector-tag">send</span>(data): 发送数据</span><br><span class="line"><span class="selector-tag">sendline</span>(data): 发送一行数据，相当于在末尾加\<span class="selector-tag">n</span></span><br><span class="line"><span class="selector-tag">eg</span>: <span class="selector-tag">p</span><span class="selector-class">.sendline</span>(b<span class="string">&#x27;a&#x27;</span> * (<span class="number">0</span>x.... + <span class="number">0</span>x....) + <span class="built_in">p64</span>(<span class="number">0</span>x....)) </span><br><span class="line">#将<span class="selector-tag">a</span>填充进去导致栈溢出到<span class="selector-tag">p64</span>对应的位置执行/<span class="selector-tag">bin</span>/<span class="selector-tag">sh</span>（一般是利用后门）</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">recv</span>(numb=<span class="number">4096</span>, timeout=default): 给出接收的字节数，<span class="selector-tag">timeout</span>指定超时</span><br><span class="line"><span class="selector-tag">recvuntil</span>(delims, drop=False): 接收到<span class="selector-tag">delims</span>的<span class="selector-tag">pattern</span></span><br><span class="line"><span class="selector-tag">eg</span>: <span class="selector-tag">p</span><span class="selector-class">.recvntil</span>(<span class="string">&quot;name?&quot;</span>)</span><br><span class="line">#一般是接收跟栈溢出有关的数据</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">recvall</span>(): 接收到<span class="selector-tag">EOF</span></span><br><span class="line"><span class="selector-tag">recvrepeat</span>(timeout=default): 接收到<span class="selector-tag">EOF</span>或<span class="selector-tag">timeout</span></span><br><span class="line"><span class="selector-tag">interactive</span>(): 与<span class="selector-tag">shell</span>交互</span><br><span class="line"><span class="selector-tag">eg</span>:<span class="selector-tag">p</span><span class="selector-class">.interactive</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
@@ -631,7 +639,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">一、工具介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#IDA"><span class="toc-number">1.1.</span> <span class="toc-text">IDA</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#checksec"><span class="toc-number">1.2.</span> <span class="toc-text">checksec</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#python%E4%B9%8Bpwntools"><span class="toc-number">1.3.</span> <span class="toc-text">python之pwntools</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="toc-number">1.3.1.</span> <span class="toc-text">基本用法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ELF%E6%96%87%E4%BB%B6%E7%9B%B8%E5%85%B3%E8%AF%BB%E5%8F%96"><span class="toc-number">1.3.2.</span> <span class="toc-text">ELF文件相关读取</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9F%BA%E6%9C%ACEXP%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.3.3.</span> <span class="toc-text">基本EXP格式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%A0%88%E6%BA%A2%E5%87%BA"><span class="toc-number">2.</span> <span class="toc-text">二、栈溢出</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">2.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E6%8F%90"><span class="toc-number">2.2.</span> <span class="toc-text">前提</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E5%8F%91%E7%94%9F%E6%A0%88%E6%BA%A2%E5%87%BA%E7%9A%84%E5%87%BD%E6%95%B0"><span class="toc-number">2.3.</span> <span class="toc-text">常发生栈溢出的函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E6%A0%88%E6%BA%A2%E5%87%BA%E6%80%9D%E8%B7%AF"><span class="toc-number">2.4.</span> <span class="toc-text">利用栈溢出思路</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%9B%B8%E5%85%B3%E9%A2%98%E7%9B%AE"><span class="toc-number">3.</span> <span class="toc-text">三、相关题目</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BUUCTF%E2%80%94-BJDCTF-2020-babystack%EF%BC%88%E6%A0%88%E6%BA%A2%E5%87%BA%E8%A6%86%E7%9B%96%E8%BF%94%E5%9B%9E%E5%9C%B0%E5%9D%80%EF%BC%89"><span class="toc-number">3.1.</span> <span class="toc-text">BUUCTF—-[BJDCTF 2020]babystack（栈溢出覆盖返回地址）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-checksec%E6%9F%A5%E7%9C%8B%E4%BF%9D%E6%8A%A4%E6%9C%BA%E5%88%B6"><span class="toc-number">3.1.1.</span> <span class="toc-text">1.checksec查看保护机制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E7%94%A8IDA64%E6%89%93%E5%BC%80"><span class="toc-number">3.1.2.</span> <span class="toc-text">2.用IDA64打开</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E8%8E%B7%E5%8F%96%E6%93%8D%E4%BD%9C%E5%9C%B0%E5%9D%80%E5%88%B0%E8%A6%86%E7%9B%96%E5%9C%B0%E5%9D%80%E7%9A%84%E8%B7%9D%E7%A6%BB"><span class="toc-number">3.1.3.</span> <span class="toc-text">3.获取操作地址到覆盖地址的距离</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-%E8%8E%B7%E5%8F%96%E5%90%8E%E9%97%A8%E5%87%BD%E6%95%B0%E5%9C%B0%E5%9D%80"><span class="toc-number">3.1.4.</span> <span class="toc-text">4.获取后门函数地址</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-%E6%9E%84%E9%80%A0EXP"><span class="toc-number">3.1.5.</span> <span class="toc-text">5.构造EXP</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-%E8%8E%B7%E5%8F%96flag"><span class="toc-number">3.1.6.</span> <span class="toc-text">6.获取flag</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BUUCTF%E2%80%94-CISCN-2019%E5%8D%8E%E5%8C%97-PWN1%EF%BC%88%E6%A0%88%E6%BA%A2%E5%87%BA%EF%BC%8C%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96%EF%BC%89"><span class="toc-number">3.2.</span> <span class="toc-text">BUUCTF—-[CISCN 2019华北]PWN1（栈溢出，变量覆盖）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-checksec%E6%9F%A5%E7%9C%8B%E4%BF%9D%E6%8A%A4%E6%9C%BA%E5%88%B6-1"><span class="toc-number">3.2.1.</span> <span class="toc-text">1.checksec查看保护机制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-IDA%E6%89%93%E5%BC%80%E7%9C%8B%E4%BC%AA%E4%BB%A3%E7%A0%81"><span class="toc-number">3.2.2.</span> <span class="toc-text">2.IDA打开看伪代码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E8%8E%B7%E5%8F%96%E6%93%8D%E4%BD%9C%E5%9C%B0%E5%9D%80%E5%88%B0%E8%A6%86%E7%9B%96%E5%9C%B0%E5%9D%80%E8%B7%9D%E7%A6%BB"><span class="toc-number">3.2.3.</span> <span class="toc-text">3.获取操作地址到覆盖地址距离</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-%E6%9E%84%E9%80%A0EXP"><span class="toc-number">3.2.4.</span> <span class="toc-text">4.构造EXP</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-%E8%8E%B7%E5%8F%96flag"><span class="toc-number">3.2.5.</span> <span class="toc-text">5.获取flag</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%89%8D%E8%A8%80%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">一、前言介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#IDA"><span class="toc-number">1.1.</span> <span class="toc-text">IDA</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#checksec"><span class="toc-number">1.2.</span> <span class="toc-text">checksec</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%88%E5%AF%84%E5%AD%98%E5%99%A8%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.3.</span> <span class="toc-text">栈寄存器介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#python%E4%B9%8Bpwntools"><span class="toc-number">1.4.</span> <span class="toc-text">python之pwntools</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="toc-number">1.4.1.</span> <span class="toc-text">基本用法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ELF%E6%96%87%E4%BB%B6%E7%9B%B8%E5%85%B3%E8%AF%BB%E5%8F%96"><span class="toc-number">1.4.2.</span> <span class="toc-text">ELF文件相关读取</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9F%BA%E6%9C%ACEXP%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.4.3.</span> <span class="toc-text">基本EXP格式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%A0%88%E6%BA%A2%E5%87%BA"><span class="toc-number">2.</span> <span class="toc-text">二、栈溢出</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">2.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E6%8F%90"><span class="toc-number">2.2.</span> <span class="toc-text">前提</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E5%8F%91%E7%94%9F%E6%A0%88%E6%BA%A2%E5%87%BA%E7%9A%84%E5%87%BD%E6%95%B0"><span class="toc-number">2.3.</span> <span class="toc-text">常发生栈溢出的函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E6%A0%88%E6%BA%A2%E5%87%BA%E6%80%9D%E8%B7%AF"><span class="toc-number">2.4.</span> <span class="toc-text">利用栈溢出思路</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%9B%B8%E5%85%B3%E9%A2%98%E7%9B%AE"><span class="toc-number">3.</span> <span class="toc-text">三、相关题目</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BUUCTF%E2%80%94-BJDCTF-2020-babystack%EF%BC%88%E6%A0%88%E6%BA%A2%E5%87%BA%E8%A6%86%E7%9B%96%E8%BF%94%E5%9B%9E%E5%9C%B0%E5%9D%80%EF%BC%89"><span class="toc-number">3.1.</span> <span class="toc-text">BUUCTF—-[BJDCTF 2020]babystack（栈溢出覆盖返回地址）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-checksec%E6%9F%A5%E7%9C%8B%E4%BF%9D%E6%8A%A4%E6%9C%BA%E5%88%B6"><span class="toc-number">3.1.1.</span> <span class="toc-text">1.checksec查看保护机制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E7%94%A8IDA64%E6%89%93%E5%BC%80"><span class="toc-number">3.1.2.</span> <span class="toc-text">2.用IDA64打开</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E8%8E%B7%E5%8F%96%E6%93%8D%E4%BD%9C%E5%9C%B0%E5%9D%80%E5%88%B0%E8%A6%86%E7%9B%96%E5%9C%B0%E5%9D%80%E7%9A%84%E8%B7%9D%E7%A6%BB"><span class="toc-number">3.1.3.</span> <span class="toc-text">3.获取操作地址到覆盖地址的距离</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-%E8%8E%B7%E5%8F%96%E5%90%8E%E9%97%A8%E5%87%BD%E6%95%B0%E5%9C%B0%E5%9D%80"><span class="toc-number">3.1.4.</span> <span class="toc-text">4.获取后门函数地址</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-%E6%9E%84%E9%80%A0EXP"><span class="toc-number">3.1.5.</span> <span class="toc-text">5.构造EXP</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-%E8%8E%B7%E5%8F%96flag"><span class="toc-number">3.1.6.</span> <span class="toc-text">6.获取flag</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BUUCTF%E2%80%94-CISCN-2019%E5%8D%8E%E5%8C%97-PWN1%EF%BC%88%E6%A0%88%E6%BA%A2%E5%87%BA%EF%BC%8C%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96%EF%BC%89"><span class="toc-number">3.2.</span> <span class="toc-text">BUUCTF—-[CISCN 2019华北]PWN1（栈溢出，变量覆盖）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-checksec%E6%9F%A5%E7%9C%8B%E4%BF%9D%E6%8A%A4%E6%9C%BA%E5%88%B6-1"><span class="toc-number">3.2.1.</span> <span class="toc-text">1.checksec查看保护机制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-IDA%E6%89%93%E5%BC%80%E7%9C%8B%E4%BC%AA%E4%BB%A3%E7%A0%81"><span class="toc-number">3.2.2.</span> <span class="toc-text">2.IDA打开看伪代码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E8%8E%B7%E5%8F%96%E6%93%8D%E4%BD%9C%E5%9C%B0%E5%9D%80%E5%88%B0%E8%A6%86%E7%9B%96%E5%9C%B0%E5%9D%80%E8%B7%9D%E7%A6%BB"><span class="toc-number">3.2.3.</span> <span class="toc-text">3.获取操作地址到覆盖地址距离</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-%E6%9E%84%E9%80%A0EXP"><span class="toc-number">3.2.4.</span> <span class="toc-text">4.构造EXP</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-%E8%8E%B7%E5%8F%96flag"><span class="toc-number">3.2.5.</span> <span class="toc-text">5.获取flag</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -788,19 +796,19 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">--VulnHub靶场</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">kali</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
+                <a href="javascript:void(0)" class="js-tag color2">--VulnHub靶场</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">web</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -820,11 +828,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color4">pwn</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">pwn</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -836,19 +844,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SSRF</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">SSTI</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">reverse</a>
+                <a href="javascript:void(0)" class="js-tag color5">SSRF</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">--红日靶场</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">reverse</a>
               </li>
             
             <div class="clearfix"></div>

