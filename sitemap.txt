@@ -1,3 +1,5 @@
+https://blog.zyp0422.mom/pwn-gdb-pwndbg%E5%92%8Cpwngdb%E8%81%94%E5%90%88%E4%BD%BF%E7%94%A8/
+https://blog.zyp0422.mom/pwn-%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2/
 https://blog.zyp0422.mom/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/
 https://blog.zyp0422.mom/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/
 https://blog.zyp0422.mom/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/
@@ -45,9 +47,9 @@ https://blog.zyp0422.mom/tags/hexo/
 https://blog.zyp0422.mom/tags/pwn/
 https://blog.zyp0422.mom/tags/SQL%E6%B3%A8%E5%85%A5/
 https://blog.zyp0422.mom/tags/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/
+https://blog.zyp0422.mom/tags/SSRF/
 https://blog.zyp0422.mom/tags/SSTI/
 https://blog.zyp0422.mom/tags/reverse/
-https://blog.zyp0422.mom/tags/SSRF/
 https://blog.zyp0422.mom/tags/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/
 https://blog.zyp0422.mom/categories/CTFwp/
 https://blog.zyp0422.mom/categories/kali/

@@ -100,7 +100,7 @@
 			</ul>
 		</nav>
                                 <nav>
-    			总文章数 29
+    			总文章数 31
 		</nav>
 		<nav class="header-smart-menu">
 			
@@ -331,6 +331,229 @@
           </div>
           <div id="js-content" class="content-ll">
             
+
+  
+    <article id="post-pwn-gdb-pwndbg和pwngdb联合使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/pwn-gdb-pwndbg%E5%92%8Cpwngdb%E8%81%94%E5%90%88%E4%BD%BF%E7%94%A8/" target="_blank">pwn-gdb-pwndbg和pwngdb联合使用</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/pwn-gdb-pwndbg%E5%92%8Cpwngdb%E8%81%94%E5%90%88%E4%BD%BF%E7%94%A8/" class="archive-article-date">
+        <time datetime="2024-09-04T14:45:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-09-04</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+ 
+
+	
+		<h3 id="gdb安装"><a href="#gdb安装" class="headerlink" title="gdb安装"></a>gdb安装</h3><p>没什么好说的，直接使用下面的命令安装即可</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">apt</span> <span class="selector-tag">install</span> <span class="selector-tag">gdb</span></span><br></pre></td></tr></table></figure>
+
+<p>安装成功后还会自带一个checksec，这个可以用来查询二进制文件栈保护是否开启，以及其是否开启了PIE或者canary等保护</p>
+<h3 id="pwndbg安装"><a href="#pwndbg安装" class="headerlink" title="pwndbg安装"></a>pwndbg安装</h3><p>注：如果已经安装过了pwndbg就不需要再安装了，只需要确定里面的gdbinit.py文件位置就可以，后续需要用到</p>
+<p>操作全在root目录下进行</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">git</span> <span class="selector-tag">clone</span> <span class="selector-tag">https</span>:<span class="comment">//github.com/pwndbg/pwndbg</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">cd</span> <span class="selector-tag">pwndbg</span></span><br><span class="line"></span><br><span class="line">./<span class="selector-tag">setup</span><span class="selector-class">.sh</span></span><br></pre></td></tr></table></figure>
+
+<p>这时候就部署好了pwndbg，注意这时候会在root目录下自动生成一个文件~&#x2F;.gdbinit</p>
+<p>我们可以查看一下这个文件，这个文件内容如下</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">source</span> /<span class="selector-tag">root</span>/<span class="selector-tag">pwndbg</span>/<span class="selector-tag">gdbinit</span><span class="selector-class">.py</span></span><br></pre></td></tr></table></figure>
+
+<p>记住这个内容，后面联合pwngdb使用时是需要这个内容的，这个内容就是指向你安装pwndbg文件中的gdbinit.py文件，这样你启动gdb调试的时候才会引用pwndbg这个插件</p>
+<p>注：.gdbinit.py文件在终端中是不可见的</p>
+<h3 id="pwngdb安装"><a href="#pwngdb安装" class="headerlink" title="pwngdb安装"></a>pwngdb安装</h3><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">git</span> <span class="selector-tag">clone</span> <span class="selector-tag">https</span>:<span class="comment">//github.com/scwuaptx/Pwngdb.git</span></span><br></pre></td></tr></table></figure>
+
+<p>这里其实以及够了，不需要再cp什么的了，因为在安装pwndbg插件的时候已经在根目录下生成了.gdbinit文件，如果再跟网上其他文章操作的话，会将原本生成的文件覆盖，这时候如果你之前已经安装了pwndbg插件了，那地址就不一样了，这会导致你使用gdb时无法执行你的pwndbg，便也就无法使用pwndbg了</p>
+<h3 id="pwngdb和pwndbg联合使用"><a href="#pwngdb和pwndbg联合使用" class="headerlink" title="pwngdb和pwndbg联合使用"></a>pwngdb和pwndbg联合使用</h3><p>完成上面安装后，就只剩下该我们根目录下生成的gdbinit.py文件内容即可</p>
+<p>将内容改成下面内容即可（如果完全按照上面操作安装的直接改就行，不是的话就要改，见注释）</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> # 改成你安装<span class="selector-tag">pwndbg</span>文件目录下<span class="selector-tag">gdbinit</span><span class="selector-class">.py</span>、<span class="selector-tag">Pwngdb</span>文件下<span class="selector-tag">pwngdb</span><span class="selector-class">.py</span>和<span class="selector-tag">angelheap</span>/<span class="selector-tag">gdbinit</span><span class="selector-class">.py</span>的位置（路径）</span><br><span class="line"><span class="selector-tag">source</span> /<span class="selector-tag">root</span>/<span class="selector-tag">pwndbg</span>/<span class="selector-tag">gdbinit</span><span class="selector-class">.py</span></span><br><span class="line"><span class="selector-tag">source</span> ~/<span class="selector-tag">Pwngdb</span>/<span class="selector-tag">pwngdb</span><span class="selector-class">.py</span></span><br><span class="line"><span class="selector-tag">source</span> ~/<span class="selector-tag">Pwngdb</span>/<span class="selector-tag">angelheap</span>/<span class="selector-tag">gdbinit</span><span class="selector-class">.py</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">define</span> <span class="selector-tag">hook-run</span></span><br><span class="line"><span class="selector-tag">python</span></span><br><span class="line"><span class="selector-tag">import</span> <span class="selector-tag">angelheap</span></span><br><span class="line"><span class="selector-tag">angelheap</span><span class="selector-class">.init_angelheap</span>()</span><br><span class="line"><span class="selector-tag">end</span></span><br><span class="line"><span class="selector-tag">end</span></span><br></pre></td></tr></table></figure>
+
+<p>到此，pwndbg和pwngdb就安装完了，可以通过下面的测试是否安装成功</p>
+<p>启动gdb输入chunkinfo，如果是下图显示就表示安装成功，如果显示not commonds就是没有安装成功</p>
+<p><img src="/pwn-gdb-pwndbg%E5%92%8Cpwngdb%E8%81%94%E5%90%88%E4%BD%BF%E7%94%A8/1.png"></p>
+<p>或者进入gdb后双击tab，出现下面图片这么多指令也表示安装成功</p>
+<p><img src="/pwn-gdb-pwndbg%E5%92%8Cpwngdb%E8%81%94%E5%90%88%E4%BD%BF%E7%94%A8/2.png"></p>
+
+	
+
+
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">pwn</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/pwn//" class="article-tag-list-link color4">pwn</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/pwn-gdb-pwndbg%E5%92%8Cpwngdb%E8%81%94%E5%90%88%E4%BD%BF%E7%94%A8/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+    <article id="post-pwn-格式化字符串" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/pwn-%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2/" target="_blank">pwn-格式化字符串</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/pwn-%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="archive-article-date">
+        <time datetime="2024-09-04T14:43:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-09-04</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+ 
+
+			<h3 id="成因"><a href="#成因" class="headerlink" title="成因"></a>成因</h3><p>格式化字符串漏洞的成因主要在于程序在使用格式化函数（如 <code>printf</code>&#x2F;sprintf&#x2F;snprintf）时，</p>
+	
+
+
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">pwn</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/pwn//" class="article-tag-list-link color4">pwn</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/pwn-%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
 
   
     <article id="post-PHP中各种比较类型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
@@ -1121,206 +1344,9 @@
 
 
   
-    <article id="post-pwn栈溢出-ret2libc" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2libc/" target="_blank">pwn栈溢出---ret2libc</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2libc/" class="archive-article-date">
-        <time datetime="2024-07-17T03:52:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-17</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
- 
-
-			<h3 id="一、libc相关讲解"><a href="#一、libc相关讲解" class="headerlink" title="一、libc相关讲解"></a>一、libc相关讲解</h3><h4 id="1、为什么要libc泄露"><a href="#1、为什么要libc泄露" class="headerlink" title="1、为什么要libc泄露"></a>1、为什么要libc泄露</h4><ul>
-<li><p>题目没有给出system()和&#x2F;bin&#x2F;sh给我们利用，需要我们在libc库中寻找</p></li></ul>
-	
-
-
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">pwn</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pwn//" class="article-tag-list-link color4">pwn</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2libc/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-    <article id="post-pwn栈溢出入门篇" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/" target="_blank">pwn栈溢出入门篇</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/" class="archive-article-date">
-        <time datetime="2024-07-16T03:49:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-16</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
- 
-
-			<h3 id="一、前言介绍"><a href="#一、前言介绍" class="headerlink" title="一、前言介绍"></a>一、前言介绍</h3><h4 id="IDA"><a href="#IDA" class="headerlink" title="IDA"></a>IDA</h4>
-	
-
-
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">pwn</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pwn//" class="article-tag-list-link color4">pwn</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -1499,15 +1525,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SSRF</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">SSTI</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">reverse</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SSRF</a>
               </li>
              
               <li class="article-tag-list-item">
