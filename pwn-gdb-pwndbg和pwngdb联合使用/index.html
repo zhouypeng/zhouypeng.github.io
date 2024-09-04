@@ -10,17 +10,17 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="gdb安装没什么好说的，直接使用下面的命令安装即可 1apt install gdb  安装成功后还会自带一个checksec，这个可以用来查询二进制文件栈保护是否开启，以及其是否开启了PIE或者canary等保护 pwndbg安装注：如果已经安装过了pwndbg就不需要再安装了，只需要确定里面的gdbinit.py文件位置就可以，后续需要用到 操作全在root目录下进行 12345git clo">
+  <meta name="description" content="gdb安装">
 <meta property="og:type" content="article">
 <meta property="og:title" content="pwn-gdb-pwndbg和pwngdb联合使用">
 <meta property="og:url" content="https://blog.zyp0422.mom/pwn-gdb-pwndbg%E5%92%8Cpwngdb%E8%81%94%E5%90%88%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="zhou">
-<meta property="og:description" content="gdb安装没什么好说的，直接使用下面的命令安装即可 1apt install gdb  安装成功后还会自带一个checksec，这个可以用来查询二进制文件栈保护是否开启，以及其是否开启了PIE或者canary等保护 pwndbg安装注：如果已经安装过了pwndbg就不需要再安装了，只需要确定里面的gdbinit.py文件位置就可以，后续需要用到 操作全在root目录下进行 12345git clo">
+<meta property="og:description" content="gdb安装">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog.zyp0422.mom/pwn-gdb-pwndbg%E5%92%8Cpwngdb%E8%81%94%E5%90%88%E4%BD%BF%E7%94%A8/1.png">
 <meta property="og:image" content="https://blog.zyp0422.mom/pwn-gdb-pwndbg%E5%92%8Cpwngdb%E8%81%94%E5%90%88%E4%BD%BF%E7%94%A8/2.png">
 <meta property="article:published_time" content="2024-09-04T14:45:54.000Z">
-<meta property="article:modified_time" content="2024-09-04T15:19:34.145Z">
+<meta property="article:modified_time" content="2024-09-04T15:21:12.197Z">
 <meta property="article:author" content="zhoupeng">
 <meta property="article:tag" content="pwn">
 <meta name="twitter:card" content="summary">
@@ -389,7 +389,7 @@
  
 
 	
-		<h3 id="gdb安装"><a href="#gdb安装" class="headerlink" title="gdb安装"></a>gdb安装</h3><p>没什么好说的，直接使用下面的命令安装即可</p>
+		<h3 id="gdb安装"><a href="#gdb安装" class="headerlink" title="gdb安装"></a>gdb安装<span id="more"></span></h3><p>没什么好说的，直接使用下面的命令安装即可</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">apt</span> <span class="selector-tag">install</span> <span class="selector-tag">gdb</span></span><br></pre></td></tr></table></figure>
 
 <p>安装成功后还会自带一个checksec，这个可以用来查询二进制文件栈保护是否开启，以及其是否开启了PIE或者canary等保护</p>
