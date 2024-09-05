@@ -6,17 +6,13 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://blog.zyp0422.mom">
-  <title>zhou</title>
+  <title>Category: web | zhou</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-    
-    <!-- <meta name="keywords" content="">
-    <meta name="description" content=""> -->
-  
   <meta property="og:type" content="website">
 <meta property="og:title" content="zhou">
-<meta property="og:url" content="https://blog.zyp0422.mom/page/2/index.html">
+<meta property="og:url" content="https://blog.zyp0422.mom/categories/web/page/2/index.html">
 <meta property="og:site_name" content="zhou">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="zhoupeng">
@@ -331,848 +327,40 @@
           </div>
           <div id="js-content" class="content-ll">
             
-
-  
-    <article id="post-pwn栈溢出-ret2syscall" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2syscall/" target="_blank">pwn栈溢出---ret2syscall</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2syscall/" class="archive-article-date">
-        <time datetime="2024-07-19T03:14:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-19</time>
-</a>
-
   
   
     
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
- 
-
-			<h3 id="一、ret2syscall相关讲解"><a href="#一、ret2syscall相关讲解" class="headerlink" title="一、ret2syscall相关讲解"></a>一、ret2syscall相关讲解</h3><h4 id="介绍与原理"><a href="#介绍与原理" class="headerlink" title="介绍与原理"></a>介绍与原理</h4><p><em><strong>系统调用</strong></em></p>
-	
-
-
-
     
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">pwn</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pwn//" class="article-tag-list-link color4">pwn</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2syscall/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2024" class="archive-year">2024</a>
         </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-    <article id="post-pwn栈溢出-ret2libc" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+        <div class="archives">
     
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2libc/" target="_blank">pwn栈溢出---ret2libc</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2libc/" class="archive-article-date">
-        <time datetime="2024-07-17T03:52:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-17</time>
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	
+<a href="/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" class="archive-article-date">
+        <time datetime="2024-03-31T15:21:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-31</time>
 </a>
 
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
- 
-
-			<h3 id="一、libc相关讲解"><a href="#一、libc相关讲解" class="headerlink" title="一、libc相关讲解"></a>一、libc相关讲解</h3><h4 id="1、为什么要libc泄露"><a href="#1、为什么要libc泄露" class="headerlink" title="1、为什么要libc泄露"></a>1、为什么要libc泄露</h4><ul>
-<li><p>题目没有给出system()和&#x2F;bin&#x2F;sh给我们利用，需要我们在libc库中寻找</p></li></ul>
-	
-
-
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">pwn</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pwn//" class="article-tag-list-link color4">pwn</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA-ret2libc/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
         </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-    <article id="post-pwn栈溢出入门篇" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
+    	 
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/" target="_blank">pwn栈溢出入门篇</a>
+	  <a class="archive-article-title" href="/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" target="_blank">文件包含</a>
   
     </h1>
   
 
 
-  
-  
-<a href="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/" class="archive-article-date">
-        <time datetime="2024-07-16T03:49:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-16</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
- 
-
-			<h3 id="一、前言介绍"><a href="#一、前言介绍" class="headerlink" title="一、前言介绍"></a>一、前言介绍</h3><h4 id="IDA"><a href="#IDA" class="headerlink" title="IDA"></a>IDA</h4>
-	
-
-
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">pwn</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pwn//" class="article-tag-list-link color4">pwn</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-    <article id="post-Hackathon2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/Hackathon2/" target="_blank">Hackathon2</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/Hackathon2/" class="archive-article-date">
-        <time datetime="2024-06-12T02:41:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-06-12</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
- 
-
-			<h3 id="一、端口扫描"><a href="#一、端口扫描" class="headerlink" title="一、端口扫描"></a>一、端口扫描</h3>
-	
-
-
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">--VulnHub靶场</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/Hackathon2/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-    <article id="post-Raven" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/Raven/" target="_blank">Raven</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/Raven/" class="archive-article-date">
-        <time datetime="2024-06-11T15:47:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-06-11</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
- 
-
-			<h3 id="一、端口扫描"><a href="#一、端口扫描" class="headerlink" title="一、端口扫描"></a>一、端口扫描</h3>
-	
-
-
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">--VulnHub靶场</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/Raven/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-    <article id="post-红日渗透靶场-红日2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/%E7%BA%A2%E6%97%A5%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA-%E7%BA%A2%E6%97%A52/" target="_blank">红日渗透靶场-红日2</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/%E7%BA%A2%E6%97%A5%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA-%E7%BA%A2%E6%97%A52/" class="archive-article-date">
-        <time datetime="2024-06-03T00:20:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-06-03</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
- 
-
-			<p>靶场下载链接：</p>
-	
-
-
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">--红日靶场</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/%E7%BA%A2%E6%97%A5%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA-%E7%BA%A2%E6%97%A52/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-    <article id="post-红日渗透靶场-红日1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/%E7%BA%A2%E6%97%A5%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA-%E7%BA%A2%E6%97%A51/" target="_blank">红日渗透靶场--红日1</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/%E7%BA%A2%E6%97%A5%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA-%E7%BA%A2%E6%97%A51/" class="archive-article-date">
-        <time datetime="2024-06-01T04:54:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-06-01</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
- 
-
-			<p>靶场下载链接：</p>
-<p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1r56G5IU9FoIC5pK-vWUrBQ">https://pan.baidu.com/s/1r56G5IU9FoIC5pK-vWUrBQ</a> </p>
-	
-
-
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">--红日靶场</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/%E7%BA%A2%E6%97%A5%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA-%E7%BA%A2%E6%97%A51/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-    <article id="post-trollcave-v1-2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/trollcave-v1-2/" target="_blank">trollcave-v1-2</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/trollcave-v1-2/" class="archive-article-date">
-        <time datetime="2024-05-27T15:31:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-05-27</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
- 
-
-			<h4 id="靶场：Trollcave-1-2"><a href="#靶场：Trollcave-1-2" class="headerlink" title="靶场：Trollcave:1.2"></a>靶场：Trollcave:1.2</h4><h4 id="1、收集信息"><a href="#1、收集信息" class="headerlink" title="1、收集信息"></a>1、收集信息</h4>
-	
-
-
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/trollcave-v1-2/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-    <article id="post-Os-hackNos-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/Os-hackNos-1/" target="_blank">Os-hackNos-1</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/Os-hackNos-1/" class="archive-article-date">
-        <time datetime="2024-05-26T14:59:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-05-26</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
- 
-
-			<h2 id="vulnhub靶机练习-Os-hackNos-1"><a href="#vulnhub靶机练习-Os-hackNos-1" class="headerlink" title="vulnhub靶机练习-Os-hackNos-1"></a>vulnhub靶机练习-Os-hackNos-1</h2><p>靶场下载链接：<a target="_blank" rel="noopener" href="https://www.vulnhub.com/entry/hacknos-os-hacknos,401/">https://www.vulnhub.com/entry/hacknos-os-hacknos,401/</a></p>
-	
-
-
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/Os-hackNos-1/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-    <article id="post-XSS漏洞的挖掘与分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/XSS%E6%BC%8F%E6%B4%9E%E7%9A%84%E6%8C%96%E6%8E%98%E4%B8%8E%E5%88%86%E6%9E%90/" target="_blank">XSS漏洞的挖掘与分析</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/XSS%E6%BC%8F%E6%B4%9E%E7%9A%84%E6%8C%96%E6%8E%98%E4%B8%8E%E5%88%86%E6%9E%90/" class="archive-article-date">
-        <time datetime="2024-05-21T06:57:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-05-21</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
- 
-
-			<p>参考文章：<a target="_blank" rel="noopener" href="https://www.yuque.com/hxfqg9/web/wq95oo">XSS&#x2F;CSRF</a></p>
-<h3 id="什么是XSS漏洞？"><a href="#什么是XSS漏洞？" class="headerlink" title="什么是XSS漏洞？"></a>什么是XSS漏洞？</h3><p>全称跨站脚本攻击，是web应用中的计算机安全漏洞，它允许恶意web用户将代码植入web网站里，给其它用户访问，当用户访问到有恶意代码的网站就会产生XSS攻击。</p>
-	
-
-
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -1182,13 +370,13 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">XSS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">文件包含</a>
         		</li>
       		
 		</ul>
 	</div>
 
-    
+          
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -1201,42 +389,23 @@
 	</div>
 
 
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/XSS%E6%BC%8F%E6%B4%9E%E7%9A%84%E6%8C%96%E6%8E%98%E4%B8%8E%E5%88%86%E6%9E%90/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
   
   
+    </div></section>
+  
+
+    
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/categories/web/">&laquo; Prev</a><a class="page-number" href="/categories/web/">1</a><span class="page-number current">2</span>
     </nav>
   
+
+
 
 
           </div>
@@ -1276,11 +445,11 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
+		isHome: false,
 		isPost: false,
 		isArchive: false,
 		isTag: false,
-		isCategory: false,
+		isCategory: true,
 		open_in_new: true,
 		toc_hide_index: true,
 		root: "/",
