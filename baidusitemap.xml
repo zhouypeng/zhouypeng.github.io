@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://blog.zyp0422.mom/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</loc>
+    <lastmod>2024-09-05</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.zyp0422.mom/pwn-%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2/</loc>
+    <lastmod>2024-09-05</lastmod>
+  </url>
+  <url>
     <loc>https://blog.zyp0422.mom/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/</loc>
     <lastmod>2024-09-05</lastmod>
   </url>
@@ -10,10 +18,6 @@
   </url>
   <url>
     <loc>https://blog.zyp0422.mom/pwn-gdb-pwndbg%E5%92%8Cpwngdb%E8%81%94%E5%90%88%E4%BD%BF%E7%94%A8/</loc>
-    <lastmod>2024-09-04</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.zyp0422.mom/pwn-%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2/</loc>
     <lastmod>2024-09-04</lastmod>
   </url>
   <url>
