@@ -10,12 +10,12 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="flask基础学习flask是用来搭建轻量级的web应用框架，能够快速部署和搭建web框架 hello world12345678910from flask import Flaskapp &#x3D; Flask(__name__)@app.route(&#x27;&#x2F;&#x27;)def test():	return &quot;hello world&quot;if __name__ &#x3D;&#x3D; &quot;">
+  <meta name="description" content="flask基础学习flask是用来搭建轻量级的web应用框架，能够快速部署和搭建web框架">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Flask">
 <meta property="og:url" content="https://blog.zyp0422.mom/Flask/index.html">
 <meta property="og:site_name" content="zhou">
-<meta property="og:description" content="flask基础学习flask是用来搭建轻量级的web应用框架，能够快速部署和搭建web框架 hello world12345678910from flask import Flaskapp &#x3D; Flask(__name__)@app.route(&#x27;&#x2F;&#x27;)def test():	return &quot;hello world&quot;if __name__ &#x3D;&#x3D; &quot;">
+<meta property="og:description" content="flask基础学习flask是用来搭建轻量级的web应用框架，能够快速部署和搭建web框架">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog.zyp0422.mom/Flask/1.png">
 <meta property="og:image" content="https://blog.zyp0422.mom/Flask/2.png">
@@ -24,7 +24,7 @@
 <meta property="og:image" content="https://blog.zyp0422.mom/Flask/5.png">
 <meta property="og:image" content="https://blog.zyp0422.mom/Flask/6.png">
 <meta property="article:published_time" content="2024-09-06T00:35:52.000Z">
-<meta property="article:modified_time" content="2024-09-06T07:42:14.212Z">
+<meta property="article:modified_time" content="2024-09-06T07:50:42.577Z">
 <meta property="article:author" content="zhoupeng">
 <meta property="article:tag" content="--VulnHub靶场">
 <meta name="twitter:card" content="summary">
@@ -394,6 +394,8 @@
 
 	
 		<h3 id="flask基础学习"><a href="#flask基础学习" class="headerlink" title="flask基础学习"></a>flask基础学习</h3><p>flask是用来搭建轻量级的web应用框架，能够快速部署和搭建web框架</p>
+<span id="more"></span>
+
 <h4 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world"></a>hello world</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">test</span>():</span><br><span class="line">	<span class="keyword">return</span> <span class="string">&quot;hello world&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    app.run(host=<span class="string">&quot;0.0.0.0&quot;</span>, port=<span class="number">5000</span>)</span><br></pre></td></tr></table></figure>
 
 <p>代码分析：其中@app.route是路由，当你要访问这个搭建的这个web框架的时候，路由里面的路径就是你访问的目录，而这个路由下面的函数就是该目录下呈现的内容</p>
@@ -785,6 +787,10 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">--VulnHub靶场</a>
               </li>
              
@@ -797,7 +803,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
+                <a href="javascript:void(0)" class="js-tag color4">XSS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -814,10 +820,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">SSTI</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">XSS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -841,11 +843,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">reverse</a>
+                <a href="javascript:void(0)" class="js-tag color5">渗透测试</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">渗透测试</a>
+                <a href="javascript:void(0)" class="js-tag color3">reverse</a>
               </li>
              
               <li class="article-tag-list-item">

