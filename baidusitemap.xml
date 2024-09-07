@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://blog.zyp0422.mom/Hackathon2/</loc>
+    <lastmod>2024-09-07</lastmod>
+  </url>
+  <url>
     <loc>https://blog.zyp0422.mom/Os-hackNos-1/</loc>
     <lastmod>2024-09-07</lastmod>
   </url>
@@ -30,10 +34,6 @@
   </url>
   <url>
     <loc>https://blog.zyp0422.mom/BaseCTF-week2web/</loc>
-    <lastmod>2024-09-06</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.zyp0422.mom/Hackathon2/</loc>
     <lastmod>2024-09-06</lastmod>
   </url>
   <url>
