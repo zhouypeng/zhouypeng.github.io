@@ -42,8 +42,8 @@ https://blog.zyp0422.mom/sample-page/index.html
 https://blog.zyp0422.mom/tags/index.html
 https://blog.zyp0422.mom/categories/index.html
 https://blog.zyp0422.mom/
-https://blog.zyp0422.mom/tags/VulHub%E9%9D%B6%E5%9C%BA/
 https://blog.zyp0422.mom/tags/web/
+https://blog.zyp0422.mom/tags/VulHub%E9%9D%B6%E5%9C%BA/
 https://blog.zyp0422.mom/tags/VulnHub%E9%9D%B6%E5%9C%BA/
 https://blog.zyp0422.mom/tags/kali/
 https://blog.zyp0422.mom/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/
@@ -60,8 +60,8 @@ https://blog.zyp0422.mom/tags/SSRF/
 https://blog.zyp0422.mom/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/
 https://blog.zyp0422.mom/tags/reverse/
 https://blog.zyp0422.mom/tags/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/
-https://blog.zyp0422.mom/categories/VulHub/
 https://blog.zyp0422.mom/categories/CTFwp/
+https://blog.zyp0422.mom/categories/VulHub/
 https://blog.zyp0422.mom/categories/VulnHub/
 https://blog.zyp0422.mom/categories/kali/
 https://blog.zyp0422.mom/categories/web/
