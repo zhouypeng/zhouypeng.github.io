@@ -17,16 +17,16 @@
 <meta property="og:site_name" content="zhou">
 <meta property="og:description" content="本地客户端验证原理通过JavaScript验证上传的文件类型">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.zyp0422.mom/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/1.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/2.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/3.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/1.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/2.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/3.png">
 <meta property="article:published_time" content="2024-04-01T02:33:36.000Z">
-<meta property="article:modified_time" content="2024-09-03T12:55:54.358Z">
+<meta property="article:modified_time" content="2024-09-09T06:39:49.803Z">
 <meta property="article:author" content="zhoupeng">
 <meta property="article:tag" content="web">
 <meta property="article:tag" content="文件上传">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog.zyp0422.mom/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/1.png">
+<meta name="twitter:image" content="https://blog.zyp0422.mom/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/1.png">
   
     <link rel="alternative" href="/atom.xml" title="zhou" type="application/atom+xml">
   
@@ -399,7 +399,7 @@
 <p>可以向分析一下源码，开启了JavaScript验证，只允许上传jpg、png、gif后缀文件这时候我们可以以此点击F12–F1，打开浏览器的开发者模式（这里使用的是火狐浏览器），将下图圈中的禁用JavaScript开启后就可以上传我们的一句话木马</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="keyword">eval</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;data&#x27;</span>]);<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/1.png"></p>
+<p><img src="/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/1.png"></p>
 <h3 id="服务器端校验"><a href="#服务器端校验" class="headerlink" title="服务器端校验"></a>服务器端校验</h3><h4 id="content-type字段校验"><a href="#content-type字段校验" class="headerlink" title="content-type字段校验"></a>content-type字段校验</h4><h5 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h5><p>在html页面中会显示能够传输的文件MIME或文件类型，或者在上传了一个错误文件类型后，会弹窗告诉你该文件无法上传并且显示允许上传的文件类型</p>
 <h5 id="利用-1"><a href="#利用-1" class="headerlink" title="利用"></a>利用</h5><ul>
 <li>正常上传允许上传的文件类型，然后通过抓包软件修改文件后缀</li>
@@ -413,8 +413,8 @@
 
 <p>可以看到if语句中只允许上传jpg、png、gif三种类型的文件，会对其MIME类型进行检查</p>
 <p>上传php文件的时候开启拦截将type改为允许的类型</p>
-<p><img src="/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/2.png"></p>
-<p><img src="/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/3.png"></p>
+<p><img src="/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/2.png"></p>
+<p><img src="/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/3.png"></p>
 <h4 id="黑名单校验"><a href="#黑名单校验" class="headerlink" title="黑名单校验"></a>黑名单校验</h4><h5 id="原理-2"><a href="#原理-2" class="headerlink" title="原理"></a>原理</h5><p>定义一个黑名单，如果上传文件的后缀名在黑名单中就不允许上传</p>
 <h5 id="利用一"><a href="#利用一" class="headerlink" title="利用一"></a>利用一</h5><p>可以使用一些不在黑名单中但是可以被浏览器解析的后缀名</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">php</span> <span class="selector-tag">php3</span> <span class="selector-tag">php4</span> <span class="selector-tag">php5</span> <span class="selector-tag">php7</span></span><br><span class="line"><span class="selector-tag">pht</span> <span class="selector-tag">phtml</span> <span class="selector-tag">phar</span> <span class="selector-tag">phps</span></span><br><span class="line"><span class="selector-tag">Asp</span> <span class="selector-tag">aspx</span> <span class="selector-tag">cer</span> <span class="selector-tag">cdx</span> <span class="selector-tag">asa</span> <span class="selector-tag">asax</span></span><br><span class="line"><span class="selector-tag">jsp</span> <span class="selector-tag">jspa</span> <span class="selector-tag">jspx</span></span><br></pre></td></tr></table></figure>
@@ -818,15 +818,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">kali</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SSTI</a>
+                <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">XSS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -842,7 +842,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">XSS</a>
+                <a href="javascript:void(0)" class="js-tag color5">SSTI</a>
               </li>
              
               <li class="article-tag-list-item">

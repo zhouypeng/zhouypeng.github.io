@@ -6,16 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://blog.zyp0422.mom">
-  <title>Archives: 2024/8 | zhou</title>
+  <title>git源码泄露-恢复删除数据 | zhou</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="zhou">
-<meta property="og:url" content="https://blog.zyp0422.mom/archives/2024/08/index.html">
+  <meta name="description" content="前言Git 源码泄露是指网站或服务器的 .git 目录被暴露在公网，导致攻击者能够获取项目的全部历史记录、代码、配置文件，甚至是敏感信息（如密码、API 密钥、数据库凭据或 Flag）。通常 .git 目录是用来存储版本控制信息的，泄露 .git 会让攻击者看到该项目的所有提交历史和被删除的数据。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git源码泄露-恢复删除数据">
+<meta property="og:url" content="https://blog.zyp0422.mom/git%E6%BA%90%E7%A0%81%E6%B3%84%E9%9C%B2-%E6%81%A2%E5%A4%8D%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE/index.html">
 <meta property="og:site_name" content="zhou">
+<meta property="og:description" content="前言Git 源码泄露是指网站或服务器的 .git 目录被暴露在公网，导致攻击者能够获取项目的全部历史记录、代码、配置文件，甚至是敏感信息（如密码、API 密钥、数据库凭据或 Flag）。通常 .git 目录是用来存储版本控制信息的，泄露 .git 会让攻击者看到该项目的所有提交历史和被删除的数据。">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-09-09T06:03:38.000Z">
+<meta property="article:modified_time" content="2024-09-09T06:52:41.012Z">
 <meta property="article:author" content="zhoupeng">
+<meta property="article:tag" content="web">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="zhou" type="application/atom+xml">
@@ -326,41 +331,151 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-git源码泄露-恢复删除数据" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2024" class="archive-year">2024</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/PHP%E4%B8%AD%E5%90%84%E7%A7%8D%E6%AF%94%E8%BE%83%E7%B1%BB%E5%9E%8B/" class="archive-article-date">
-        <time datetime="2024-08-31T12:44:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-08-31</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/PHP%E4%B8%AD%E5%90%84%E7%A7%8D%E6%AF%94%E8%BE%83%E7%B1%BB%E5%9E%8B/" target="_blank">PHP中各种比较类型</a>
   
+    <h1 class="article-title" itemprop="name">
+      git源码泄露-恢复删除数据
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/git%E6%BA%90%E7%A0%81%E6%B3%84%E9%9C%B2-%E6%81%A2%E5%A4%8D%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE/" class="archive-article-date">
+        <time datetime="2024-09-09T06:03:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-09-09</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">828字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">3分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+ 
+
+	
+		<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><strong>Git 源码泄露</strong>是指网站或服务器的 <code>.git</code> 目录被暴露在公网，导致攻击者能够获取项目的全部历史记录、代码、配置文件，甚至是敏感信息（如密码、API 密钥、数据库凭据或 Flag）。通常 <code>.git</code> 目录是用来存储版本控制信息的，泄露 <code>.git</code> 会让攻击者看到该项目的所有提交历史和被删除的数据。<span id="more"></span></p>
+<h4 id="Git-源码泄露的常见原因："><a href="#Git-源码泄露的常见原因：" class="headerlink" title="Git 源码泄露的常见原因："></a>Git 源码泄露的常见原因：</h4><ol>
+<li><strong>错误配置</strong>：开发者在部署网站时，没有配置 Web 服务器禁止访问 <code>.git</code> 目录。</li>
+<li><strong>意外上传</strong>：开发者可能无意中将 <code>.git</code> 目录上传到服务器，没有意识到其敏感性。</li>
+<li><strong>代码备份暴露</strong>：一些开发者为了备份或版本控制，将整个项目（包括 <code>.git</code>）备份到公开的服务器目录中。</li>
+</ol>
+<h4 id="Git-源码泄露的危害："><a href="#Git-源码泄露的危害：" class="headerlink" title="Git 源码泄露的危害："></a>Git 源码泄露的危害：</h4><ol>
+<li><strong>源码泄露</strong>：攻击者可以获取项目的完整源代码，了解系统的业务逻辑，寻找潜在的漏洞。</li>
+<li><strong>敏感信息泄露</strong>：有时配置文件、数据库连接字符串、API 密钥等敏感信息可能会通过代码提交或历史版本中泄露。</li>
+<li><strong>已删除的文件恢复</strong>：即使敏感文件已被删除，Git 仍然会保存其历史记录，攻击者可以轻松恢复被删除的文件。</li>
+<li><strong>凭据泄露</strong>：开发者可能在提交历史中意外上传了密码或密钥，攻击者可以通过查看历史记录获取这些敏感信息。</li>
+</ol>
+<h3 id="githacker"><a href="#githacker" class="headerlink" title="githacker"></a>githacker</h3><p>githacker是一个用来从公开的 <code>.git</code> 目录泄露中提取源码、恢复文件的工具，它可以帮助安全研究人员和攻击者通过 Git 泄露攻击目标网站。</p>
+<p>我们可以利用该工具拉取泄露了git网站该目录下的文件</p>
+<p>工具安装</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">git</span> <span class="selector-tag">clone</span> <span class="selector-tag">https</span>:<span class="comment">//github.com/HightechSec/git_hacker.git</span></span><br><span class="line"><span class="selector-tag">cd</span> <span class="selector-tag">git_hacker</span></span><br></pre></td></tr></table></figure>
+
+<p>使用</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 选定保存目录</span><br><span class="line"><span class="selector-tag">python</span> <span class="selector-tag">githack</span><span class="selector-class">.py</span> <span class="selector-tag">http</span>:<span class="comment">//example.com/.git/ /path/to/save/</span></span><br><span class="line"></span><br><span class="line"># 如果没有加保存目录，会自动在工具下生成一个文件夹来存放</span><br><span class="line"><span class="selector-tag">python</span> <span class="selector-tag">githack</span><span class="selector-class">.py</span> <span class="selector-tag">http</span>:<span class="comment">//example.com/.git/</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="git-dumper"><a href="#git-dumper" class="headerlink" title="git-dumper"></a>git-dumper</h3><p>存在需要查看目标git相关日志的时候，这时候就需要借助git-dumper了</p>
+<p>安装</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">git</span> <span class="selector-tag">clone</span> <span class="selector-tag">https</span>:<span class="comment">//github.com/arthaud/git-dumper.git</span></span><br><span class="line"><span class="selector-tag">cd</span> <span class="selector-tag">git-dumper</span></span><br><span class="line"><span class="selector-tag">pip</span> <span class="selector-tag">install</span> <span class="selector-tag">-r</span> <span class="selector-tag">requirements</span><span class="selector-class">.txt</span></span><br></pre></td></tr></table></figure>
+
+<p>使用</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">python</span> <span class="selector-tag">git-dumper</span><span class="selector-class">.py</span> <span class="selector-tag">http</span>:<span class="comment">//example.com/.git/ /path/to/download/</span></span><br></pre></td></tr></table></figure>
+
+<p>进入保存的目录，并初始化本地仓库</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">cd</span> /<span class="selector-tag">path</span>/<span class="selector-tag">to</span>/<span class="selector-tag">download</span>/</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">git</span> <span class="selector-tag">checkout</span> .</span><br></pre></td></tr></table></figure>
+
+<p>查看日志，并查看具体变化操作内容</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">git</span> <span class="selector-tag">log</span> </span><br><span class="line"></span><br><span class="line"><span class="selector-tag">git</span> <span class="selector-tag">show</span> ?????????????</span><br></pre></td></tr></table></figure>
+
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">┌──(<span class="selector-tag">root</span>💀<span class="selector-class">.kali</span>)<span class="selector-tag">-</span><span class="selector-attr">[~/Desktop/git-dumper]</span></span><br><span class="line">└─# <span class="selector-tag">python3</span> <span class="selector-tag">git_dumper</span><span class="selector-class">.py</span> <span class="selector-tag">http</span>:<span class="comment">//IP/.git/ ~/Desktop/git-dumper/download</span></span><br><span class="line"><span class="selector-tag">Warning</span>: <span class="selector-tag">Destination</span> &#x27;/<span class="selector-tag">root</span>/<span class="selector-tag">Desktop</span>/<span class="selector-tag">git-dumper</span>/<span class="selector-tag">download</span>&#x27; <span class="selector-tag">is</span> <span class="selector-tag">not</span> <span class="selector-tag">empty</span></span><br><span class="line">省略亿点内容</span><br><span class="line"><span class="selector-attr">[-]</span> <span class="selector-tag">Running</span> <span class="selector-tag">git</span> <span class="selector-tag">checkout</span> .</span><br><span class="line">                                                                                                                           </span><br><span class="line">┌──(root💀.kali)<span class="selector-tag">-</span><span class="selector-attr">[~/Desktop/git-dumper]</span></span><br><span class="line">└─# <span class="selector-tag">cd</span> <span class="selector-tag">download</span> </span><br><span class="line">                                                                                                                           </span><br><span class="line">┌──(root💀.kali)<span class="selector-tag">-</span><span class="selector-attr">[~/Desktop/git-dumper/download]</span></span><br><span class="line">└─# <span class="selector-tag">git</span> <span class="selector-tag">checkout</span> .</span><br><span class="line">从索引区更新了 <span class="number">0</span> 个路径</span><br><span class="line">                                                                                                                           </span><br><span class="line">┌──(root💀.kali)<span class="selector-tag">-</span><span class="selector-attr">[~/Desktop/git-dumper/download]</span></span><br><span class="line">└─# <span class="selector-tag">git</span> <span class="selector-tag">log</span>       </span><br><span class="line"><span class="selector-tag">commit</span> <span class="selector-tag">e2bc04bc70f7b7476ae7ad0e943ef62aa2b5556e</span> (HEAD -&gt; master)</span><br><span class="line"><span class="selector-tag">Author</span>: <span class="selector-tag">Kengwang</span> &lt;<span class="selector-tag">github</span>@<span class="selector-tag">kengwang</span><span class="selector-class">.com</span><span class="selector-class">.cn</span>&gt;</span><br><span class="line"><span class="selector-tag">Date</span>:   <span class="selector-tag">Fri</span> <span class="selector-tag">Aug</span> <span class="number">23</span> <span class="number">02</span>:<span class="number">35</span>:<span class="number">28</span> <span class="number">2024</span> +<span class="number">0800</span></span><br><span class="line"></span><br><span class="line">    <span class="selector-tag">Remove</span> <span class="selector-tag">Flag</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">commit</span> <span class="number">9</span><span class="selector-tag">d85f10e0192ef630e10d7f876a117db41c30417</span></span><br><span class="line"><span class="selector-tag">Author</span>: <span class="selector-tag">Kengwang</span> &lt;<span class="selector-tag">github</span>@<span class="selector-tag">kengwang</span><span class="selector-class">.com</span><span class="selector-class">.cn</span>&gt;</span><br><span class="line"><span class="selector-tag">Date</span>:   <span class="selector-tag">Fri</span> <span class="selector-tag">Aug</span> <span class="number">23</span> <span class="number">02</span>:<span class="number">34</span>:<span class="number">33</span> <span class="number">2024</span> +<span class="number">0800</span></span><br><span class="line"></span><br><span class="line">    <span class="selector-tag">Add</span> <span class="selector-tag">What</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">commit</span> <span class="number">8</span><span class="selector-tag">f7720b7891039b394e26e67ff10d6c6d2a144d5</span></span><br><span class="line"><span class="selector-tag">Author</span>: <span class="selector-tag">Kengwang</span> &lt;<span class="selector-tag">github</span>@<span class="selector-tag">kengwang</span><span class="selector-class">.com</span><span class="selector-class">.cn</span>&gt;</span><br><span class="line"><span class="selector-tag">Date</span>:   <span class="selector-tag">Fri</span> <span class="selector-tag">Aug</span> <span class="number">23</span> <span class="number">02</span>:<span class="number">32</span>:<span class="number">38</span> <span class="number">2024</span> +<span class="number">0800</span></span><br><span class="line"></span><br><span class="line">    <span class="selector-tag">Initial</span> <span class="selector-tag">Commit</span></span><br><span class="line">                                                                                                                           </span><br><span class="line">┌──(root💀.kali)<span class="selector-tag">-</span><span class="selector-attr">[~/Desktop/git-dumper/download]</span></span><br><span class="line">└─# <span class="selector-tag">git</span> <span class="selector-tag">show</span> <span class="number">9</span><span class="selector-tag">d85f10e0192ef630e10d7f876a117db41c30417</span></span><br><span class="line"><span class="selector-tag">commit</span> <span class="number">9</span><span class="selector-tag">d85f10e0192ef630e10d7f876a117db41c30417</span></span><br><span class="line"><span class="selector-tag">Author</span>: <span class="selector-tag">Kengwang</span> &lt;<span class="selector-tag">github</span>@<span class="selector-tag">kengwang</span><span class="selector-class">.com</span><span class="selector-class">.cn</span>&gt;</span><br><span class="line"><span class="selector-tag">Date</span>:   <span class="selector-tag">Fri</span> <span class="selector-tag">Aug</span> <span class="number">23</span> <span class="number">02</span>:<span class="number">34</span>:<span class="number">33</span> <span class="number">2024</span> +<span class="number">0800</span></span><br><span class="line"></span><br><span class="line">    <span class="selector-tag">Add</span> <span class="selector-tag">What</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">diff</span> <span class="selector-tag">--git</span> <span class="selector-tag">a</span>/<span class="selector-tag">flag</span><span class="selector-class">.txt</span> <span class="selector-tag">b</span>/<span class="selector-tag">flag</span><span class="selector-class">.txt</span></span><br><span class="line"><span class="selector-tag">new</span> <span class="selector-tag">file</span> <span class="selector-tag">mode</span> <span class="number">100644</span></span><br><span class="line"><span class="selector-tag">index</span> <span class="number">0000000</span>.<span class="selector-class">.db8b21d</span></span><br><span class="line"><span class="selector-tag">---</span> /<span class="selector-tag">dev</span>/<span class="selector-tag">null</span></span><br><span class="line">+++ <span class="selector-tag">b</span>/<span class="selector-tag">flag</span><span class="selector-class">.txt</span></span><br><span class="line">@@ <span class="selector-tag">-0</span>,<span class="number">0</span> +<span class="number">1</span> @@</span><br><span class="line">+</span><br><span class="line">\ <span class="selector-tag">No</span> <span class="selector-tag">newline</span> <span class="selector-tag">at</span> <span class="selector-tag">end</span> <span class="selector-tag">of</span> <span class="selector-tag">file</span></span><br></pre></td></tr></table></figure>
+
+
+	
+
+
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          zhoupeng
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://blog.zyp0422.mom/git源码泄露-恢复删除数据/" title="git源码泄露-恢复删除数据" target="_blank">https://blog.zyp0422.mom/git源码泄露-恢复删除数据/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -372,7 +487,7 @@
 		</ul>
 	</div>
 
-          
+    
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -385,241 +500,127 @@
 	</div>
 
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://blog.zyp0422.mom/git%E6%BA%90%E7%A0%81%E6%B3%84%E9%9C%B2-%E6%81%A2%E5%A4%8D%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/pwn-ret2csu/" class="archive-article-date">
-        <time datetime="2024-08-27T11:01:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-08-27</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/kioptrix-2014/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">kioptrix-2014</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/pwn-ret2csu/" target="_blank">pwn-ret2csu</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">pwn</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pwn//" class="article-tag-list-link color4">pwn</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Git-%E6%BA%90%E7%A0%81%E6%B3%84%E9%9C%B2%E7%9A%84%E5%B8%B8%E8%A7%81%E5%8E%9F%E5%9B%A0%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">Git 源码泄露的常见原因：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Git-%E6%BA%90%E7%A0%81%E6%B3%84%E9%9C%B2%E7%9A%84%E5%8D%B1%E5%AE%B3%EF%BC%9A"><span class="toc-number">1.2.</span> <span class="toc-text">Git 源码泄露的危害：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#githacker"><span class="toc-number">2.</span> <span class="toc-text">githacker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-dumper"><span class="toc-number">3.</span> <span class="toc-text">git-dumper</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90"><span class="toc-number">4.</span> <span class="toc-text">例子</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/BaseCTF-week2web/" class="archive-article-date">
-        <time datetime="2024-08-23T02:38:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-08-23</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/BaseCTF-week2web/" target="_blank">BaseCTF-week2web</a>
-  
-    </h1>
-  
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/CTFwp//" class="article-tag-list-link color1">CTFwp</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%97%A0%E5%9B%9E%E6%98%BE-BP%E6%B5%81%E9%87%8F%E7%9B%91%E5%90%AC/" class="archive-article-date">
-        <time datetime="2024-08-22T08:30:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-08-22</time>
-</a>
 
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%97%A0%E5%9B%9E%E6%98%BE-BP%E6%B5%81%E9%87%8F%E7%9B%91%E5%90%AC/" target="_blank">命令执行无回显-BP流量监听</a>
-  
-    </h1>
-  
+<div id="SOHUCS" sid="git源码泄露-恢复删除数据" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cyxqVIfAY",
+        conf: "3d1d672de8790c6875f19d013bc4ff6f"
+    });
+</script>
+</script>
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">命令执行</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/web//" class="article-tag-list-link color4">web</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/" class="archive-article-date">
-        <time datetime="2024-08-07T02:29:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-08-07</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/" target="_blank">服务器请求伪造-SSRF</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">SSRF</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/web//" class="article-tag-list-link color4">web</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -660,8 +661,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,

