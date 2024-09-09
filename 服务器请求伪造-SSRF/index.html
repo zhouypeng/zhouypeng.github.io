@@ -17,16 +17,16 @@
 <meta property="og:site_name" content="zhou">
 <meta property="og:description" content="SSRF前置知识NATSSRF服务器请求伪造，是一种由攻击者形成服务器端发起安全漏洞 NAT网络地址转换，通过将外部IP地址和端口映射到更大的内部IP地址集来转换IP地址">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.zyp0422.mom/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/NAT%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/%E9%9D%99%E6%80%81NAT%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/%E6%94%BB%E5%87%BB%E7%A4%BA%E6%84%8F%E5%9B%BE.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/NAT%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/%E9%9D%99%E6%80%81NAT%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/%E6%94%BB%E5%87%BB%E7%A4%BA%E6%84%8F%E5%9B%BE.png">
 <meta property="article:published_time" content="2024-08-07T02:29:39.000Z">
-<meta property="article:modified_time" content="2024-09-09T06:37:04.458Z">
+<meta property="article:modified_time" content="2024-09-04T15:26:21.536Z">
 <meta property="article:author" content="zhoupeng">
 <meta property="article:tag" content="web">
 <meta property="article:tag" content="SSRF">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog.zyp0422.mom/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/NAT%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84.png">
+<meta name="twitter:image" content="https://blog.zyp0422.mom/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/NAT%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84.png">
   
     <link rel="alternative" href="/atom.xml" title="zhou" type="application/atom+xml">
   
@@ -106,7 +106,7 @@
 			</ul>
 		</nav>
                                 <nav>
-    			总文章数 38
+    			总文章数 39
 		</nav>
 		<nav class="header-smart-menu">
 			
@@ -395,9 +395,9 @@
 <p>NAT网络地址转换，通过将外部IP地址和端口映射到更大的内部IP地址集来转换IP地址</p>
 <span id="more"></span>
 
-<h4 id="NAT端口映射"><a href="#NAT端口映射" class="headerlink" title="NAT端口映射"></a>NAT端口映射</h4><p><img src="/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/NAT%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84.png"></p>
+<h4 id="NAT端口映射"><a href="#NAT端口映射" class="headerlink" title="NAT端口映射"></a>NAT端口映射</h4><p><img src="/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/NAT%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84.png"></p>
 <p>端口映射：外网访问特定公网:端口会被映射到特定内网:端口</p>
-<h4 id="静态NAT地址转换"><a href="#静态NAT地址转换" class="headerlink" title="静态NAT地址转换"></a>静态NAT地址转换</h4><p><img src="/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/%E9%9D%99%E6%80%81NAT%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2.png"></p>
+<h4 id="静态NAT地址转换"><a href="#静态NAT地址转换" class="headerlink" title="静态NAT地址转换"></a>静态NAT地址转换</h4><p><img src="/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/%E9%9D%99%E6%80%81NAT%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2.png"></p>
 <h3 id="SSRF漏洞原理"><a href="#SSRF漏洞原理" class="headerlink" title="SSRF漏洞原理"></a>SSRF漏洞原理</h3><p>SSRF（Server-Side Request Forgery，服务端请求伪造）漏洞是一种网络安全漏洞，它允许攻击者通过被攻击的服务器向其他内网或外网的资源发起请求。这种漏洞的主要风险在于，攻击者能够利用受害服务器的权限访问本来不应该被直接访问的内部资源。</p>
 <ol>
 <li><strong>攻击者控制请求</strong>：<br>攻击者利用SSRF漏洞可以控制目标服务器发起HTTP或其他协议的请求。这些请求通常由服务器端代码生成，攻击者通过某种方式（例如在请求参数中注入恶意URL）影响服务器端的请求目标。</li>
@@ -408,7 +408,7 @@
 <p>攻击目标：从外网无法访问的内部系统</p>
 <p>形成原因：大部分是由于服务端提供了从其他服务器应用获取数据的功能，且没有对目标地址做过滤限制</p>
 <p>攻击方式：借助主机A来发起SSRF攻击，通过主机A向主机B发起请求，从而获取主机B的一些信息</p>
-<p><img src="/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/%E6%94%BB%E5%87%BB%E7%A4%BA%E6%84%8F%E5%9B%BE.png"></p>
+<p><img src="/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0-SSRF/%E6%94%BB%E5%87%BB%E7%A4%BA%E6%84%8F%E5%9B%BE.png"></p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">利用<span class="selector-tag">file</span>伪协议读取本地文件</span><br><span class="line">对服务器所在内网、本地进行端口扫描，获取一些服务器的<span class="selector-tag">banner</span>信息</span><br><span class="line">攻击运行在内网或本地的应用程序</span><br><span class="line">对内网<span class="selector-tag">web</span>应用进行指纹识别，识别企业内部资产信息</span><br><span class="line">攻击内外网的<span class="selector-tag">web</span>应用，主要是使用<span class="selector-tag">HTTP</span> <span class="selector-tag">GET</span>请求就可以实现的攻击</span><br></pre></td></tr></table></figure>
 
 <h3 id="SSRF信息收集"><a href="#SSRF信息收集" class="headerlink" title="SSRF信息收集"></a>SSRF信息收集</h3><h4 id="file伪协议–（扫描存活主机）"><a href="#file伪协议–（扫描存活主机）" class="headerlink" title="file伪协议–（扫描存活主机）"></a>file伪协议–（扫描存活主机）</h4><p>file:&#x2F;&#x2F;从文件系统中获取文件内容，格式为file:&#x2F;&#x2F;文件路径</p>

