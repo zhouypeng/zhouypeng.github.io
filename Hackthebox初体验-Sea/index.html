@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://blog.zyp0422.mom/Hackthebox%E5%88%9D%E4%BD%93%E9%AA%8C-Sea/7.png">
 <meta property="og:image" content="https://blog.zyp0422.mom/Hackthebox%E5%88%9D%E4%BD%93%E9%AA%8C-Sea/8.png">
 <meta property="article:published_time" content="2024-09-16T04:22:57.000Z">
-<meta property="article:modified_time" content="2024-09-16T09:21:10.745Z">
+<meta property="article:modified_time" content="2024-09-16T09:32:12.532Z">
 <meta property="article:author" content="zhoupeng">
 <meta property="article:tag" content="hackthebox">
 <meta name="twitter:card" content="summary">
@@ -399,7 +399,7 @@
 <span id="more"></span>
 
 <p>靶机目标：获取user.txt和root.txt内容</p>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>做了那么多vulnhub的，来做做hackthebox，这个和vulnhub不同，它不需要导入，而是直接以靶机的形式开启，相对来说没有vulnhub占内存，当时速度会大大下降，毕竟时远程的</p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>做了那么多vulnhub的，来做做hackthebox，这个和vulnhub不同，它不需要导入，而是直接以靶机的形式开启，相对来说没有vulnhub占内存，当然速度会大大下降，毕竟是远程的</p>
 <h3 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h3><h4 id="nmap"><a href="#nmap" class="headerlink" title="nmap"></a>nmap</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">nmap</span> <span class="selector-tag">-sC</span> <span class="selector-tag">-sV</span> <span class="number">10.10</span><span class="selector-class">.11</span><span class="selector-class">.28</span> <span class="selector-tag">-T4</span> <span class="selector-tag">-oN</span> <span class="selector-tag">sea</span><span class="selector-class">.nmap</span></span><br></pre></td></tr></table></figure>
 
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">┌──(<span class="selector-tag">root</span>💀<span class="selector-class">.kali</span>)<span class="selector-tag">-</span><span class="selector-attr">[~/Desktop/web/dirsx-linux]</span></span><br><span class="line">└─# <span class="selector-tag">nmap</span> <span class="selector-tag">-sC</span> <span class="selector-tag">-sV</span> <span class="number">10.10</span><span class="selector-class">.11</span><span class="selector-class">.28</span> <span class="selector-tag">-T4</span></span><br><span class="line"><span class="selector-tag">Starting</span> <span class="selector-tag">Nmap</span> <span class="number">7.94S</span><span class="selector-tag">VN</span> ( <span class="attribute">https</span>:<span class="comment">//nmap.org ) at 2024-09-16 14:09 CST</span></span><br><span class="line">Nmap scan report for <span class="number">10.10</span>.<span class="number">11.28</span></span><br><span class="line">Host is up (<span class="number">1.4s</span> latency).</span><br><span class="line"><span class="keyword">Not</span> <span class="attribute">shown</span>: <span class="number">998</span> closed tcp ports (reset)</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line"><span class="number">22</span>/tcp open  ssh     OpenSSH <span class="number">8.2</span>p1 Ubuntu <span class="number">4</span>ubuntu0.<span class="number">11</span> (Ubuntu Linux; protocol <span class="number">2.0</span>)</span><br><span class="line">| <span class="attribute">ssh-hostkey</span>: </span><br><span class="line">|   <span class="number">3072</span> <span class="attribute">e3</span>:<span class="number">54</span>:<span class="attribute">e0</span>:<span class="number">72</span>:<span class="number">20</span>:<span class="number">3</span><span class="attribute">c</span>:<span class="number">01</span>:<span class="number">42</span>:<span class="number">93</span>:<span class="attribute">d1</span>:<span class="number">66</span>:<span class="number">9</span><span class="attribute">d</span>:<span class="number">90</span>:<span class="number">0</span><span class="attribute">c</span>:<span class="attribute">ab</span>:e8 (RSA)</span><br><span class="line">|   <span class="number">256</span> <span class="attribute">f3</span>:<span class="number">24</span>:<span class="number">4</span><span class="attribute">b</span>:<span class="number">08</span>:<span class="attribute">aa</span>:<span class="number">51</span>:<span class="number">9</span><span class="attribute">d</span>:<span class="number">56</span>:<span class="number">15</span>:<span class="number">3</span><span class="attribute">d</span>:<span class="number">67</span>:<span class="number">56</span>:<span class="number">74</span>:<span class="number">7</span><span class="attribute">c</span>:<span class="number">20</span>:<span class="number">38</span> (ECDSA)</span><br><span class="line">|_  <span class="number">256</span> <span class="number">30</span>:<span class="attribute">b1</span>:<span class="number">05</span>:<span class="attribute">c6</span>:<span class="number">41</span>:<span class="number">50</span>:<span class="attribute">ff</span>:<span class="number">22</span>:<span class="attribute">a3</span>:<span class="number">7</span><span class="attribute">f</span>:<span class="number">41</span>:<span class="number">06</span>:<span class="number">0</span><span class="attribute">e</span>:<span class="number">67</span>:<span class="attribute">fd</span>:<span class="number">50</span> (ED25519)</span><br><span class="line"><span class="number">80</span>/tcp open  http    Apache httpd <span class="number">2.4</span>.<span class="number">41</span> ((Ubuntu))</span><br><span class="line">| <span class="attribute">http-cookie-flags</span>: </span><br><span class="line">|   /: </span><br><span class="line">|     <span class="attribute">PHPSESSID</span>: </span><br><span class="line">|_      httponly flag <span class="keyword">not</span> set</span><br><span class="line">|<span class="attribute">_http-title</span>: Sea - Home</span><br><span class="line">Service <span class="attribute">Info</span>: <span class="attribute">OS</span>: Linux; <span class="attribute">CPE</span>: <span class="attribute">cpe</span>:/<span class="attribute">o</span>:<span class="attribute">linux</span>:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at <span class="attribute">https</span>:<span class="comment">//nmap.org/submit/ .</span></span><br><span class="line">Nmap <span class="attribute">done</span>: <span class="number">1</span> IP address (<span class="number">1</span> host up) scanned in <span class="number">104.71</span> seconds</span><br></pre></td></tr></table></figure>
@@ -483,6 +483,7 @@
 <li>这个只是容易级别的，但相较于vulnhub来说，个人感觉难一点</li>
 <li>fuff爆破目录、john或者hashcat爆破、命令执行漏洞</li>
 <li>SUID提权</li>
+<li>CVE-2023-41425</li>
 </ul>
 
 	
@@ -812,15 +813,15 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">VulnHub靶场</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">web</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">VulHub靶场</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">VulnHub靶场</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -840,6 +841,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SSTI</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">伪协议</a>
               </li>
              
@@ -849,10 +854,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">文件包含</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SSTI</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -876,15 +877,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">渗透测试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">reverse</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">红日靶场</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">渗透测试</a>
               </li>
             
             <div class="clearfix"></div>
