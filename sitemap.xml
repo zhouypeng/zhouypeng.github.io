@@ -254,15 +254,6 @@
   </url>
   
   <url>
-    <loc>https://blog.zyp0422.mom/pwn-gdb-pwndbg%E5%92%8Cpwngdb%E8%81%94%E5%90%88%E4%BD%BF%E7%94%A8/</loc>
-    
-    <lastmod>2024-09-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.zyp0422.mom/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</loc>
     
     <lastmod>2024-09-03</lastmod>
@@ -461,20 +452,6 @@
 
   
   <url>
-    <loc>https://blog.zyp0422.mom/tags/VulnHub%E9%9D%B6%E5%9C%BA/</loc>
-    <lastmod>2024-09-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.zyp0422.mom/tags/web/</loc>
-    <lastmod>2024-09-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.zyp0422.mom/tags/hackthebox/</loc>
     <lastmod>2024-09-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -489,7 +466,14 @@
   </url>
   
   <url>
-    <loc>https://blog.zyp0422.mom/tags/kali/</loc>
+    <loc>https://blog.zyp0422.mom/tags/web/</loc>
+    <lastmod>2024-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.zyp0422.mom/tags/VulnHub%E9%9D%B6%E5%9C%BA/</loc>
     <lastmod>2024-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -503,14 +487,14 @@
   </url>
   
   <url>
-    <loc>https://blog.zyp0422.mom/tags/XSS/</loc>
+    <loc>https://blog.zyp0422.mom/tags/kali/</loc>
     <lastmod>2024-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.zyp0422.mom/tags/SSTI/</loc>
+    <loc>https://blog.zyp0422.mom/tags/XSS/</loc>
     <lastmod>2024-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -538,14 +522,14 @@
   </url>
   
   <url>
-    <loc>https://blog.zyp0422.mom/tags/hexo/</loc>
+    <loc>https://blog.zyp0422.mom/tags/SSTI/</loc>
     <lastmod>2024-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.zyp0422.mom/tags/pwn/</loc>
+    <loc>https://blog.zyp0422.mom/tags/hexo/</loc>
     <lastmod>2024-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -566,7 +550,7 @@
   </url>
   
   <url>
-    <loc>https://blog.zyp0422.mom/tags/SSRF/</loc>
+    <loc>https://blog.zyp0422.mom/tags/reverse/</loc>
     <lastmod>2024-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -580,7 +564,7 @@
   </url>
   
   <url>
-    <loc>https://blog.zyp0422.mom/tags/reverse/</loc>
+    <loc>https://blog.zyp0422.mom/tags/SSRF/</loc>
     <lastmod>2024-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -596,7 +580,14 @@
 
   
   <url>
-    <loc>https://blog.zyp0422.mom/categories/VulnHub/</loc>
+    <loc>https://blog.zyp0422.mom/categories/hackthebox/</loc>
+    <lastmod>2024-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.zyp0422.mom/categories/VulHub/</loc>
     <lastmod>2024-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -610,14 +601,7 @@
   </url>
   
   <url>
-    <loc>https://blog.zyp0422.mom/categories/hackthebox/</loc>
-    <lastmod>2024-09-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.zyp0422.mom/categories/VulHub/</loc>
+    <loc>https://blog.zyp0422.mom/categories/VulnHub/</loc>
     <lastmod>2024-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -646,13 +630,6 @@
   
   <url>
     <loc>https://blog.zyp0422.mom/categories/hexo/</loc>
-    <lastmod>2024-09-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.zyp0422.mom/categories/pwn/</loc>
     <lastmod>2024-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
