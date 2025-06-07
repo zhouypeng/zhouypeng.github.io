@@ -27,7 +27,7 @@
 <meta property="og:image" content="https://blog.zyp0422.mom/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/8.png">
 <meta property="og:image" content="https://blog.zyp0422.mom/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/9.png">
 <meta property="article:published_time" content="2024-03-31T15:21:58.000Z">
-<meta property="article:modified_time" content="2024-09-03T03:13:32.430Z">
+<meta property="article:modified_time" content="2024-12-22T11:40:33.164Z">
 <meta property="article:author" content="zhoupeng">
 <meta property="article:tag" content="web">
 <meta property="article:tag" content="文件包含">
@@ -414,7 +414,7 @@
 <h3 id="伪协议"><a href="#伪协议" class="headerlink" title="伪协议"></a>伪协议</h3><h4 id="php支持的伪协议"><a href="#php支持的伪协议" class="headerlink" title="php支持的伪协议"></a>php支持的伪协议</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">file://		访问本地文件系统</span><br><span class="line">http://		访问HTTP(s)网址</span><br><span class="line">ftp://		访问ftp(s)URLs</span><br><span class="line">php://		访问各个输入输出流</span><br><span class="line">zlib://		压缩流</span><br><span class="line">data://		数据（RFC 2379）</span><br><span class="line">glob://		查找匹配的文件路径模式</span><br><span class="line">phar://		PHP归档</span><br><span class="line">ssh2://		Secure Shell2</span><br><span class="line">rar://		RAR</span><br><span class="line">ogg://		音频流</span><br><span class="line">expect://	处理交互式的流</span><br></pre></td></tr></table></figure>
 
 <h4 id="php"><a href="#php" class="headerlink" title="php:&#x2F;&#x2F;"></a>php:&#x2F;&#x2F;</h4><h5 id="php-filter"><a href="#php-filter" class="headerlink" title="php:&#x2F;&#x2F;filter"></a>php:&#x2F;&#x2F;filter</h5><p>目标文件内容无法直接通过include读取出来，查询的结果是空白，这时候可以通过php“&#x2F;&#x2F;filter将目标文件内容通过base64读取出来，具体payload</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?<span class="selector-tag">file</span>=<span class="selector-tag">php</span>:<span class="comment">//filter/convert.base64-encode/resource=目标文件</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?<span class="selector-tag">file</span>=<span class="selector-tag">php</span>:<span class="comment">//filter/convert.base64-encode/resource=flag.php</span></span><br></pre></td></tr></table></figure>
 
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;cmd&#x27;</span>];</span><br><span class="line"><span class="keyword">eval</span>(<span class="variable">$a</span>);</span><br></pre></td></tr></table></figure>
 
@@ -692,7 +692,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2023-2024 <a href="https://blog.zyp0422.mom/" target="_blank">zhoupeng</a>
+    		&copy; 2023-2025 <a href="https://blog.zyp0422.mom/" target="_blank">zhoupeng</a>
     	</div>
       	<div class="footer-right">
 			
@@ -811,7 +811,7 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">hackthebox</a>
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -819,7 +819,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
+                <a href="javascript:void(0)" class="js-tag color1">hackthebox</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -827,11 +827,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
+                <a href="javascript:void(0)" class="js-tag color5">kali</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">kali</a>
+                <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -851,11 +851,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SSTI</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color5">SSTI</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -867,15 +867,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SSRF</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">reverse</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">渗透测试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SSRF</a>
               </li>
              
               <li class="article-tag-list-item">

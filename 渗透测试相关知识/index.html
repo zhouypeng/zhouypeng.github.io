@@ -18,7 +18,7 @@
 <meta property="og:description" content="注意：本文章未完结，在之后渗透测试或者靶机练习中如果遇到新的内容会补充上">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-09-05T12:26:21.000Z">
-<meta property="article:modified_time" content="2024-09-21T08:47:31.992Z">
+<meta property="article:modified_time" content="2024-10-24T08:51:37.611Z">
 <meta property="article:author" content="zhoupeng">
 <meta property="article:tag" content="渗透测试">
 <meta name="twitter:card" content="summary">
@@ -364,7 +364,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">3.4k字</span>
+      <span class="post-count">3.5k字</span>
     </span>
   </span>
 
@@ -545,6 +545,9 @@
 
 <h4 id="ffuf"><a href="#ffuf" class="headerlink" title="ffuf"></a>ffuf</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ffuf</span> <span class="selector-tag">-w</span> 字典 <span class="selector-tag">-u</span> <span class="selector-tag">http</span>:<span class="comment">//url -H &quot;Host:FUZZ.url&quot; -mc 200</span></span><br></pre></td></tr></table></figure>
 
+<h3 id="资产收集综合运用工具"><a href="#资产收集综合运用工具" class="headerlink" title="资产收集综合运用工具"></a>资产收集综合运用工具</h3><h4 id="资产灯塔系统"><a href="#资产灯塔系统" class="headerlink" title="资产灯塔系统"></a>资产灯塔系统</h4><p>资产灯塔系统是通过docker搭建的一个web端的信息收集系统</p>
+<h4 id="水影"><a href="#水影" class="headerlink" title="水影"></a>水影</h4><p>一款离线的信息收集工具</p>
+<h4 id="Shuize"><a href="#Shuize" class="headerlink" title="Shuize"></a>Shuize</h4><p>通过docker搭建，没有可视化界面，只存在于命令行界面的一款信息收集工具</p>
 
 	
 
@@ -714,7 +717,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#nmap"><span class="toc-number">1.</span> <span class="toc-text">nmap</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%8F%82%E6%95%B0"><span class="toc-number">1.1.</span> <span class="toc-text">相关参数</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%89%AB%E6%8F%8F%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.1.1.</span> <span class="toc-text">扫描类型</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AB%AF%E5%8F%A3%E9%80%89%E9%A1%B9"><span class="toc-number">1.1.2.</span> <span class="toc-text">端口选项</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%BB%E6%9C%BA%E5%8F%91%E7%8E%B0"><span class="toc-number">1.1.3.</span> <span class="toc-text">主机发现</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#searchsploit"><span class="toc-number">2.</span> <span class="toc-text">searchsploit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#netstat"><span class="toc-number">3.</span> <span class="toc-text">netstat</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%8F%82%E6%95%B0-1"><span class="toc-number">3.1.</span> <span class="toc-text">相关参数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ssh%E7%9B%B8%E5%85%B3"><span class="toc-number">4.</span> <span class="toc-text">ssh相关</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#John%E7%88%86%E7%A0%B4%E5%AF%86%E9%92%A5%E5%AF%86%E7%A0%81"><span class="toc-number">4.1.</span> <span class="toc-text">John爆破密钥密码</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">4.1.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B0%86SSH%E7%A7%81%E9%92%A5%EF%BC%88id-rsa%EF%BC%89%E8%BD%AC%E6%8D%A2%E4%B8%BAJohn%E5%8F%AF%E8%AF%86%E5%88%AB%E7%9A%84%E6%A0%BC%E5%BC%8F"><span class="toc-number">4.1.2.</span> <span class="toc-text">将SSH私钥（id_rsa）转换为John可识别的格式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%AD%97%E5%85%B8%E6%94%BB%E5%87%BB"><span class="toc-number">4.1.3.</span> <span class="toc-text">使用字典攻击</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%A0%B4%E8%A7%A3%E7%BB%93%E6%9E%9C"><span class="toc-number">4.1.4.</span> <span class="toc-text">查看破解结果</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hydra%E7%88%86%E7%A0%B4"><span class="toc-number">5.</span> <span class="toc-text">hydra爆破</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E6%9D%83%E6%96%B9%E5%BC%8F"><span class="toc-number">6.</span> <span class="toc-text">提权方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#sh%E8%84%9A%E6%9C%AC%E4%BF%AE%E6%94%B9"><span class="toc-number">6.1.</span> <span class="toc-text">sh脚本修改</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SUID%E6%8F%90%E6%9D%83"><span class="toc-number">6.2.</span> <span class="toc-text">SUID提权</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-nmap%E6%8F%90%E6%9D%83"><span class="toc-number">6.2.1.</span> <span class="toc-text">1.nmap提权</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-wegt%E6%8F%90%E6%9D%83"><span class="toc-number">6.2.2.</span> <span class="toc-text">2.wegt提权</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-vim%E6%8F%90%E6%9D%83"><span class="toc-number">6.2.3.</span> <span class="toc-text">3.vim提权</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-Nano"><span class="toc-number">6.2.4.</span> <span class="toc-text">4.Nano</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-Linux%E5%86%85%E6%A0%B8%E6%8F%90%E6%9D%83"><span class="toc-number">6.2.5.</span> <span class="toc-text">5.Linux内核提权</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-MySQL-UDF%E6%8F%90%E6%9D%83"><span class="toc-number">6.2.6.</span> <span class="toc-text">6.MySQL-UDF提权</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%A4%E4%BA%92%E5%BC%8F%E7%BB%88%E7%AB%AF"><span class="toc-number">7.</span> <span class="toc-text">交互式终端</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#python"><span class="toc-number">7.1.</span> <span class="toc-text">python</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#echo"><span class="toc-number">7.2.</span> <span class="toc-text">echo</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B"><span class="toc-number">8.</span> <span class="toc-text">漏洞探测</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#nikto"><span class="toc-number">8.1.</span> <span class="toc-text">nikto</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%BC%B9shell"><span class="toc-number">9.</span> <span class="toc-text">反弹shell</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%8D%E5%BC%B9shell%E7%94%9F%E6%88%90"><span class="toc-number">9.1.</span> <span class="toc-text">反弹shell生成</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%80%E5%90%AF%E7%9B%91%E5%90%AC"><span class="toc-number">9.2.</span> <span class="toc-text">开启监听</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8E%B7%E5%BE%97shell"><span class="toc-number">9.3.</span> <span class="toc-text">获得shell</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LinEnum"><span class="toc-number">10.</span> <span class="toc-text">LinEnum</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux-Exploit-Suggester"><span class="toc-number">11.</span> <span class="toc-text">Linux Exploit Suggester</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E7%89%B9%E7%82%B9%EF%BC%9A"><span class="toc-number">11.1.</span> <span class="toc-text">功能特点：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E5%9F%9F%E5%90%8D%E7%88%86%E7%A0%B4"><span class="toc-number">12.</span> <span class="toc-text">子域名爆破</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#gobuster"><span class="toc-number">12.1.</span> <span class="toc-text">gobuster</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ffuf"><span class="toc-number">12.2.</span> <span class="toc-text">ffuf</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#nmap"><span class="toc-number">1.</span> <span class="toc-text">nmap</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%8F%82%E6%95%B0"><span class="toc-number">1.1.</span> <span class="toc-text">相关参数</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%89%AB%E6%8F%8F%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.1.1.</span> <span class="toc-text">扫描类型</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AB%AF%E5%8F%A3%E9%80%89%E9%A1%B9"><span class="toc-number">1.1.2.</span> <span class="toc-text">端口选项</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%BB%E6%9C%BA%E5%8F%91%E7%8E%B0"><span class="toc-number">1.1.3.</span> <span class="toc-text">主机发现</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#searchsploit"><span class="toc-number">2.</span> <span class="toc-text">searchsploit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#netstat"><span class="toc-number">3.</span> <span class="toc-text">netstat</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%8F%82%E6%95%B0-1"><span class="toc-number">3.1.</span> <span class="toc-text">相关参数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ssh%E7%9B%B8%E5%85%B3"><span class="toc-number">4.</span> <span class="toc-text">ssh相关</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#John%E7%88%86%E7%A0%B4%E5%AF%86%E9%92%A5%E5%AF%86%E7%A0%81"><span class="toc-number">4.1.</span> <span class="toc-text">John爆破密钥密码</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">4.1.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B0%86SSH%E7%A7%81%E9%92%A5%EF%BC%88id-rsa%EF%BC%89%E8%BD%AC%E6%8D%A2%E4%B8%BAJohn%E5%8F%AF%E8%AF%86%E5%88%AB%E7%9A%84%E6%A0%BC%E5%BC%8F"><span class="toc-number">4.1.2.</span> <span class="toc-text">将SSH私钥（id_rsa）转换为John可识别的格式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%AD%97%E5%85%B8%E6%94%BB%E5%87%BB"><span class="toc-number">4.1.3.</span> <span class="toc-text">使用字典攻击</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%A0%B4%E8%A7%A3%E7%BB%93%E6%9E%9C"><span class="toc-number">4.1.4.</span> <span class="toc-text">查看破解结果</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hydra%E7%88%86%E7%A0%B4"><span class="toc-number">5.</span> <span class="toc-text">hydra爆破</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E6%9D%83%E6%96%B9%E5%BC%8F"><span class="toc-number">6.</span> <span class="toc-text">提权方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#sh%E8%84%9A%E6%9C%AC%E4%BF%AE%E6%94%B9"><span class="toc-number">6.1.</span> <span class="toc-text">sh脚本修改</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SUID%E6%8F%90%E6%9D%83"><span class="toc-number">6.2.</span> <span class="toc-text">SUID提权</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-nmap%E6%8F%90%E6%9D%83"><span class="toc-number">6.2.1.</span> <span class="toc-text">1.nmap提权</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-wegt%E6%8F%90%E6%9D%83"><span class="toc-number">6.2.2.</span> <span class="toc-text">2.wegt提权</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-vim%E6%8F%90%E6%9D%83"><span class="toc-number">6.2.3.</span> <span class="toc-text">3.vim提权</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-Nano"><span class="toc-number">6.2.4.</span> <span class="toc-text">4.Nano</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-Linux%E5%86%85%E6%A0%B8%E6%8F%90%E6%9D%83"><span class="toc-number">6.2.5.</span> <span class="toc-text">5.Linux内核提权</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-MySQL-UDF%E6%8F%90%E6%9D%83"><span class="toc-number">6.2.6.</span> <span class="toc-text">6.MySQL-UDF提权</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%A4%E4%BA%92%E5%BC%8F%E7%BB%88%E7%AB%AF"><span class="toc-number">7.</span> <span class="toc-text">交互式终端</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#python"><span class="toc-number">7.1.</span> <span class="toc-text">python</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#echo"><span class="toc-number">7.2.</span> <span class="toc-text">echo</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B"><span class="toc-number">8.</span> <span class="toc-text">漏洞探测</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#nikto"><span class="toc-number">8.1.</span> <span class="toc-text">nikto</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%BC%B9shell"><span class="toc-number">9.</span> <span class="toc-text">反弹shell</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%8D%E5%BC%B9shell%E7%94%9F%E6%88%90"><span class="toc-number">9.1.</span> <span class="toc-text">反弹shell生成</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%80%E5%90%AF%E7%9B%91%E5%90%AC"><span class="toc-number">9.2.</span> <span class="toc-text">开启监听</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8E%B7%E5%BE%97shell"><span class="toc-number">9.3.</span> <span class="toc-text">获得shell</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LinEnum"><span class="toc-number">10.</span> <span class="toc-text">LinEnum</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux-Exploit-Suggester"><span class="toc-number">11.</span> <span class="toc-text">Linux Exploit Suggester</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E7%89%B9%E7%82%B9%EF%BC%9A"><span class="toc-number">11.1.</span> <span class="toc-text">功能特点：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E5%9F%9F%E5%90%8D%E7%88%86%E7%A0%B4"><span class="toc-number">12.</span> <span class="toc-text">子域名爆破</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#gobuster"><span class="toc-number">12.1.</span> <span class="toc-text">gobuster</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ffuf"><span class="toc-number">12.2.</span> <span class="toc-text">ffuf</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%84%E4%BA%A7%E6%94%B6%E9%9B%86%E7%BB%BC%E5%90%88%E8%BF%90%E7%94%A8%E5%B7%A5%E5%85%B7"><span class="toc-number">13.</span> <span class="toc-text">资产收集综合运用工具</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B5%84%E4%BA%A7%E7%81%AF%E5%A1%94%E7%B3%BB%E7%BB%9F"><span class="toc-number">13.1.</span> <span class="toc-text">资产灯塔系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B0%B4%E5%BD%B1"><span class="toc-number">13.2.</span> <span class="toc-text">水影</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Shuize"><span class="toc-number">13.3.</span> <span class="toc-text">Shuize</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -752,7 +755,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2023-2024 <a href="https://blog.zyp0422.mom/" target="_blank">zhoupeng</a>
+    		&copy; 2023-2025 <a href="https://blog.zyp0422.mom/" target="_blank">zhoupeng</a>
     	</div>
       	<div class="footer-right">
 			
@@ -871,7 +874,7 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">hackthebox</a>
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -879,7 +882,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
+                <a href="javascript:void(0)" class="js-tag color1">hackthebox</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -887,11 +890,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
+                <a href="javascript:void(0)" class="js-tag color5">kali</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">kali</a>
+                <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -911,11 +914,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SSTI</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color5">SSTI</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -927,15 +930,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SSRF</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">reverse</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">渗透测试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SSRF</a>
               </li>
              
               <li class="article-tag-list-item">
